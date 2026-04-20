@@ -1,29 +1,87 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Spotify Clone</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
-  <div class="container-fluid">
-    <div class="row">
+    <div class="container-fluid">
+      <div class="row">
         <!--COL: LEFT -->
         <!-- <div class="sidebar-left col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
         <!-- bottom-navbar in mobile view che sparisce in md view -->
-        <div class="sidebar-left col-12 fixed-bottom d-md-none bg-danger">left</div>
+        <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black"></div>
         <!-- col che appare da md a sx -->
-        <div class="sidebar-left d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-danger">left</div>
+        <div
+          class="sidebar-left d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black"
+        >
+          <!-- icone HOME, CERCA, LIBRARY -->
+          <section>
+            <nav class="d-flex flex-column">
+              <div>
+                <span
+                  ><a href="#"><i class="fas fa-ellipsis-h"></i></a
+                ></span>
+              </div>
+              <div>
+                <span
+                  ><a href="#"><i class="fas fa-home m-1"></i>Home</a></span
+                >
+              </div>
+              <div>
+                <span
+                  ><a href="#"><i class="fas fa-search"></i>Cerca</a></span
+                >
+              </div>
+              <div>
+                <span
+                  ><a href="#"
+                    ><i class="fas fa-book"></i>La tua libreria</a
+                  ></span
+                >
+              </div>
+            </nav>
+          </section>
+          <!-- crea playlist, ...-->
+          <section></section>
+          <!-- song list -->
+          <section></section>
+        </div>
 
         <!-- COL: MAIN-CONTENT -->
-        <div class="main-content col-12 col-md-8 col-lg-7 order-1 order-md-2 bg-secondary">main</div>
+        <div
+          class="main-content col-12 col-md-8 col-lg-7 order-1 order-md-2 bg-secondary"
+        >
+          main
+        </div>
 
         <!--COL: ATTIVITÀ AMICI -->
         <!-- d-none di default, appare solo in lg view -->
-        <div class="sidebar-right d-none d-lg-block col-lg-2 order-lg-3 bg-info">right</div>
+        <div
+          class="sidebar-right d-none d-lg-block col-lg-2 order-lg-3 bg-info"
+        >
+          right
+        </div>
+      </div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
