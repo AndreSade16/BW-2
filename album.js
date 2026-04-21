@@ -1,4 +1,8 @@
 const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/";
+const audio = new Audio();
+let isPlaying = false;
+let playing = {};
+
 let albumData = {};
 const fetchAlbumData = (id) => {
   fetch(albumApiLink + id)
@@ -18,6 +22,35 @@ const fetchAlbumData = (id) => {
     });
 };
 
+const displayOffcanvasData = (title, artistName, albumTitle, albumCover) => {
+  const offCanvasBottomLabel = document.getElementById("offcanvasBottomLabel");
+  const offCanvasArtistName = document.getElementById("offcanvas-artist-name");
+  const offCanvasAlbumName = document.getElementById("offcanvas-album-name");
+  const offCanvasAlbumCover = document.getElementById("offcanvas-album-cover");
+  offCanvasBottomLabel.innerText = title;
+  offCanvasArtistName.innerText = artistName;
+  offCanvasAlbumName.innerText = albumTitle;
+  offCanvasAlbumCover.setAttribute("src", albumCover);
+};
+
+const getAverageColor = (imgElement) => {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+
+  canvas.width = 1;
+  canvas.height = 1;
+
+  context.drawImage(imgElement, 0, 0, 1, 1);
+
+  const data = context.getImageData(0, 0, 1, 1).data;
+
+  return {
+    r: data[0],
+    g: data[1],
+    b: data[2],
+  };
+};
+
 const displayAlbumData = (data) => {
   const {
     cover_big,
@@ -29,6 +62,9 @@ const displayAlbumData = (data) => {
     label,
   } = data;
   const { name, picture } = data.artist;
+  const albumBody = document.getElementById("album-page-body");
+  const hero = document.getElementById("hero");
+  const topbar = document.getElementById("topbar");
   const albumCover = document.getElementById("album-cover");
   const albumTitle = document.getElementById("album-title");
   const artistPic = document.getElementById("artist-pic");
@@ -45,6 +81,16 @@ const displayAlbumData = (data) => {
   const tracksSpace = document.getElementById("tracks-space");
   const tracks = data.tracks.data;
   albumCover.setAttribute("src", cover_big);
+  albumCover.crossOrigin = "Anonymous";
+  let avgColor = { r: 33, g: 37, b: 41 };
+  albumCover.onload = function () {
+    avgColor = getAverageColor(albumCover);
+    albumBody.style.background = `linear-gradient(
+    to bottom,
+    rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b}) 0%,
+    #212529 28%
+  )`;
+  };
   artistPic.setAttribute("src", picture);
   artistName.innerText = name;
   albumTitle.innerText = title;
@@ -68,26 +114,109 @@ const displayAlbumData = (data) => {
       rank,
       artist,
       explicit_lyrics,
+      album,
     } = track;
     tracksSpace.innerHTML += `
-            <div class="row mt-2">
-                <div class="col-1 d-flex align-items-center justify-content-end text-secondary d-none d-lg-inline-block">
+            <div class="row mt-3">
+                <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
                   <p class="m-0">${i}</p>
                 </div>
-                <div class="col-12 col-lg-5 p-0">
-                  <p class="m-0">${title}</p>
-                  <p class="m-0 text-secondary">${explicit_lyrics ? "<span class='text-black bg-secondary'>E</span> " : ""}${artist.name}</p>
+                <div class="col-11 col-lg-5 p-0" onclick="playAudio()">
+                  <p class="m-0 fw-semibold">${title}</p>
+                  <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span class='text-black bg-secondary fw-semibold'>E</span> " : ""}${artist.name}</p>
                 </div>
                 <div class="col-4 d-none d-lg-inline-block">
-                  <p class="m-0 text-secondary">${rank}</p>
+                  <p class="m-0 text-secondary fw-semibold">${rank}</p>
                 </div>
                 <div class="col-2 text-end d-none d-lg-inline-block">
-                  <p class="m-0 text-secondary">${Math.floor(duration / 60)}:${duration % 60 > 9 ? duration % 60 : "0" + (duration % 60)}</p>
+                  <p class="m-0 text-secondary fw-semibold">${Math.floor(duration / 60)}:${duration % 60 > 9 ? duration % 60 : "0" + (duration % 60)}</p>
                 </div>
-            </div>
-            
+                    <i class="fas fa-ellipsis-v col-1 d-lg-none text-secondary align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
+                    data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
+                </div>
     `;
+    document.addEventListener("click", (e) => {
+      const icon = e.target.closest(".fa-ellipsis-v");
+      if (!icon) return;
+      const { title, artist, album, cover } = icon.dataset;
+      displayOffcanvasData(title, artist, album, cover);
+    });
   });
+  window.addEventListener("scroll", () => {
+    const coverBottom = albumCover.getBoundingClientRect().bottom;
+    if (coverBottom <= 90) {
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
+      document.body.style.backgroundColor = `rgb()`;
+    } else {
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
+    }
+  });
+};
+
+const fillHearth = (e) => {
+  const target = e.target;
+  if (target.classList.contains("far")) {
+    target.classList.remove("far");
+    target.classList.add("fas");
+  } else {
+    target.classList.remove("fas");
+    target.classList.add("far");
+  }
+};
+
+const randomizePlayer = (e) => {
+  if (e.target.style.color === "white") {
+    e.target.style.color = "#1ed760";
+    e.target.classList.toggle("active");
+  } else {
+    e.target.style.color = "white";
+    e.target.classList.toggle("active");
+  }
+};
+
+const playAudio = (song) => {
+  console.log(song);
+  const playBtn = document.getElementById("play-btn");
+  playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
+  console.log(playing.id, song.id);
+  if (playing.id === song.id && audio.currentTime) {
+    audio.play();
+    isPlaying = true;
+    return;
+  }
+  playing = song;
+  const { preview, id, album } = song;
+  audio.src = preview;
+  audio.play();
+  isPlaying = true;
+};
+
+const pauseAudio = () => {
+  const playBtn = document.getElementById("play-btn");
+  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  audio.pause();
+  isPlaying = false;
+};
+
+const playBtnPlay = () => {
+  const randomize = document.getElementById("randomize");
+  const { nb_tracks } = albumData;
+  const songs = albumData.tracks.data;
+  let song = {};
+  if (!isPlaying) {
+    if (randomize.classList.contains("active")) {
+      if (playing.id) {
+        playAudio(playing);
+      } else {
+        let i = Math.floor(Math.random() * nb_tracks);
+        playAudio(songs[i]);
+      }
+    } else {
+      playing.id ? playAudio(playing) : playAudio(songs[0]);
+    }
+  } else {
+    pauseAudio();
+  }
 };
 
 fetchAlbumData(75621062);
