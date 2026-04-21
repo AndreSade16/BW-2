@@ -76,8 +76,3 @@ const params = new URLSearchParams(window.location.search)
 if (params.get("artistId")) {
   loadArtistPage(params.get("artistId"))
 }
-// All'avvio dell'app
-const params = new URLSearchParams(window.location.search)
-if (params.get("artistId")) {
-  loadArtistPage(params.get("artistId"))
-}
