@@ -1,0 +1,35 @@
+.sidebar-left {
+  a,
+  p,
+  i,
+  img {
+    color: #929292 !important;
+  }
+
+  i {
+    font-size: 1.2em;
+  }
+
+  a {
+    div {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.sidebar-right {
+  color: #929292 !important;
+
+  img {
+    margin: 1em;
+  }
+}
+.img-box {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
