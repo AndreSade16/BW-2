@@ -80,6 +80,7 @@ const displayAlbumData = (data) => {
   const copyright = document.getElementById("copyright");
   const phonogram = document.getElementById("phonogram");
   const tracksSpace = document.getElementById("tracks-space");
+  const topbarTitle = document.getElementById("topbar-title");
   const tracks = data.tracks.data;
   albumCover.setAttribute("src", cover_big);
   albumCover.crossOrigin = "Anonymous";
@@ -99,13 +100,24 @@ const displayAlbumData = (data) => {
   };
   window.addEventListener("scroll", () => {
     const coverBottom = albumCover.getBoundingClientRect().bottom;
+
+    if (window.scrollY > 5) {
+      topbarTitle.classList.remove("d-none");
+    } else {
+      topbar.style.top = `-${topbar.offsetHeight}px`;
+      topbarTitle.classList.add("d-none");
+    }
+
     if (coverBottom <= 90) {
       topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
+      topbarTitle.style.opacity = 1;
     } else {
       topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
+      topbarTitle.style.opacity = 0;
     }
   });
   // FINE LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
+  topbarTitle.innerText = title;
   artistPic.setAttribute("src", picture);
   artistName.innerText = name;
   albumTitle.innerText = title;
@@ -138,7 +150,7 @@ const displayAlbumData = (data) => {
                 </div>
                 <div id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
-                  <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span class='text-black bg-secondary fw-semibold'>E</span> " : ""}${artist.name}</p>
+                  <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
                 <div class="col-2 d-none d-lg-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
@@ -270,4 +282,4 @@ const playBtnPlay = () => {
   }
 };
 
-fetchAlbumData(75621062);
+fetchAlbumData(13475611);
