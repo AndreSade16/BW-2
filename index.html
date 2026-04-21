@@ -17,48 +17,45 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/main-content.css" />
+    <link rel="stylesheet" href="./assets/scss/style.css" />
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <!--COL: LEFT -->
-        <!-- <div class="sidebar-left col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
+        <!-- <div class=" col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
         <!-- bottom-navbar in mobile view che sparisce in md view -->
-        <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black">
+        <div class="col-12 fixed-bottom d-md-none bg-black">
           <div class="d-flex justify-content-around text-center py-2">
-            <a href="#" class="text-decoration-none text-light small">
+            <a class="text-secondary" href="#">
               <i class="fas fa-home d-block"></i>
               <span>Home</span>
             </a>
-            <a href="#" class="text-decoration-none text-light small">
+            <a class="text-secondary" href="#">
               <i class="fas fa-search d-block"></i>
               <span>Cerca</span>
             </a>
-            <a href="#" class="text-decoration-none text-light small">
+            <a class="text-secondary" href="#">
               <i class="fas fa-book d-block"></i>
               <span>La tua libreria</span>
             </a>
           </div>
         </div>
         <!-- col che appare da md in poi a sx -->
-        <div
-          class="sidebar-left d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1"
-        >
+        <div class="d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1">
           <section>
             <!-- LINKS: icons + p -->
             <nav class="container mb-2">
               <!-- icone HOME, CERCA, LIBRARY -->
-              <div class="row text-light-minimization gap-2">
+              <div class="row gap-2">
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="text-secondary my-1 d-flex align-items-center"
                   href="#"
                   ><div><i class="fas fa-ellipsis-h"></i></div
                 ></a>
 
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar"
                   href="#"
                   ><div>
                     <img
@@ -71,7 +68,7 @@
                 </a>
 
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none"
                   href="#"
                   ><div>
                     <img
@@ -84,7 +81,7 @@
                 </a>
 
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="col-12 my-1 d-flex align-items-center text-decoration-none"
                   href="#"
                   ><div>
                     <img
@@ -93,14 +90,14 @@
                       alt=""
                     />
                   </div>
-                  <span class="mx-3">La tua libreria</span>
+                  <span class="mx-3 text-secondary">La tua libreria</span>
                 </a>
               </div>
 
               <!-- crea playlist, ...-->
               <div class="row my-3 gap-2">
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
                   href="#"
                   ><div>
                     <img
@@ -113,7 +110,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
                   href="#"
                   ><div>
                     <img
@@ -126,7 +123,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
                   href="#"
                   ><div>
                     <img
@@ -141,7 +138,7 @@
             </nav>
 
             <!-- song list -->
-            <div class="text-light small container text-light-minimization">
+            <div class="small container text-secondary">
               <hr class="text-secondary border-2 border-secondary" />
               <p>early stage emily syndrome (sett-ott 2022)</p>
               <p>Be The Young</p>
@@ -203,8 +200,13 @@
                 <p>Fedez, Salmo</p>
                 <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
 
-                <button class="btn btn-success me-2">Play</button>
-                <button class="btn btn-outline-light">Salva</button>
+                <button class="btn btn-primary fw-bold rounded-5 px-4 py-2">
+                  Play
+                </button>
+                <button class="btn btn-outline-light p-2 px-4 rounded-5">
+                  Salva
+                </button>
+                <i class="fas fa-ellipsis-h ms-3 text-secondary"></i>
               </div>
             </div>
           </section>
@@ -219,7 +221,87 @@
                 <div
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
-                  <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
                   <p class="ms-3 mb-0">
                     early stage emily syndrome (sett-ott 2022)
                   </p>
@@ -282,7 +364,7 @@
         <!-- Versione colonna BOOTSTRAP -->
         <aside
           id="sidebarRight"
-          class="sidebar-right d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-light"
+          class="d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-secondary"
         >
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="text-light">Attività amici</h5>
@@ -293,7 +375,7 @@
           </div>
           <div class="my-4">
             <!-- PRIMO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center my-4">
+            <div class="d-flex align-items-center gap-3 my-4">
               <img
                 width="40px"
                 height="40px"
@@ -311,7 +393,7 @@
               <cite class="small align-self-start">4 ore</cite>
             </div>
             <!-- SECONDO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center my-4">
+            <div class="d-flex align-items-center gap-3 my-4">
               <img
                 width="40px"
                 height="40px"
@@ -329,7 +411,7 @@
               <cite class="small align-self-start">8 ore</cite>
             </div>
             <!-- TERZO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center my-4">
+            <div class="d-flex align-items-center gap-3 my-4">
               <img
                 width="40px"
                 height="40px"

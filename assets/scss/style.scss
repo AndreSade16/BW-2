@@ -1,0 +1,107 @@
+@import "./functions";
+
+$primary: #1ed760;
+$secondary: #929292;
+$dark: #121212;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": #198754,
+  "danger": #dc3545,
+  "warning": #ffc107,
+  "info": #0dcaf0,
+  "light": #f8f9fa,
+  "dark": $dark,
+);
+
+@import "./variables";
+@import "./variables-dark";
+@import "./maps";
+@import "./mixins";
+@import "./utilities";
+@import "./bootstrap";
+
+:root {
+  --bs-primary-rgb: 30, 215, 96;
+  --bs-secondary-rgb: 146, 146, 146;
+  --bs-dark-rgb: 18, 18, 18;
+}
+
+.sidebar-left a div {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-box {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.active-sidebar {
+  color: #ffffff !important;
+
+  span {
+    color: #ffffff !important;
+    font-weight: 600;
+  }
+
+  i,
+  img {
+    filter: brightness(0) invert(1); // rende icone bianche
+  }
+}
+
+//-------------------- MAIN CSS -------------------------------- //
+//-------------------- MAIN CSS -------------------------------- //
+.main-content {
+  background: linear-gradient(to bottom, #4d4d4d, #121212);
+}
+
+.viola {
+  background: linear-gradient(
+    to bottom left,
+    #4d4d4d 0%,
+    #2f2f2f 40%,
+    #1a1a1a 70%,
+    #121212 100%
+  );
+}
+
+/* BUONASERA CARD */
+.buonasera-card {
+  background-color: #2f2f2f;
+  height: 80px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #4d4d4d;
+  }
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+}
+//GRIGLIA DIV CON 4 IMG//
+.square-grid {
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  line-height: 0;
+
+  img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    display: block;
+  }
+}
