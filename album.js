@@ -84,6 +84,10 @@ const displayAlbumData = (data) => {
   albumCover.crossOrigin = "Anonymous";
   let avgColor = { r: 33, g: 37, b: 41 };
   albumCover.onload = function () {
+    const spinner = document.getElementById("spinner");
+    const spinnerTracks = document.getElementById("spinner-tracks");
+    spinner.classList.add("d-none");
+    spinnerTracks.classList.add("d-none");
     avgColor = getAverageColor(albumCover);
     albumBody.style.background = `linear-gradient(
     to bottom,
@@ -210,6 +214,21 @@ const pauseAudio = () => {
   playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
   audio.pause();
   isPlaying = false;
+};
+
+const skipAudio = () => {
+  const songs = albumData.tracks.data;
+  const randomize = document.getElementById("randomize");
+  const nb_tracks = songs.length;
+
+  if (randomize.classList.contains("active")) {
+    let i = Math.floor(Math.random() * nb_tracks);
+    playAudio(songs[i]);
+  } else {
+    const currentIndex = songs.findIndex((s) => s.id === playing.id);
+    const nextIndex = currentIndex + 1 < nb_tracks ? currentIndex + 1 : 0;
+    playAudio(songs[nextIndex]);
+  }
 };
 
 const playBtnPlay = () => {
