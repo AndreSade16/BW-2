@@ -1,0 +1,83 @@
+async function loadArtistPage(artistId) {
+  // Mostra solo questa sezione (nascondi le altre)
+  showSection("artist-page")
+
+  const BASE = "https://striveschool-api.herokuapp.com/api/deezer"
+
+  try {
+    // Fetch parallele — come fare due richieste contemporaneamente
+    const [artistRes, tracksRes] = await Promise.all([
+      fetch(`${BASE}/artist/${artistId}`),
+      fetch(`${BASE}/artist/${artistId}/top?limit=5`)
+    ])
+
+    const artist = await artistRes.json()
+    const tracksData = await tracksRes.json()
+
+    // --- Header ---
+    document.getElementById("artist-banner").src = artist.picture_xl
+    document.getElementById("artist-banner").alt = artist.name
+    document.getElementById("artist-name").textContent = artist.name
+    document.getElementById("artist-fans").textContent =
+      `${artist.nb_fan.toLocaleString("it-IT")} ascoltatori mensili`
+
+    // --- Top tracks ---
+    const tracksList = document.getElementById("artist-tracks")
+    tracksList.innerHTML = "" // reset
+
+    tracksData.data.forEach((track, index) => {
+      tracksList.innerHTML += `
+        <li class="d-flex align-items-center gap-3 mb-2 track-item"
+            data-track-id="${track.id}"
+            style="cursor: pointer;">
+          <span class="text-secondary" style="width: 20px">${index + 1}</span>
+          <img src="${track.album.cover_small}" alt="" class="rounded" style="width:40px; height:40px;">
+          <span class="text-white">${track.title}</span>
+          <span class="text-secondary ms-auto">${formatDuration(track.duration)}</span>
+        </li>`
+    })
+
+    // --- Album dell'artista ---
+    const albumsRes = await fetch(`${BASE}/artist/${artistId}/albums`)
+    const albumsData = await albumsRes.json()
+
+    const albumsContainer = document.getElementById("artist-albums")
+    albumsContainer.innerHTML = ""
+
+    albumsData.data.forEach(album => {
+      albumsContainer.innerHTML += `
+        <div class="col">
+          <div class="album-card" onclick="loadAlbumPage(${album.id})" style="cursor: pointer;">
+            <img src="${album.cover_medium}" alt="${album.title}" class="w-100 rounded mb-2">
+            <p class="text-white small mb-0">${album.title}</p>
+            <p class="text-secondary small">${album.release_date?.slice(0, 4) ?? ""}</p>
+          </div>
+        </div>`
+    })
+
+  } catch (err) {
+    console.error("Errore nel caricamento artista:", err)
+  }
+}
+// Nasconde tutte le sezioni e mostra solo quella richiesta
+function showSection(sectionId) {
+  document.querySelectorAll("section").forEach(s => s.classList.add("d-none"))
+  document.getElementById(sectionId).classList.remove("d-none")
+}
+
+// Converte secondi in m:ss — come in Spotify
+function formatDuration(seconds) {
+  const m = Math.floor(seconds / 60)
+  const s = String(seconds % 60).padStart(2, "0")
+  return `${m}:${s}`
+}
+// Es. click su un nome artista in homepage o album page
+const params = new URLSearchParams(window.location.search)
+if (params.get("artistId")) {
+  loadArtistPage(params.get("artistId"))
+}
+// All'avvio dell'app
+const params = new URLSearchParams(window.location.search)
+if (params.get("artistId")) {
+  loadArtistPage(params.get("artistId"))
+}
