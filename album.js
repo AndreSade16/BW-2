@@ -33,6 +33,7 @@ const displayOffcanvasData = (title, artistName, albumTitle, albumCover) => {
   offCanvasAlbumCover.setAttribute("src", albumCover);
 };
 
+// FUNCTION TO GET THE AVERAGE COLOR FROM AN IMAGE
 const getAverageColor = (imgElement) => {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
@@ -82,6 +83,7 @@ const displayAlbumData = (data) => {
   const tracks = data.tracks.data;
   albumCover.setAttribute("src", cover_big);
   albumCover.crossOrigin = "Anonymous";
+  // LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
   let avgColor = { r: 33, g: 37, b: 41 };
   albumCover.onload = function () {
     const spinner = document.getElementById("spinner");
@@ -95,6 +97,15 @@ const displayAlbumData = (data) => {
     #212529 28%
   )`;
   };
+  window.addEventListener("scroll", () => {
+    const coverBottom = albumCover.getBoundingClientRect().bottom;
+    if (coverBottom <= 90) {
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
+    } else {
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
+    }
+  });
+  // FINE LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
   artistPic.setAttribute("src", picture);
   artistName.innerText = name;
   albumTitle.innerText = title;
@@ -145,15 +156,6 @@ const displayAlbumData = (data) => {
       const { title, artist, album, cover } = icon.dataset;
       displayOffcanvasData(title, artist, album, cover);
     });
-  });
-  window.addEventListener("scroll", () => {
-    const coverBottom = albumCover.getBoundingClientRect().bottom;
-    if (coverBottom <= 90) {
-      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
-      document.body.style.backgroundColor = `rgb()`;
-    } else {
-      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
-    }
   });
 };
 
@@ -228,6 +230,22 @@ const skipAudio = () => {
     const currentIndex = songs.findIndex((s) => s.id === playing.id);
     const nextIndex = currentIndex + 1 < nb_tracks ? currentIndex + 1 : 0;
     playAudio(songs[nextIndex]);
+  }
+};
+
+const backAudio = () => {
+  const songs = albumData.tracks.data;
+  const randomize = document.getElementById("randomize");
+  audio.pause();
+  isPlaying = false;
+  const playBtn = document.getElementById("play-btn");
+  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  if (audio.currentTime) {
+    audio.currentTime = 0;
+  } else {
+    const currentIndex = songs.findIndex((s) => s.id === playing.id);
+    const lastIndex = currentIndex - 1 > 0 ? currentIndex - 1 : 0;
+    playAudio(songs[lastIndex]);
   }
 };
 
