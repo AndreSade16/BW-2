@@ -19,69 +19,77 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body class="bg-dark text-light">
+  <body id="album-page-body" class="bg-dark text-light">
+    <div
+      id="topbar"
+      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 px-4 pt-4 pb-2 px-lg-5 py-lg-2"
+    >
+      <div id="forward-backwards-btn-group">
+        <span class="fa-stack fs-5 d-none d-lg-inline-block" type="button">
+          <i class="fas fa-circle fa-stack-2x text-dark"></i>
+          <i class="fas fa-chevron-left fa-stack-1x text-white"></i>
+        </span>
+        <span class="fa-stack fs-5 d-none d-lg-inline-block" type="button">
+          <i class="fas fa-circle fa-stack-2x text-dark"></i>
+          <i class="fas fa-chevron-right fa-stack-1x text-white"></i>
+        </span>
+        <a href="#"
+          ><i
+            class="fas fa-arrow-left fs-2 text-light d-lg-none"
+            type="button"
+          ></i
+        ></a>
+      </div>
+      <p id="topbar-title"></p>
+      <div id="user-dropdown" class="dropdown d-none d-lg-block">
+        <a
+          class="btn btn-secondary dropdown-toggle bg-black d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="./assets/imgs/main/image-1.jpg"
+            alt="user-pic"
+            style="width: 2rem"
+            class="rounded-circle"
+          />
+          Username...
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end bg-dark">
+          <li><a class="dropdown-item text-light" href="#">Action</a></li>
+          <li>
+            <a class="dropdown-item text-light" href="#">Another action</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-light" href="#">Something else here</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col mx-lg-4">
-          <div
-            id="topbar"
-            class="d-flex justify-content-between align-items-center mt-3 position-sticky top-0 start-0 end-0"
-          >
-            <div id="forward-backwards-btn-group">
-              <i
-                class="fas fa-chevron-circle-left fs-2 btn bg-dark text-light d-none d-lg-inline-block"
-              ></i>
-              <i
-                class="fas fa-chevron-circle-right fs-2 btn bg-dark text-light d-none d-lg-inline-block"
-              ></i>
-              <a href="#"
-                ><i
-                  class="fas fa-arrow-left fs-2 btn bg-dark text-light d-lg-none"
-                ></i
-              ></a>
-            </div>
-            <div id="user-dropdown" class="dropdown d-none d-lg-block">
-              <a
-                class="btn btn-secondary dropdown-toggle bg-dark d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="./assets/imgs/main/image-1.jpg"
-                  alt="user-pic"
-                  style="width: 2rem"
-                  class="rounded-circle"
-                />
-                Username...
-              </a>
-
-              <ul class="dropdown-menu dropdown-menu-end bg-dark">
-                <li><a class="dropdown-item text-light" href="#">Action</a></li>
-                <li>
-                  <a class="dropdown-item text-light" href="#"
-                    >Another action</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item text-light" href="#"
-                    >Something else here</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div class="col mx-lg-4 px-3">
           <div
             id="hero"
             class="position-relative d-flex flex-column flex-lg-row align-items-center justify-content-center"
           >
+            <div
+              id="spinner"
+              class="spinner-border"
+              role="status"
+              style="width: 320px; height: 320px"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
             <img
               id="album-cover"
-              src="./assets/imgs/main/image-19.jpg"
+              src=""
               alt="album-cover"
-              class="mt-3 me-3 shadow-lg"
-              style="width: 300px"
+              class="mt-lg-3 me-lg-3 shadow-lg"
+              style="width: 320px"
             />
             <div
               id="hero-text"
@@ -93,12 +101,19 @@
               >
                 ALBUM
               </h5>
-              <h2 id="album-title" class="h2 mb-lg-5">Gioventù Bruciata</h2>
+              <h2 id="album-title" class="h2 mb-lg-5 placeholder-glow">
+                <span class="placeholder col-6" style="width: 8rem"></span>
+                <span class="placeholder col-6" style="width: 5rem"></span>
+                <span class="placeholder col-6" style="width: 6rem"></span>
+              </h2>
               <div
                 id="infos"
                 class="mt-3 d-lg-flex align-items-center gap-3 gap-lg-1"
               >
-                <div id="artist-info" class="d-flex align-items-center">
+                <div
+                  id="artist-info"
+                  class="d-flex align-items-center mb-1 mb-lg-0"
+                >
                   <img
                     id="artist-pic"
                     src="./assets/imgs/main/image-19.jpg"
@@ -108,26 +123,40 @@
                   />
                   <h4
                     id="artist-name"
-                    class="d-flex align-items-center m-0 fs-6"
+                    class="d-flex align-items-center m-0 ms-1 ms-lg-0 fs-6 placeholder-glow"
                   >
-                    Pinguini Tattici Nucleari
+                    <span class="placeholder col-6" style="width: 6rem"></span>
                   </h4>
                 </div>
                 <div
                   id="album-info"
                   class="d-flex justify-content-start gap-1 text-secondary mt-2 mt-lg-0"
                 >
-                  <p id="record-type" class="m-lg-0 d-lg-none text-capitalize">
-                    Album
+                  <p
+                    id="record-type"
+                    class="m-lg-0 mb-0 d-lg-none text-capitalize fw-semibold placeholder-glow"
+                  >
+                    <span class="placeholder col-6" style="width: 4rem"></span>
                   </p>
-                  <p class="m-lg-0">•</p>
-                  <p id="hero-album-year" class="m-lg-0">2017</p>
-                  <p class="m-lg-0 d-none d-lg-block">•</p>
-                  <p id="hero-tracks-num" class="m-lg-0 d-none d-lg-block">
-                    12 brani,
+                  <p class="m-lg-0 mb-0 fw-semibold">•</p>
+                  <p
+                    id="hero-album-year"
+                    class="m-lg-0 mb-0 fw-semibold placeholder-glow"
+                  >
+                    <span class="placeholder col-6" style="width: 4rem"></span>
                   </p>
-                  <p id="hero-length" class="m-lg-0 d-none d-lg-block">
-                    53 min, 20 sec
+                  <p class="m-lg-0 mb-0 d-none d-lg-block fw-semibold">•</p>
+                  <p
+                    id="hero-tracks-num"
+                    class="m-lg-0 mb-0 d-none d-lg-block fw-semibold placeholder-glow"
+                  >
+                    <span class="placeholder col-6" style="width: 3rem"></span>
+                  </p>
+                  <p
+                    id="hero-length"
+                    class="m-lg-0 mb-0 d-none d-lg-block fw-semibold placeholder-glow"
+                  >
+                    <span class="placeholder col-6"></span>
                   </p>
                 </div>
               </div>
@@ -136,7 +165,7 @@
           <!-- FUNCTIONALITY BAR -->
           <div
             id="functionality-wrapper"
-            class="d-flex w-100 justify-content-between justify-content-lg-end mb-3 mt-3 flex-lg-row-reverse"
+            class="d-flex w-100 justify-content-between justify-content-lg-end mb-3 mt-0 pt-lg-5 pb-lg-3 flex-lg-row-reverse"
           >
             <div
               id="functionality-left"
@@ -145,14 +174,20 @@
               <i
                 class="far fa-heart d-flex justify-content-center align-items-center fs-2"
                 style="width: 2rem"
+                type="button"
+                onclick="fillHearth(event)"
               ></i>
               <i
                 class="fas fa-arrow-circle-down d-flex justify-content-center align-items-center fs-2"
+                type="button"
                 style="width: 2rem"
+                onclick="skipAudio()"
               ></i>
               <i
                 class="fas fa-ellipsis-v d-flex justify-content-center align-items-center fs-2"
                 style="width: 2rem"
+                type="button"
+                onclick="backAudio()"
               ></i>
             </div>
             <div
@@ -160,48 +195,168 @@
               class="d-flex justify-content-end gap-4 gap-sm-5"
             >
               <i
+                id="randomize"
                 class="fas fa-random d-flex justify-content-center align-items-center fs-2 d-lg-none"
-                style="width: 2rem"
+                style="width: 2rem; color: white"
+                type="button"
+                onclick="randomizePlayer(event)"
               ></i>
               <div
-                class="p-4 d-flex justify-content-center align-items-center bg-success rounded-circle fs-2 me-lg-5"
+                id="play-btn"
+                type="button"
+                class="p-4 d-flex justify-content-center align-items-center rounded-circle fs-2 me-lg-5"
+                style="background-color: #1ed760"
+                onclick="playBtnPlay()"
               >
                 <i class="fas fa-play text-black"></i>
               </div>
             </div>
           </div>
           <!-- TRACKS SECTION -->
-          <section id="tracks-section" class="mt-3">
+          <section id="tracks-section" class="mt-4">
             <div id="tracks-space" class="container-fluid">
               <div
-                class="row d-none d-lg-flex border-bottom border-1 text-secondary"
+                class="row d-none d-lg-flex border-bottom border-1 text-secondary justify-content-between"
               >
                 <div class="col-1">
-                  <p class="text-end">#</p>
+                  <p class="text-end fw-semibold">#</p>
                 </div>
-                <div class="col-5">
-                  <p>TITOLO</p>
+                <div class="col-5 p-0">
+                  <p class="fw-semibold">TITOLO</p>
                 </div>
-                <div class="col-4">
-                  <p>RIPRODUZIONI</p>
+                <div class="col-2">
+                  <p class="fw-semibold text-end">RIPRODUZIONI</p>
                 </div>
                 <div class="col-2 text-end">
-                  <i class="far fa-clock"></i>
+                  <i class="far fa-clock fw-semibold"></i>
                 </div>
+              </div>
+              <div id="spinner-tracks" class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
             </div>
           </section>
           <div id="lenght-info" class="d-flex gap-1 mt-3 d-lg-none">
-            <p id="tracks-qty-mobile">1 brano</p>
+            <p id="tracks-qty-mobile" class="placeholder-glow">
+              <span class="placeholder col-6" style="width: 5rem"></span>
+            </p>
             <p class="dot">•</p>
-            <p id="album-length-mins-mobile">4 min</p>
+            <p id="album-length-mins-mobile" class="placeholder-glow">
+              <span class="placeholder col-6" style="width: 4rem"></span>
+            </p>
           </div>
           <div
             id="publishing-info"
             class="d-flex flex-column flex-lg-row gap-1 gap-lg-3 mt-2"
           >
-            <p id="copyright" class="m-0">© copyright</p>
-            <p id="phonogram" class="m-0">℗ phonogram</p>
+            <p id="copyright" class="m-0 placeholder-glow">
+              © <span class="placeholder col-3"></span>
+            </p>
+            <p id="phonogram" class="m-0 placeholder-glow">
+              ℗ <span class="placeholder col-3"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="offcanvas offcanvas-bottom rounded-top-4"
+      tabindex="-1"
+      id="offcanvasBottom"
+      aria-labelledby="offcanvasBottomLabel"
+      style="height: auto"
+    >
+      <div
+        id="offcanvas-body"
+        class="offcanvas-body bg-dark rounded-top-3 p-0 pb-2"
+      >
+        <div
+          id="offcanvas-header"
+          class="d-flex gap-3 align-items-center border-bottom border-1 border-secondary p-3"
+        >
+          <img
+            id="offcanvas-album-cover"
+            src=""
+            alt="album-cover"
+            style="width: 3rem; height: 3rem; object-fit: cover"
+            class="rounded"
+          />
+          <div class="d-flex flex-column justify-content-center">
+            <p
+              class="text-light m-0 fw-semibold"
+              style="font-size: 0.8rem"
+              id="offcanvasBottomLabel"
+            ></p>
+            <div class="d-flex text-secondary gap-1" style="font-size: 0.8rem">
+              <p id="offcanvas-artist-name" class="m-0 fw-semibold"></p>
+              <p class="m-0 fw-semibold">•</p>
+              <p id="offcanvas-album-name" class="m-0 fw-semibold"></p>
+            </div>
+          </div>
+        </div>
+        <div
+          id="offcanvas-main"
+          class="m-0 d-flex flex-column gap-4 align-items-start pt-3 ps-3"
+        >
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <i class="fas fa-share-alt text-center" style="width: 1.5rem"></i>
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Condividi
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <img
+              src="https://misc.scdn.co/liked-songs/liked-songs-640.jpg"
+              alt="favorites-img"
+              style="width: 1.5rem"
+            />
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Aggiungi a brani che ti piacciono
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <i class="fas fa-plus-circle text-center" style="width: 1.5rem"></i>
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Aggiungi alla playlist
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <i class="fas fa-times text-center" style="width: 1.5rem"></i>
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Nascondi questo album
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <i class="far fa-gem text-center" style="width: 1.5rem"></i>
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Ascolta la musica senza pubblicità
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <i class="fas fa-stream text-center" style="width: 1.5rem"></i>
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Aggiungi in coda
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-start gap-3 text-light align-items-center"
+          >
+            <i class="fas fa-tasks text-center" style="width: 1.5rem"></i>
+            <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+              Vai alla coda
+            </p>
           </div>
         </div>
       </div>

@@ -17,6 +17,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/main-content.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -48,50 +50,98 @@
             <!-- LINKS: icons + p -->
             <nav class="container mb-2">
               <!-- icone HOME, CERCA, LIBRARY -->
-              <div class="row">
-                <a class="col-12 my-1 text-light text-light" href="#"
-                  ><i class="fas fa-ellipsis-h"></i
+              <div class="row text-light-minimization gap-2">
+                <a
+                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  href="#"
+                  ><div><i class="fas fa-ellipsis-h"></i></div
                 ></a>
 
-                <a class="col-12 my-1 text-light" href="#"
-                  ><i class="fas fa-home"><span class="mx-3">Home</span></i>
+                <a
+                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  href="#"
+                  ><div>
+                    <img
+                      class="img-box"
+                      src="./assets/imgs/icona home.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="mx-3">Home</span>
                 </a>
 
-                <a class="col-12 my-1 text-light" href="#"
-                  ><i class="fas fa-search"><span class="mx-3">Cerca</span></i>
+                <a
+                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  href="#"
+                  ><div>
+                    <img
+                      class="img-box"
+                      src="./assets/imgs/icona lente.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="mx-3">Cerca</span>
                 </a>
 
-                <a class="col-12 my-1 text-light" href="#"
-                  ><i class="fas fa-book"
-                    ><span class="mx-3">La tua libreria</span></i
-                  >
+                <a
+                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  href="#"
+                  ><div>
+                    <img
+                      class="img-box"
+                      src="./assets/imgs/icona library.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="mx-3">La tua libreria</span>
                 </a>
               </div>
 
               <!-- crea playlist, ...-->
-              <div class="row my-3">
-                <a class="col-12 my-1 text-light" href="#"
-                  ><i class="fas fa-plus-square"
-                    ><span class="mx-3">Crea playlist</span></i
-                  >
+              <div class="row my-3 gap-2">
+                <a
+                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  href="#"
+                  ><div>
+                    <img
+                      class="img-box"
+                      src="./assets/imgs/icona plus.png"
+                      alt="plus-icons"
+                    />
+                  </div>
+                  <span class="mx-3">Crea playlist</span>
                 </a>
 
-                <a class="col-12 my-1 text-light" href="#"
-                  ><i class="fas fa-heart"
-                    ><span class="mx-3">Brani che ti piacciono</span></i
-                  >
+                <a
+                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  href="#"
+                  ><div>
+                    <img
+                      class="img-box"
+                      src="./assets/imgs/icona cuore.png"
+                      alt="icons-cuore"
+                    />
+                  </div>
+                  <span class="mx-3">Brani che ti piacciono</span>
                 </a>
 
-                <a class="col-12 my-1 text-light" href="#"
-                  ><i class="fas fa-bookmark"
-                    ><span class="mx-3">I tuoi episodi</span></i
-                  >
+                <a
+                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  href="#"
+                  ><div>
+                    <img
+                      class="img-box"
+                      src="./assets/imgs/icona-bookmark.png"
+                      alt="icons-bookmark"
+                    />
+                  </div>
+                  <span class="mx-3">I tuoi episodi</span>
                 </a>
               </div>
             </nav>
 
             <!-- song list -->
-            <div class="text-light small container">
+            <div class="text-light small container text-light-minimization">
               <hr class="text-secondary border-2 border-secondary" />
               <p>early stage emily syndrome (sett-ott 2022)</p>
               <p>Be The Young</p>
@@ -132,13 +182,92 @@
 
         <!-- COL: MAIN-CONTENT -->
         <div
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 bg-secondary pt-1">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde
-            provident praesentium, commodi mollitia, optio rem alias fugit
-            consequuntur ullam impedit, voluptatum sunt. Repudiandae eos aperiam
-            earum ad, esse dignissimos.
-          </p>
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 pt-3"
+        >
+          <!-- -------------------------------- -->
+          <!-- inserire qui i bottoni "< >" e il dropdown -->
+          <!-- -------------------------------- -->
+
+          <!-- MAIN HOMEPAGE CONTENT -->
+          <!-- Blocco adds, VIOLA -->
+          <section class="viola p-4 text-light">
+            <div class="d-flex align-items-center">
+              <img
+                src="./assets/imgs/main/VIOLA.jpeg"
+                class="me-4"
+                style="width: 200px"
+              />
+              <div>
+                <small>ALBUM</small>
+                <h1 class="fw-bold display-4">VIOLA (feat. Salmo)</h1>
+                <p>Fedez, Salmo</p>
+                <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
+
+                <button class="btn btn-success me-2">Play</button>
+                <button class="btn btn-outline-light">Salva</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- BUONASERA -->
+          <section class="container-fluid text-light my-4">
+            <h3 class="mb-3">Buonasera</h3>
+
+            <div class="row g-3">
+              <!-- CARD (daduplicare x 6)-->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <!-- fine card -->
+            </div>
+          </section>
+
+          <!-- ARTISTI CONSIGLIATI -->
+          <!-- prototipo card da aggiungere via JS -->
+          <section class="container-fluid text-light my-4">
+            <h4 class="mb-3">Artisti consigliati</h4>
+
+            <div class="row g-3">
+              <div class="col-6 col-md-4 col-lg-2">
+                <div class="card bg-dark text-light border-0 p-3 text-center">
+                  <!-- CONTENUTO -->
+                  <div
+                    class="bg-secondary rounded-circle mb-3"
+                    style="height: 100px"
+                  >
+                    <img src="" alt="" />
+                  </div>
+                  <p class="mb-1">Artista</p>
+                  <small class="text-secondary">Dettaglio</small>
+                </div>
+              </div>
+              <!--duplicare x 5 -->
+            </div>
+          </section>
+
+          <!-- ALBUM CONSIGLIATI -->
+          <section class="container-fluid text-light my-4">
+            <h4 class="mb-3">Album consigliati</h4>
+
+            <div class="row g-3">
+              <div class="col-6 col-md-4 col-lg-2">
+                <div class="card bg-dark text-light border-0 p-2">
+                  <div class="bg-secondary mb-2" style="height: 120px"></div>
+                  <p class="mb-1">Album</p>
+                  <small class="text-secondary">Dettagli</small>
+                </div>
+              </div>
+
+              <!-- x5 -->
+            </div>
+          </section>
           <!-- bottone controllo sidebar-right -->
           <button
             id="openSidebar"
@@ -185,15 +314,15 @@
           class="sidebar-right d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-light"
         >
           <div class="d-flex justify-content-between align-items-center">
-            <h5>Attività amici</h5>
+            <h5 class="text-light">Attività amici</h5>
             <div>
               <i class="fas fa-user-plus me-2"></i>
               <i id="closeSidebar" class="fas fa-times"></i>
             </div>
           </div>
-          <div>
+          <div class="my-4">
             <!-- PRIMO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center">
+            <div class="d-flex justify-content-around align-items-center my-4">
               <img
                 width="40px"
                 height="40px"
@@ -201,7 +330,7 @@
                 src="https://placecats.com/50/50"
                 alt="pfp"
               />
-              <div class="d-flex flex-column align-self-start">
+              <div class="d-flex flex-column align-self-start flex-grow-1">
                 <p class="m-0 fw-bold">Charlie Hookhman</p>
                 <cite class="small">In Camera • Yumi Zouma</cite>
                 <cite class="small"
@@ -211,7 +340,7 @@
               <cite class="small align-self-start">4 ore</cite>
             </div>
             <!-- SECONDO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center">
+            <div class="d-flex justify-content-around align-items-center my-4">
               <img
                 width="40px"
                 height="40px"
@@ -219,7 +348,7 @@
                 src="https://placecats.com/50/50"
                 alt="pfp"
               />
-              <div class="d-flex flex-column align-self-start">
+              <div class="d-flex flex-column align-self-start flex-grow-1">
                 <p class="m-0 fw-bold">lightdark02</p>
                 <cite class="small">Aimed to Kill • Jade LeMac</cite>
                 <cite class="small"
@@ -229,7 +358,7 @@
               <cite class="small align-self-start">8 ore</cite>
             </div>
             <!-- TERZO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center">
+            <div class="d-flex justify-content-around align-items-center my-4">
               <img
                 width="40px"
                 height="40px"
@@ -237,7 +366,7 @@
                 src="https://placecats.com/50/50"
                 alt="pfp"
               />
-              <div class="d-flex flex-column align-self-start">
+              <div class="d-flex flex-column align-self-start flex-grow-1">
                 <p class="m-0 fw-bold">Valeria Traverso</p>
                 <cite class="small">New Kings • Sleeping Wolf</cite>
                 <cite class="small"
