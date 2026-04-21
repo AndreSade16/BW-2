@@ -19,27 +19,42 @@
     />
     <link rel="stylesheet" href="./assets/css/search.css" />
   </head>
-  <body class="bg-dark-subtle pt-5">
+  <body class="bg-dark-subtle pt-4">
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-12 d-flex justify-content-center px-3">
-          <div id="input-group" class="input-group">
-            <span class="input-group-text border-0 bg-dark" id="visible-addon"
-              ><i class="fas fa-search text-light fs-2"></i
-            ></span>
+        <div id="search-h2" class="col-12 mb-4">
+          <h2>Cerca</h2>
+        </div>
+        <div class="col-12 d-flex justify-content-center px-3 px-sm-5">
+          <div id="input-group" class="input-group position-relative">
+            <span class="input-group-text border-0 bg-dark" id="visible-addon">
+              <i class="fas fa-search text-light fs-2"></i>
+            </span>
             <input
               type="text"
+              id="search-input"
               class="form-control border-0 bg-dark fw-semibold py-3 shadow-none fs-5"
               placeholder="Cosa vuoi ascoltare?"
               aria-label="Cosa vuoi ascoltare?"
               aria-describedby="visible-addon"
             />
+            <div
+              id="search-dropdown"
+              class="position-absolute w-100 bg-dark rounded-3 py-2 d-none"
+              style="top: 100%; z-index: 2"
+            >
+              <div class="dropdown-item text-light py-2 px-3">Risultato 1</div>
+              <div class="dropdown-item text-light py-2 px-3">Risultato 2</div>
+              <div class="dropdown-item text-light py-2 px-3">Risultato 3</div>
+            </div>
           </div>
         </div>
         <div class="row d-flex flex-column align-items-center px-3">
           <h3 class="text-center mt-4">Sfoglia tutto</h3>
           <div class="container-fluid">
-            <div class="row justify-content-between mb-3">
+            <div
+              class="row justify-content-between justify-content-sm-center gap-sm-3 gap-lg-4 gap-xl-5 mb-3"
+            >
               <div
                 id="search-box-1"
                 class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
