@@ -18,6 +18,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/main-content.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -181,14 +182,99 @@
 
         <!-- COL: MAIN-CONTENT -->
         <div
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 bg-secondary pt-1"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 pt-3"
         >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde
-            provident praesentium, commodi mollitia, optio rem alias fugit
-            consequuntur ullam impedit, voluptatum sunt. Repudiandae eos aperiam
-            earum ad, esse dignissimos.
-          </p>
+          <!-- -------------------------------- -->
+          <!-- inserire qui i bottoni "< >" e il dropdown -->
+          <!-- -------------------------------- -->
+
+          <!-- MAIN HOMEPAGE CONTENT -->
+          <!-- Blocco adds, VIOLA -->
+          <section class="viola p-4 text-light">
+            <div class="d-flex align-items-center">
+              <img
+                src="./assets/imgs/main/VIOLA.jpeg"
+                class="me-4"
+                style="width: 200px"
+              />
+              <div>
+                <small>ALBUM</small>
+                <h1 class="fw-bold display-4">VIOLA (feat. Salmo)</h1>
+                <p>Fedez, Salmo</p>
+                <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
+
+                <button class="btn btn-success me-2">Play</button>
+                <button class="btn btn-outline-light">Salva</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- BUONASERA -->
+          <section class="container-fluid text-light my-4">
+            <h3 class="mb-3">Buonasera</h3>
+
+            <div class="row g-3">
+              <!-- CARD (daduplicare x 6)-->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <!-- fine card -->
+            </div>
+          </section>
+
+          <!-- ARTISTI CONSIGLIATI -->
+          <!-- prototipo card da aggiungere via JS -->
+          <section class="container-fluid text-light my-4">
+            <h4 class="mb-3">Artisti consigliati</h4>
+
+            <div class="row g-3">
+              <div class="col-6 col-md-4 col-lg-2">
+                <div class="card bg-dark text-light border-0 p-3 text-center">
+                  <!-- CONTENUTO -->
+                  <div
+                    class="bg-secondary rounded-circle mb-3"
+                    style="height: 100px"
+                  >
+                    <img src="" alt="" />
+                  </div>
+                  <p class="mb-1">Artista</p>
+                  <small class="text-secondary">Dettaglio</small>
+                </div>
+              </div>
+              <!--duplicare x 5 -->
+            </div>
+          </section>
+
+          <!-- ALBUM CONSIGLIATI -->
+          <section class="container-fluid text-light my-4">
+            <h4 class="mb-3">Album consigliati</h4>
+
+            <div class="row g-3">
+              <div class="col-6 col-md-4 col-lg-2">
+                <div class="card bg-dark text-light border-0 p-2">
+                  <div class="bg-secondary mb-2" style="height: 120px"></div>
+                  <p class="mb-1">Album</p>
+                  <small class="text-secondary">Dettagli</small>
+                </div>
+              </div>
+
+              <!-- x5 -->
+            </div>
+          </section>
+          <!-- bottone controllo sidebar-right -->
+          <button
+            id="openSidebar"
+            class="btn btn-dark position-fixed top-0 end-0 m-3"
+          >
+            <i class="fas fa-users"></i>
+          </button>
         </div>
 
         <!--COL: ATTIVITÀ AMICI -->
