@@ -13,14 +13,27 @@ async function loadArtistPage(artistId) {
 
     const artist = await artistRes.json()
     const tracksData = await tracksRes.json()
-
+    
     // --- Header ---
-    document.getElementById("artist-banner").src = artist.picture_xl
-    document.getElementById("artist-banner").alt = artist.name
-    document.getElementById("artist-name").textContent = artist.name
-    document.getElementById("artist-fans").textContent =
-      `${artist.nb_fan.toLocaleString("it-IT")} ascoltatori mensili`
+  const artistBanner = document.getElementById("artist-banner")
+   artistBanner.crossOrigin = "Anonymous"  // PRIMA di src!
+   artistBanner.src = artist.picture_xl
+   artistBanner.alt = artist.name
+   document.getElementById("artist-name").textContent = artist.name
+   document.getElementById("artist-fans").textContent = 
+  `${artist.nb_fan.toLocaleString("it-IT")} ascoltatori mensili`
 
+// Gradient dinamico
+ let avgColor = { r: 33, g: 37, b: 41 }
+ artistBanner.onload = function() {
+  avgColor = getAverageColor(artistBanner)
+  document.getElementById("artist-page").style.background = `linear-gradient(
+    to bottom,
+    rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b}) 0%,
+    #212529 28%
+  )`
+}
+    
     // --- Top tracks ---
     const tracksList = document.getElementById("artist-tracks")
     tracksList.innerHTML = "" // reset
