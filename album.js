@@ -117,15 +117,15 @@ const displayAlbumData = (data) => {
       album,
     } = track;
     tracksSpace.innerHTML += `
-            <div class="row mt-3">
+            <div class="row mt-3 justify-content-between">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
-                  <p class="m-0">${i}</p>
+                  <p class="m-0 text-end">${i}</p>
                 </div>
-                <div class="col-11 col-lg-5 p-0" onclick="playAudio()">
+                <div id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
                   <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span class='text-black bg-secondary fw-semibold'>E</span> " : ""}${artist.name}</p>
                 </div>
-                <div class="col-4 d-none d-lg-inline-block">
+                <div class="col-2 d-none d-lg-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
                 </div>
                 <div class="col-2 text-end d-none d-lg-inline-block">
@@ -136,7 +136,7 @@ const displayAlbumData = (data) => {
                 </div>
     `;
     document.addEventListener("click", (e) => {
-      const icon = e.target.closest(".fa-ellipsis-v");
+      const icon = e.target.closest("#tracks-space .fa-ellipsis-v");
       if (!icon) return;
       const { title, artist, album, cover } = icon.dataset;
       displayOffcanvasData(title, artist, album, cover);
@@ -175,18 +175,32 @@ const randomizePlayer = (e) => {
 };
 
 const playAudio = (song) => {
-  console.log(song);
   const playBtn = document.getElementById("play-btn");
   playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
-  console.log(playing.id, song.id);
+
   if (playing.id === song.id && audio.currentTime) {
     audio.play();
     isPlaying = true;
     return;
   }
+
+  // resetta il colore della traccia precedente
+  if (playing.id) {
+    const prevTrack = document.getElementById(playing.id);
+    if (prevTrack) {
+      prevTrack.style.color = "";
+    }
+  }
+
   playing = song;
-  const { preview, id, album } = song;
-  audio.src = preview;
+
+  // colora la traccia corrente
+  const currentTrack = document.getElementById(song.id);
+  if (currentTrack) {
+    currentTrack.style.color = "#1ed760";
+  }
+
+  audio.src = song.preview;
   audio.play();
   isPlaying = true;
 };
