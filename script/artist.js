@@ -34,6 +34,12 @@ const artistBanner = document.getElementById("artist-banner")
   document.getElementById("artist-fans").textContent = 
 `${artist.nb_fan.toLocaleString("it-IT")} ascoltatori mensili`
 
+// --- Box brani che ti piacciono ---
+const artistLikedImg = document.getElementById("artist-liked-img")
+artistLikedImg.crossOrigin = "Anonymous"
+artistLikedImg.src = artist.picture_medium
+document.getElementById("artist-liked-name").textContent = `Di ${artist.name}`
+
 // Gradient dinamico
 let avgColor = { r: 33, g: 37, b: 41 }
 artistBanner.onload = function() {
