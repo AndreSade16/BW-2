@@ -180,7 +180,7 @@
         <!-- COL: MAIN-CONTENT -->
         <div
           id="main"
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center"
+          class="main-content col-12 col-md-8 col-lg-7 order-1 order-md-2 d-flex flex-column align-items-center"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -313,28 +313,50 @@
           </section>
 
           <!-- ARTISTI CONSIGLIATI -->
-          <section class="container-fluid text-light my-4">
+          <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Artisti consigliati</h4>
 
-            <div class="row g-3">
-              <div class="col-6 col-md-4 col-lg-2">
-                <div class="card bg-dark text-light border-0 p-3 text-center">
-                  <!-- CONTENUTO -->
+            <!-- inizio carosello artisti -->
+            <div id="artistCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- SLIDE 1, primi 5-->
+                <div class="carousel-item active">
                   <div
-                    class="bg-secondary rounded-circle mb-3"
-                    style="height: 100px; cursor: pointer"
-                    onclick="loadArtistPage(412)"
-                  >
-                    <img src="" alt="" />
-                  </div>
-                  <p class="mb-1">Artista</p>
-                  <small class="text-secondary">Dettaglio</small>
+                    class="row g-3"
+                    id="artist-slide-1"
+                  ></div>
+                </div>
+
+                <!-- SLIDE 2, secondi 5-->
+                <div class="carousel-item">
+                  <div
+                    class="row g-3"
+                    id="artist-slide-2"
+                  ></div>
                 </div>
               </div>
-              <!--duplicare x 5 -->
-            </div>
-          </section>
 
+              <!-- frecce carosello -->
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#artistCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#artistCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+            <!-- fine carosello album -->
+          </section>
           <!-- ALBUM CONSIGLIATI -->
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Album consigliati</h4>
@@ -344,12 +366,18 @@
               <div class="carousel-inner">
                 <!-- SLIDE 1, primi 5-->
                 <div class="carousel-item active">
-                  <div class="row" id="album-slide-1"></div>
+                  <div
+                    class="row g-3"
+                    id="album-slide-1"
+                  ></div>
                 </div>
 
                 <!-- SLIDE 2, secondi 5-->
                 <div class="carousel-item">
-                  <div class="row" id="album-slide-2"></div>
+                  <div
+                    class="row g-3"
+                    id="album-slide-2"
+                  ></div>
                 </div>
               </div>
 
