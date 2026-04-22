@@ -48,19 +48,21 @@
         </div>
         <!-- col che appare da md in poi a sx -->
         <div
-          class="d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1"
+          class="d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1 overflow-auto vh-100"
         >
           <section>
             <!-- LINKS: icons + p -->
             <nav class="container mb-2">
               <!-- icone HOME, CERCA, LIBRARY -->
               <div class="row gap-2">
-                <a class="text-light my-1 d-flex align-items-center" href="#"
+                <a
+                  class="text-light my-1 d-flex align-items-center sidebar-link"
+                  href="#"
                   ><div><i class="fas fa-ellipsis-h"></i></div
                 ></a>
 
                 <a
-                  class="col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar"
+                  class="col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -73,7 +75,7 @@
                 </a>
 
                 <a
-                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none"
+                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -86,7 +88,7 @@
                 </a>
 
                 <a
-                  class="col-12 my-1 d-flex align-items-center text-decoration-none"
+                  class="col-12 my-1 text-secondary d-flex align-items-center text-decoration-none sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -95,14 +97,14 @@
                       alt=""
                     />
                   </div>
-                  <span class="mx-3 text-secondary">La tua libreria</span>
+                  <span class="mx-3">La tua libreria</span>
                 </a>
               </div>
 
               <!-- crea playlist, ...-->
               <div class="row my-3 gap-2">
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -115,7 +117,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -128,7 +130,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -143,7 +145,7 @@
             </nav>
 
             <!-- song list -->
-            <div class="small container text-secondary">
+            <div class="small container text-secondary font">
               <hr class="text-secondary border-2 border-secondary" />
               <p>early stage emily syndrome (sett-ott 2022)</p>
               <p>Be The Young</p>
@@ -185,7 +187,7 @@
         <!-- COL: MAIN-CONTENT -->
         <div
           id="main"
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center px-0"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center overflow-auto vh-100"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -205,14 +207,15 @@
                 <h1 class="fw-bold display-4">VIOLA (feat. Salmo)</h1>
                 <p>Fedez, Salmo</p>
                 <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
-
-                <button class="btn btn-primary fw-bold rounded-5 px-4 py-2">
-                  Play
-                </button>
-                <button class="btn btn-outline-light p-2 px-4 rounded-5">
-                  Salva
-                </button>
-                <i class="fas fa-ellipsis-h ms-3 text-secondary"></i>
+                <div class="d-flex align-items-center gap-3">
+                  <button class="btn btn-primary fw-bold rounded-5 px-4 py-2">
+                    Play
+                  </button>
+                  <button class="btn btn-outline-light p-2 px-4 rounded-5">
+                    Salva
+                  </button>
+                  <i class="fas fa-ellipsis-h text-secondary ms-1"></i>
+                </div>
               </div>
             </div>
           </section>
@@ -222,7 +225,7 @@
             <h3 class="mb-3">Buonasera</h3>
 
             <div class="row g-3">
-              <!-- CARD (daduplicare x 6)-->
+              <!-- CARD (daduplicate x 6)-->
               <div class="col-12 col-md-6 col-lg-4">
                 <div
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
@@ -243,14 +246,12 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-5.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-6.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-7.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-8.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">Be The Young</p>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
@@ -258,14 +259,27 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-9.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-10.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-11.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-12.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">saggio vibes💃👏</p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div>
+                    <img
+                      class="square-grid"
+                      style="height: 101px"
+                      src="./assets/imgs/icona cuoreX20.png"
+                      alt=""
+                    />
+                  </div>
+                  <p class="ms-3 mb-0">Brani che ti piacciono</p>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
@@ -273,14 +287,12 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-13.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-14.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-15.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-16.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">2021 lol</p>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
@@ -288,32 +300,15 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-17.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-18.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-19.jpg" alt="" />
                     <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">Deep Dive with Alì Abdaal</p>
                 </div>
               </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div
-                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
-                >
-                  <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
-                  </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
-                </div>
-              </div>
-              <!-- fine card -->
+              <!-- FINE CARD X6 -->
             </div>
           </section>
 
@@ -495,7 +490,7 @@
         <!-- Versione colonna BOOTSTRAP -->
         <aside
           id="sidebarRight"
-          class="d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-secondary"
+          class="d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-secondary overflow-auto vh-100"
         >
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="text-light">Attività amici</h5>

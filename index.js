@@ -120,13 +120,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
     artists.forEach((artist, index) => {
       const card = `
-      <div class="col-6 col-md-3 col-lg-2">
-        <div class="card bg-dark text-light border-0 p-3 text-center"  onclick="loadArtistPage(${artist.id})">
+      <div class="col-6 col-md-3 col-lg-3 col-xl-2 ">
+        <div class="card bg-dark text-light border-0 p-3 text-center align-items-center"  onclick="loadArtistPage(${artist.id})">
           
           <img 
             src="${artist.picture_medium}" 
-            class="rounded-circle mb-3"
-            style="width: 100px; height: 100px; object-fit: cover;"
+            class="rounded-circle mb-3 img-fluid"
+            style="width: 100px; height: auto; object-fit: cover;"
           >
 
           <p class="mb-1">${artist.name}</p>
