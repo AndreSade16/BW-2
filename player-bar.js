@@ -59,11 +59,17 @@ playerBarCenter.innerHTML = `
     </div>
   </div>
 `;
+
+// cuoricino che aggiunge ai preferiti e diventa verde
+
 const tooltipTriggerList = document.querySelectorAll(
   '[data-bs-toggle="tooltip"]',
 );
 
 tooltipTriggerList.forEach((el) => new bootstrap.Tooltip(el));
+
+const likeBtn = document.getElementById("like-btn");
+likeBtn.addEventListener;
 
 // destra della barra
 playerBarRight.innerHTML = `
