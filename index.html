@@ -17,6 +17,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
     <link rel="stylesheet" href="./assets/scss/style.css" />
     <link rel="stylesheet" href="./assets/css/album.css" />
   </head>
@@ -24,9 +29,8 @@
     <div class="container-fluid">
       <div class="row">
         <!--COL: LEFT -->
-        <!-- <div class=" col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
-        <!-- bottom-navbar in mobile view che sparisce in md view -->
-        <div class="col-12 fixed-bottom d-md-none bg-black">
+        <!-- barra di ricerca in basso che esiste solo in mobile -->
+        <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black">
           <div class="d-flex justify-content-around text-center py-2">
             <a class="text-secondary" href="#">
               <i class="fas fa-home d-block"></i>
@@ -309,45 +313,84 @@
           </section>
 
           <!-- ARTISTI CONSIGLIATI -->
-          <!-- prototipo card da aggiungere via JS -->
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Artisti consigliati</h4>
 
-            <div class="row g-3">
-              <div class="col-6 col-md-4 col-lg-2">
-                <div class="card bg-dark text-light border-0 p-3 text-center">
-                  <!-- CONTENUTO -->
-                  <div
-                    class="bg-secondary rounded-circle mb-3"
-                    style="height: 100px; cursor: pointer"
-                    onclick="loadArtistPage(412)"
-                  >
-                    <img src="" alt="" />
-                  </div>
-                  <p class="mb-1">Artista</p>
-                  <small class="text-secondary">Dettaglio</small>
+            <!-- inizio carosello artisti -->
+            <div id="artistCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- SLIDE 1, primi 5-->
+                <div class="carousel-item active">
+                  <div class="row g-3" id="artist-slide-1"></div>
+                </div>
+
+                <!-- SLIDE 2, secondi 5-->
+                <div class="carousel-item">
+                  <div class="row g-3" id="artist-slide-2"></div>
                 </div>
               </div>
-              <!--duplicare x 5 -->
-            </div>
-          </section>
 
+              <!-- frecce carosello -->
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#artistCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#artistCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+            <!-- fine carosello album -->
+          </section>
           <!-- ALBUM CONSIGLIATI -->
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Album consigliati</h4>
 
-            <div class="row g-3">
-              <div class="col-6 col-md-4 col-lg-2">
-                <div class="card bg-dark text-light border-0 p-2">
-                  <div class="bg-secondary mb-2" style="height: 120px"></div>
-                  <p id="album-prova" class="mb-1">Album</p>
-                  <small class="text-secondary">Dettagli</small>
+            <!-- inizio carosello album -->
+            <div id="albumCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- SLIDE 1, primi 5-->
+                <div class="carousel-item active">
+                  <div class="row g-3" id="album-slide-1"></div>
+                </div>
+
+                <!-- SLIDE 2, secondi 5-->
+                <div class="carousel-item">
+                  <div class="row g-3" id="album-slide-2"></div>
                 </div>
               </div>
 
-              <!-- x5 -->
+              <!-- frecce carosello -->
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#albumCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#albumCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
             </div>
+            <!-- fine carosello album -->
           </section>
+
           <!-- bottone controllo sidebar-right -->
           <button
             id="openSidebar"
@@ -524,7 +567,7 @@
             id="player-bar-left"
           ></div>
           <div
-            class="col-6 d-flex justify-content-center text-center"
+            class="col-6 d-flex justify-content-center align-items-center text-center"
             id="player-bar-center"
           ></div>
           <div

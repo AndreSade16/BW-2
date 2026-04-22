@@ -144,3 +144,35 @@ h3 {
 .sidebar-link:hover img {
   filter: brightness(0) invert(1);
 }
+
+.card {
+  height: 100%;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+}
+/* BOTTOM BAR MARTINA */
+
+.player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #181818;
+  border-top: 1px solid #181818;
+  z-index: 1050;
+}
+
+.player-bar .row {
+  height: 100%;
+}
+
+body {
+  padding-bottom: 90px;
+}
