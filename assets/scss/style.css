@@ -11985,6 +11985,15 @@ textarea.form-control-lg {
   --bs-dark-rgb: 18, 18, 18;
 }
 
+body {
+  font-family: "CircularStd", sans-serif;
+}
+
+h3, .h3 {
+  font-family: "CircularStd", sans-serif;
+  font-weight: 700;
+}
+
 .sidebar-left a div {
   width: 25px;
   height: 25px;
@@ -12039,7 +12048,7 @@ textarea.form-control-lg {
 }
 
 .square-grid {
-  max-width: 100px;
+  max-width: 101px;
   min-width: 100px;
   aspect-ratio: 1/1;
   display: flex;
@@ -12084,5 +12093,5 @@ textarea.form-control-lg {
 }
 
 .sidebar-link:hover {
-  color: #fff !important;
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */
