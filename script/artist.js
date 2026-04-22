@@ -128,7 +128,7 @@ const loadArtistCarousel = async () => {
           <img src="${artist.picture_medium}" alt="${artist.name}" 
                class="rounded-circle mb-3 mx-auto" 
                style="width: 100px; height: 100px; object-fit: cover;">
-          <p class="mb-1 fw-bold">${artist.name}</p>
+          <p class="mb-1 fw-bold">${artist.name.length > 15 ? artist.name.slice(0, 15) + "..." : artist.name}</p>
           <small class="text-secondary">Artista</small>
         </div>
       </div>`
