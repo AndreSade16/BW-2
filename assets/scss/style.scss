@@ -70,6 +70,7 @@ $theme-colors: (
     #1a1a1a 70%,
     #121212 100%
   );
+  width: 100%;
 }
 
 /* BUONASERA CARD */
@@ -91,12 +92,11 @@ $theme-colors: (
 }
 //GRIGLIA DIV CON 4 IMG//
 .square-grid {
-  width: 80px;
+  width: 130px;
   aspect-ratio: 1 / 1;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  line-height: 0;
 
   img {
     width: 50%;
