@@ -19,6 +19,7 @@
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/main-content.css" />
+    <link rel="stylesheet" href="./assets/css/album.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -182,7 +183,8 @@
 
         <!-- COL: MAIN-CONTENT -->
         <div
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 pt-3"
+          id="main"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 p-0 d-flex flex-column align-items-center"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -190,7 +192,7 @@
 
           <!-- MAIN HOMEPAGE CONTENT -->
           <!-- Blocco adds, VIOLA -->
-          <section class="viola p-4 text-light">
+          <section class="viola p-4 text-light mt-3" style="width: 90%">
             <div class="d-flex align-items-center">
               <img
                 src="./assets/imgs/main/VIOLA.jpeg"
@@ -260,7 +262,7 @@
               <div class="col-6 col-md-4 col-lg-2">
                 <div class="card bg-dark text-light border-0 p-2">
                   <div class="bg-secondary mb-2" style="height: 120px"></div>
-                  <p class="mb-1">Album</p>
+                  <p id="album-prova" class="mb-1">Album</p>
                   <small class="text-secondary">Dettagli</small>
                 </div>
               </div>
@@ -385,6 +387,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./index.js"></script>
-    <script src="./script/artist.js"></script>
+    <script src="./index-album.js"></script>
   </body>
 </html>
