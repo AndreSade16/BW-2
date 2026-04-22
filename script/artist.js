@@ -105,6 +105,38 @@ const playArtistAudio = (track) => {
   audio.play()
 }
 
+// --- Carosello artisti homepage ---
+const artistIds = [27, 412, 384236, 13, 246791, 4050205, 75798, 530653, 111114, 1562681, 757, 12178]
+
+const loadArtistCarousel = async () => {
+  const container = document.getElementById("artists-carousel")
+  if (!container) return
+
+  const promises = artistIds.map(id => 
+    fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`)
+      .then(res => res.json())
+  )
+
+  const artists = await Promise.all(promises)
+
+  artists.forEach(artist => {
+    container.innerHTML += `
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="card bg-dark text-light border-0 p-3 text-center"
+             onclick="loadArtistPage(${artist.id})"
+             style="cursor: pointer;">
+          <img src="${artist.picture_medium}" alt="${artist.name}" 
+               class="rounded-circle mb-3 mx-auto" 
+               style="width: 100px; height: 100px; object-fit: cover;">
+          <p class="mb-1 fw-bold">${artist.name}</p>
+          <small class="text-secondary">Artista</small>
+        </div>
+      </div>`
+  })
+}
+
+loadArtistCarousel()
+
 // Es. click su un nome artista in homepage o album page
 const params = new URLSearchParams(window.location.search)
 if (params.get("artistId")) {
