@@ -1,4 +1,5 @@
-const getAverageColorArtistArtistArtistArtistArtistArtistArtistArtistArtistArtist = (imgElement) => {
+let artistTracksData = []
+const getAverageColorArtist = (imgElement) => {
 const canvas = document.createElement("canvas")
 const context = canvas.getContext("2d")
 canvas.width = 1
@@ -44,6 +45,7 @@ document.getElementById("artist-page").style.background = `linear-gradient(to bo
   // --- Top tracks ---
   const tracksList = document.getElementById("artist-tracks")
   tracksList.innerHTML = "" // reset
+  artistTracksData = tracksData.data 
   tracksData.data.forEach((track, index) => {
 tracksList.innerHTML += `
   <li class="d-flex align-items-center gap-3 mb-2 track-item"
@@ -91,6 +93,12 @@ const m = Math.floor(seconds / 60)
 const s = String(seconds % 60).padStart(2, "0")
 return `${m}:${s}`
 }
+
+const playArtistAudio = (track) => {
+  const audio = new Audio(track.preview)
+  audio.play()
+}
+
 // Es. click su un nome artista in homepage o album page
 const params = new URLSearchParams(window.location.search)
 if (params.get("artistId")) {
