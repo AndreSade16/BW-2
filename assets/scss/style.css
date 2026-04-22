@@ -12050,7 +12050,39 @@ textarea.form-control-lg {
 .square-grid img {
   flex: 0 0 50%;
   height: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
+}
+
+#main,
+#sidebarRight,
+.overflow-auto {
+  scrollbar-width: auto;
+  scrollbar-color: #3a3a3a transparent;
+}
+#main::-webkit-scrollbar,
+#sidebarRight::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar {
+  width: 14px;
+}
+#main::-webkit-scrollbar-track,
+#sidebarRight::-webkit-scrollbar-track,
+.overflow-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+#main::-webkit-scrollbar-thumb,
+#sidebarRight::-webkit-scrollbar-thumb,
+.overflow-auto::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 0;
+}
+#main::-webkit-scrollbar-thumb:hover,
+#sidebarRight::-webkit-scrollbar-thumb:hover,
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.sidebar-link:hover {
+  color: #fff !important;
 }/*# sourceMappingURL=style.css.map */
