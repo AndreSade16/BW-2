@@ -548,6 +548,8 @@ const randomizePlayer = (e) => {
 };
 
 const playAudio = (song) => {
+  //aggiungo funzione per bottomBAR - MARTINA
+  updateBottomBar(song);
   const playBtn = document.getElementById("play-btn");
   playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
 
@@ -576,6 +578,10 @@ const playAudio = (song) => {
   audio.src = song.preview;
   audio.play();
   isPlaying = true;
+
+  // aggiorno bottone BUTTOM BAR - MARTINA
+
+  updatePlayerMainIcon();
 };
 
 const pauseAudio = () => {
@@ -583,6 +589,10 @@ const pauseAudio = () => {
   playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
   audio.pause();
   isPlaying = false;
+
+  // aggiorno bottone BUTTOM BAR - MARTINA
+
+  updatePlayerMainIcon();
 };
 
 const skipAudio = () => {
