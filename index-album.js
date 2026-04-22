@@ -510,7 +510,7 @@ const displayAlbumData = (data) => {
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
-                <div id="${id}" data-track-id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
+                <div id="${id}"  class="track-title col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
                   <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
@@ -603,7 +603,7 @@ const displayAlbumData = (data) => {
   trackCards.forEach((track) => {
     track.addEventListener("mouseenter", () => {
       const lastEllipsis = track.querySelector(".ellipsis-h");
-      const ps = track.querySelectorAll("p");
+      const ps = track.querySelectorAll(`p:not(".track-title")`);
       lastEllipsis.classList.remove("opacity-0");
       track.classList.add("bg-secondary");
       ps.forEach((p) => p.classList.add("text-white"));
@@ -662,7 +662,7 @@ const playAudio = (song) => {
 
   // resetta il colore della traccia precedente
   if (playing.id) {
-    const prevTrack = document.getElementById(String(playing.id));
+    const prevTrack = document.getElementById(playing.id);
     if (prevTrack) {
       prevTrack.style.color = "";
     }
@@ -671,7 +671,7 @@ const playAudio = (song) => {
   playing = song;
 
   // colora la traccia corrente
-  const currentTrack = document.getElementById(String(song.id));
+  const currentTrack = document.getElementById(playing.id);
   if (currentTrack) {
     currentTrack.style.color = "#1ed760";
   }
