@@ -53,16 +53,16 @@ document.getElementById("artist-page").style.background = `linear-gradient(to bo
   tracksList.innerHTML = "" // reset
   artistTracksData = tracksData.data 
   tracksData.data.forEach((track, index) => {
-tracksList.innerHTML += `
-  <li class="d-flex align-items-center gap-3 mb-2 track-item"
-      data-track-id="${track.id}"
-      style="cursor: pointer;">
-    <span class="text-secondary" style="width: 20px">${index + 1}</span>
-    <img src="${track.album.cover_small}" alt="" class="rounded" style="width:40px; height:40px;">
-    <span class="text-white">${track.title}</span>
-    <span class="text-secondary ms-auto">${formatDuration(track.duration)}</span>
-    <audio controls src="${track.preview}" class="ms-2" style="height:30px;"></audio>
-  </li>`
+  tracksList.innerHTML += `
+    <li class="d-flex align-items-center gap-3 mb-2 track-item"
+        data-track-id="${track.id}"
+        style="cursor: pointer;"
+        onclick="playArtistAudio(artistTracksData[${index}])">
+      <span class="text-secondary" style="width: 20px">${index + 1}</span>
+      <img src="${track.album.cover_small}" alt="" class="rounded" style="width:40px; height:40px;">
+      <span class="text-white">${track.title}</span>
+      <span class="text-secondary ms-auto">${formatDuration(track.duration)}</span>
+    </li>`
 })
 
   // --- Album dell'artista ---
