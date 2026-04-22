@@ -1,4 +1,4 @@
-const getAverageColor = (imgElement) => {
+const getAverageColorArtistArtistArtistArtistArtistArtistArtistArtistArtistArtist = (imgElement) => {
 const canvas = document.createElement("canvas")
 const context = canvas.getContext("2d")
 canvas.width = 1
@@ -36,7 +36,7 @@ const artistBanner = document.getElementById("artist-banner")
 // Gradient dinamico
 let avgColor = { r: 33, g: 37, b: 41 }
 artistBanner.onload = function() {
-avgColor = getAverageColor(artistBanner)
+avgColor = getAverageColorArtist(artistBanner)
 const darkColor = `rgb(33, 37, 41)`
 document.getElementById("artist-page").style.background = `linear-gradient(to bottom, rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b}) 0%, ${darkColor} 28%)`
 }
