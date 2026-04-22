@@ -491,6 +491,7 @@ const displayAlbumData = (data) => {
   albumLengthMobile.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec" : ""}`;
   copyright.innerText = `© ${label}`;
   phonogram.innerText = `℗ ${label}`;
+  let tracksHTML = "";
   tracks.forEach((track, i) => {
     const {
       id,
@@ -504,12 +505,12 @@ const displayAlbumData = (data) => {
       explicit_lyrics,
       album,
     } = track;
-    tracksSpace.innerHTML += `
+    tracksHTML += `
             <div class="track-card row mt-3 justify-content-between align-items-center rounded-2">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
-                <div id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
+                <div id="${id}" data-track-id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
                   <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
@@ -592,35 +593,37 @@ const displayAlbumData = (data) => {
                         </p>
                       </li>
                     </ul>
-</div>
+                  </div>
                 </div>
-    `;
-    const trackCards = document.querySelectorAll(".track-card");
-    trackCards.forEach((track) => {
-      track.addEventListener("mouseenter", () => {
-        const lastEllipsis = track.querySelector(".ellipsis-h");
-        const ps = track.querySelectorAll("p");
-        lastEllipsis.classList.remove("opacity-0");
-        track.classList.add("bg-secondary");
-        ps.forEach((p) => p.classList.add("text-white"));
-      });
-    });
-    trackCards.forEach((track) => {
-      track.addEventListener("mouseleave", () => {
-        const lastEllipsis = track.querySelector(".ellipsis-h");
-        lastEllipsis.classList.add("opacity-0");
-        track.classList.remove("bg-secondary");
-      });
-    });
+              `;
+  });
+  tracksSpace.innerHTML += tracksHTML;
 
-    document.addEventListener("click", (e) => {
-      const icon = e.target.closest(
-        "#tracks-space .fa-ellipsis-v, #tracks-space .fa-ellipsis-h",
-      );
-      if (!icon) return;
-      const { title, artist, album, cover } = icon.dataset;
-      displayOffcanvasData(title, artist, album, cover);
+  const trackCards = document.querySelectorAll(".track-card");
+  trackCards.forEach((track) => {
+    track.addEventListener("mouseenter", () => {
+      const lastEllipsis = track.querySelector(".ellipsis-h");
+      const ps = track.querySelectorAll("p");
+      lastEllipsis.classList.remove("opacity-0");
+      track.classList.add("bg-secondary");
+      ps.forEach((p) => p.classList.add("text-white"));
     });
+  });
+  trackCards.forEach((track) => {
+    track.addEventListener("mouseleave", () => {
+      const lastEllipsis = track.querySelector(".ellipsis-h");
+      lastEllipsis.classList.add("opacity-0");
+      track.classList.remove("bg-secondary");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    const icon = e.target.closest(
+      "#tracks-space .fa-ellipsis-v, #tracks-space .fa-ellipsis-h",
+    );
+    if (!icon) return;
+    const { title, artist, album, cover } = icon.dataset;
+    displayOffcanvasData(title, artist, album, cover);
   });
 };
 
@@ -657,7 +660,7 @@ const playAudio = (song) => {
 
   // resetta il colore della traccia precedente
   if (playing.id) {
-    const prevTrack = document.getElementById(playing.id);
+    const prevTrack = document.getElementById(String(playing.id));
     if (prevTrack) {
       prevTrack.style.color = "";
     }
@@ -666,7 +669,7 @@ const playAudio = (song) => {
   playing = song;
 
   // colora la traccia corrente
-  const currentTrack = document.getElementById(song.id);
+  const currentTrack = document.getElementById(String(song.id));
   if (currentTrack) {
     currentTrack.style.color = "#1ed760";
   }
