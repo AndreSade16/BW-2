@@ -91,9 +91,15 @@ removeBtn.addEventListener("click", () => {
 
   playAudio(nextSong);
 });
+// FUNZIONE PER BARRA MUSICA
+const formatTime = (seconds) => {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? "0" + secs : secs}`;
+};
 // centro della barra
 playerBarCenter.innerHTML = `
-    <div class="d-flex flex-column align-items-center justify-content-center w-100">
+  <div class="d-flex flex-column align-items-center justify-content-center w-100">
     <div class="d-flex align-items-center gap-4 mb-2">
       <i id="shuffle-btn" class="bi bi-shuffle text-secondary player-icon"></i>
       <i id="prev-btn" class="bi bi-skip-start-fill text-secondary player-icon"></i>
@@ -109,9 +115,17 @@ playerBarCenter.innerHTML = `
     <div class="d-flex align-items-center gap-2 w-100">
       <small id="player-current-time" class="text-secondary small">0:00</small>
 
-      <div id="player-progress" class="player-progress flex-grow-1 rounded-pill">
-        <div id="player-progress-fill" class="player-progress-fill rounded-pill"></div>
-      </div>
+   <div class="progress flex-grow-1 player-progress" id="player-progress" style="height: 6px;">
+  <div
+    id="player-progress-fill"
+    class="progress-bar player-progress-fill"
+    role="progressbar"
+    style="width: 0%;"
+    aria-valuenow="0"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  ></div>
+</div>
 
       <small id="player-total-time" class="text-secondary small">0:00</small>
     </div>
@@ -167,24 +181,114 @@ repeatBtn.addEventListener("click", () => {
 audio.addEventListener("timeupdate", () => {
   const currentTime = document.getElementById("player-current-time");
   const progressFill = document.getElementById("player-progress-fill");
+
   if (!currentTime || !progressFill || !audio.duration) return;
+
   currentTime.textContent = formatTime(audio.currentTime);
-  const progressPercent = ()
+
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progressFill.style.width = `${progressPercent}%`;
+  progressFill.setAttribute("aria-valuenow", Math.floor(progressPercent));
+
+  if (progressPercent < 1) {
+    progressFill.classList.add("knob-hidden");
+  } else {
+    progressFill.classList.remove("knob-hidden");
+  }
+});
+
+const playerProgress = document.getElementById("player-progress");
+
+playerProgress.addEventListener("click", (e) => {
+  if (!audio.duration) return;
+
+  const rect = playerProgress.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+
+  const percent = clickX / width;
+
+  audio.currentTime = percent * audio.duration;
 });
 
 // destra della barra
 playerBarRight.innerHTML = `
-  <div class="d-flex align-items-center justify-content-end gap-3">
-    <i class="bi bi-mic player-icon"></i>
-    <i class="bi bi-list player-icon"></i>
-    <i class="bi bi-speaker player-icon"></i>
-    <i class="bi bi-volume-up player-icon"></i>
+  <div class="d-flex align-items-center justify-content-end gap-3 pe-3 w-100">
+    <i id="mic-btn" class="bi bi-mic text-secondary player-icon"></i>
+    <i id="queue-btn" class="bi bi-list text-secondary player-icon"></i>
+    <i id="device-btn" class="bi bi-speaker text-secondary player-icon"></i>
+    <i id="volume-btn" class="bi bi-volume-up text-secondary player-icon"></i>
 
-    <div class="player-volume" style="width: 90px;">
-      <div class="player-volume-fill"></div>
+    <div
+      id="player-volume"
+      class="progress flex-grow-0 player-volume"
+      style="width: 90px; height: 6px;"
+    >
+      <div
+        id="player-volume-fill"
+        class="progress-bar player-volume-fill"
+        role="progressbar"
+        style="width: 100%;"
+        aria-valuenow="100"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
     </div>
   </div>
 `;
+
+// VOLUME DESTRA DELLA BARRA
+
+const playerVolume = document.getElementById("player-volume");
+const playerVolumeFill = document.getElementById("player-volume-fill");
+const volumeBtn = document.getElementById("volume-btn");
+
+playerVolume.addEventListener("click", (e) => {
+  const rect = playerVolume.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+
+  const percent = clickX / width;
+  audio.volume = percent;
+
+  const volumePercent = percent * 100;
+  playerVolumeFill.style.width = `${volumePercent}%`;
+  playerVolumeFill.setAttribute("aria-valuenow", Math.floor(volumePercent));
+
+  if (audio.volume === 0) {
+    volumeBtn.className = "bi bi-volume-mute text-secondary player-icon";
+  } else if (audio.volume < 0.5) {
+    volumeBtn.className = "bi bi-volume-down text-secondary player-icon";
+  } else {
+    volumeBtn.className = "bi bi-volume-up text-secondary player-icon";
+  }
+  audio.volume = 1;
+});
+
+// MUTO SUL VOLUME
+
+let lastVolume = 1;
+
+volumeBtn.addEventListener("click", () => {
+  if (audio.volume > 0) {
+    lastVolume = audio.volume;
+    audio.volume = 0;
+    playerVolumeFill.style.width = "0%";
+    playerVolumeFill.setAttribute("aria-valuenow", 0);
+    volumeBtn.className = "bi bi-volume-mute text-secondary player-icon";
+  } else {
+    audio.volume = lastVolume;
+    const volumePercent = lastVolume * 100;
+    playerVolumeFill.style.width = `${volumePercent}%`;
+    playerVolumeFill.setAttribute("aria-valuenow", Math.floor(volumePercent));
+
+    if (audio.volume < 0.5) {
+      volumeBtn.className = "bi bi-volume-down text-secondary player-icon";
+    } else {
+      volumeBtn.className = "bi bi-volume-up text-secondary player-icon";
+    }
+  }
+});
 
 // Funzione per collegare alle canzoni degli album
 
@@ -198,6 +302,18 @@ const updateBottomBar = (song) => {
 
   title.textContent = song.title;
   artist.textContent = song.artist.name;
+
+  // per barra musica - deve durare per tutta la canzone
+
+  const totalTime = document.getElementById("player-total-time");
+  const currentTime = document.getElementById("player-current-time");
+  const progressFill = document.getElementById("player-progress-fill");
+
+  totalTime.textContent = formatTime(song.duration);
+  currentTime.textContent = "0:00";
+  progressFill.style.width = "0%";
+  progressFill.setAttribute("aria-valuenow", 0);
+  progressFill.classList.add("knob-hidden");
 };
 
 // Funzione per cambiare icona
