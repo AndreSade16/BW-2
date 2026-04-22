@@ -17,7 +17,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./assets/scss/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/main-content.css" />
+    <link rel="stylesheet" href="./assets/css/album.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -177,7 +179,8 @@
 
         <!-- COL: MAIN-CONTENT -->
         <div
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 pt-3"
+          id="main"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 p-0 d-flex flex-column align-items-center"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -185,7 +188,7 @@
 
           <!-- MAIN HOMEPAGE CONTENT -->
           <!-- Blocco adds, VIOLA -->
-          <section class="viola p-4 text-light">
+          <section class="viola p-4 text-light mt-3" style="width: 90%">
             <div class="d-flex align-items-center">
               <img
                 src="./assets/imgs/main/VIOLA.jpeg"
@@ -320,7 +323,8 @@
                   <!-- CONTENUTO -->
                   <div
                     class="bg-secondary rounded-circle mb-3"
-                    style="height: 100px"
+                    style="height: 100px; cursor: pointer"
+                    onclick="loadArtistPage(412)"
                   >
                     <img src="" alt="" />
                   </div>
@@ -340,7 +344,7 @@
               <div class="col-6 col-md-4 col-lg-2">
                 <div class="card bg-dark text-light border-0 p-2">
                   <div class="bg-secondary mb-2" style="height: 120px"></div>
-                  <p class="mb-1">Album</p>
+                  <p id="album-prova" class="mb-1">Album</p>
                   <small class="text-secondary">Dettagli</small>
                 </div>
               </div>
@@ -355,8 +359,93 @@
           >
             <i class="fas fa-users"></i>
           </button>
-        </div>
 
+          <!-- HOMEPAGE (Vale + Riccio) -->
+          <section id="home-page" class="d-none"></section>
+
+          <!-- ARTIST PAGE (Noe) -->
+          <section id="artist-page" class="d-none">
+            <div id="artist-hero" class="mb-4">
+              <img
+                id="artist-banner"
+                src=""
+                alt=""
+                class="w-100"
+                style="
+                  height: 400px;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+              <div class="p-4 bg-dark">
+                <span class="text-white small">
+                  <i class="fas fa-check-circle text-primary me-1"></i>Artista
+                  verificato
+                </span>
+                <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
+                <p id="artist-fans" class="text-white"></p>
+              </div>
+              <!-- Tasto Play + Following -->
+              <div class="d-flex align-items-center gap-3 p-4">
+                <button
+                  class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
+                  style="background-color: #1ed760; width: 56px; height: 56px"
+                  onclick="playArtistAudio(artistTracksData[0])"
+                >
+                  <i class="fas fa-play text-black fs-5"></i>
+                </button>
+                <button class="btn btn-outline-light rounded-pill px-3">
+                  Following
+                </button>
+                <i class="fas fa-ellipsis-h text-white fs-5"></i>
+              </div>
+            </div>
+
+            <div class="container-fluid px-4">
+              <div class="row">
+                <!-- Colonna tracce popolari -->
+                <div class="col-12 col-lg-7">
+                  <h2 class="text-white mb-3">Popolari</h2>
+                  <ul id="artist-tracks" class="list-unstyled"></ul>
+                </div>
+
+                <!-- Box brani che ti piacciono -->
+                <div class="col-12 col-lg-5">
+                  <h2 class="text-white mb-3">Brani che ti piacciono</h2>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative">
+                      <img
+                        id="artist-liked-img"
+                        src=""
+                        alt=""
+                        class="rounded-circle"
+                        style="width: 80px; height: 80px; object-fit: cover"
+                      />
+                    </div>
+                    <div>
+                      <p class="text-white fw-bold mb-0">
+                        Hai messo Mi piace a brani
+                      </p>
+                      <p
+                        class="text-secondary small mb-0"
+                        id="artist-liked-name"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h2 class="text-white mt-4 mb-3">Discografia</h2>
+              <div
+                id="artist-albums"
+                class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"
+              ></div>
+            </div>
+          </section>
+
+          <!-- ALBUM PAGE (Andrea) -->
+          <section id="album-page" class="d-none"></section>
+        </div>
         <!--COL: ATTIVITÀ AMICI -->
         <!-- d-none di default, appare solo in lg view -->
         <!-- Versione colonna BOOTSTRAP -->
@@ -436,5 +525,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./index.js"></script>
+    <script src="./index-album.js"></script>
+    <script src="./script/artist.js"></script>
   </body>
 </html>

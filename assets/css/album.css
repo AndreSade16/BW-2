@@ -1,3 +1,11 @@
+#topbar {
+  transition: background-color 0.4s ease;
+}
+
+#topbar-title {
+  transition: opacity 0.4s ease;
+}
+
 @media screen and (min-width: 768px) {
   #album-title {
     font-size: 4rem;
