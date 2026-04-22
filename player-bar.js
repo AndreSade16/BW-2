@@ -112,7 +112,7 @@ const updatePlayerMainIcon = () => {
   }
 };
 
-// Collego bottone alla barra
+// Collego canzoni alla barra
 
 const playerMainButton = document.getElementById("player-main-button");
 
