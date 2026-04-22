@@ -2,7 +2,7 @@ const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/";
 const main = document.getElementById("main");
 const albumProva = document.getElementById("album-prova");
 
-albumProva.addEventListener("click", () => {
+const showAlbumPage = (albumData) => {
   main.innerHTML = `
 
   <div id="album-page-body" class="bg-dark text-light container-fluid p-0">
@@ -32,7 +32,7 @@ albumProva.addEventListener("click", () => {
       ></p>
       <div id="user-dropdown" class="dropdown d-none d-lg-block">
         <a
-          class="btn btn-secondary dropdown-toggle bg-black d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4"
+          class="btn btn-secondary dropdown-toggle bg-black d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4 text-white"
           href="#"
           role="button"
           data-bs-toggle="dropdown"
@@ -219,6 +219,7 @@ albumProva.addEventListener("click", () => {
                 <div class="col-2 text-end">
                   <i class="far fa-clock fw-semibold"></i>
                 </div>
+                <div class="col-1"></div>
               </div>
               <div id="spinner-tracks" class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -354,7 +355,12 @@ albumProva.addEventListener("click", () => {
 
     `;
   displayAlbumData(albumData);
-});
+};
+
+albumProva.addEventListener("click", () => showAlbumPage(albumData));
+
+// CREAZIONE ELEMENTO AUDIO
+
 const audio = new Audio();
 let isPlaying = false;
 let playing = {};
@@ -485,6 +491,7 @@ const displayAlbumData = (data) => {
   albumLengthMobile.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec" : ""}`;
   copyright.innerText = `© ${label}`;
   phonogram.innerText = `℗ ${label}`;
+  let tracksHTML = "";
   tracks.forEach((track, i) => {
     const {
       id,
@@ -498,12 +505,12 @@ const displayAlbumData = (data) => {
       explicit_lyrics,
       album,
     } = track;
-    tracksSpace.innerHTML += `
-            <div class="row mt-3 justify-content-between">
+    tracksHTML += `
+            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
-                  <p class="m-0 text-end">${i}</p>
+                  <p class="m-0 text-end">${i + 1}</p>
                 </div>
-                <div id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
+                <div id="${id}" data-track-id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
                   <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
@@ -513,16 +520,110 @@ const displayAlbumData = (data) => {
                 <div class="col-2 text-end d-none d-lg-inline-block">
                   <p class="m-0 text-secondary fw-semibold">${Math.floor(duration / 60)}:${duration % 60 > 9 ? duration % 60 : "0" + (duration % 60)}</p>
                 </div>
-                    <i class="fas fa-ellipsis-v col-1 d-lg-none text-secondary align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
+                    <i class="fas fa-ellipsis-v col-1 d-lg-none text-white align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
+                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-lg-flex opacity-0 align-items-center  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
+                    data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
+                    <ul class="dropdown-menu w-auto dropdown-menu-end bg-dark border-1 border-white p-1">
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <i class="fas fa-share-alt text-center" style="width: 1.5rem"></i>
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Condividi
+                        </p>
+                      </li>
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <img
+                          src="https://misc.scdn.co/liked-songs/liked-songs-640.jpg"
+                          alt="favorites-img"
+                          style="width: 1.5rem"
+                        />
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Aggiungi a brani che ti piacciono
+                        </p>
+                      </li>
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <i class="fas fa-plus-circle text-center" style="width: 1.5rem"></i>
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Aggiungi alla playlist
+                        </p>
+                      </li>
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <i class="fas fa-times text-center" style="width: 1.5rem"></i>
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Nascondi questo album
+                        </p>
+                      </li>
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <i class="far fa-gem text-center" style="width: 1.5rem"></i>
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Ascolta la musica senza pubblicità
+                        </p>
+                      </li>
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <i class="fas fa-stream text-center" style="width: 1.5rem"></i>
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Aggiungi in coda
+                        </p>
+                      </li>
+                      <li
+                        class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
+                        type="button"
+                      >
+                        <i class="fas fa-tasks text-center" style="width: 1.5rem"></i>
+                        <p class="fs-6 d-flex align-items-center m-0 fw-normal">
+                          Vai alla coda
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-    `;
-    document.addEventListener("click", (e) => {
-      const icon = e.target.closest("#tracks-space .fa-ellipsis-v");
-      if (!icon) return;
-      const { title, artist, album, cover } = icon.dataset;
-      displayOffcanvasData(title, artist, album, cover);
+              `;
+  });
+  tracksSpace.innerHTML += tracksHTML;
+
+  const trackCards = document.querySelectorAll(".track-card");
+  trackCards.forEach((track) => {
+    track.addEventListener("mouseenter", () => {
+      const lastEllipsis = track.querySelector(".ellipsis-h");
+      const ps = track.querySelectorAll("p");
+      lastEllipsis.classList.remove("opacity-0");
+      track.classList.add("bg-secondary");
+      ps.forEach((p) => p.classList.add("text-white"));
     });
+  });
+  trackCards.forEach((track) => {
+    track.addEventListener("mouseleave", () => {
+      const lastEllipsis = track.querySelector(".ellipsis-h");
+      lastEllipsis.classList.add("opacity-0");
+      track.classList.remove("bg-secondary");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    const icon = e.target.closest(
+      "#tracks-space .fa-ellipsis-v, #tracks-space .fa-ellipsis-h",
+    );
+    if (!icon) return;
+    const { title, artist, album, cover } = icon.dataset;
+    displayOffcanvasData(title, artist, album, cover);
   });
 };
 
@@ -561,7 +662,7 @@ const playAudio = (song) => {
 
   // resetta il colore della traccia precedente
   if (playing.id) {
-    const prevTrack = document.getElementById(playing.id);
+    const prevTrack = document.getElementById(String(playing.id));
     if (prevTrack) {
       prevTrack.style.color = "";
     }
@@ -570,7 +671,7 @@ const playAudio = (song) => {
   playing = song;
 
   // colora la traccia corrente
-  const currentTrack = document.getElementById(song.id);
+  const currentTrack = document.getElementById(String(song.id));
   if (currentTrack) {
     currentTrack.style.color = "#1ed760";
   }
