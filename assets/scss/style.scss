@@ -119,6 +119,25 @@ $theme-colors: (
   z-index: 1050;
 }
 
+.player-icon 
+{ cursor: pointer;}
+
 .player-bar .row { height: 100%;}
 
 body { padding-bottom: 90px;}
+
+.liked {
+  color: #1ed760 !important;
+}
+
+/* barra tempo canzoni MARTINA */
+
+.player-progress {
+  height: 6px;
+  background-color: "#4d4d4d";
+  position: relative;
+}
+
+.player-progress-fill {
+  
+}

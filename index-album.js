@@ -599,6 +599,11 @@ const displayAlbumData = (data) => {
   });
   tracksSpace.innerHTML += tracksHTML;
 
+  // VARIABILI GLOBALI PER LISTA ALBUM ED INDICE CANZONE CORRENTE
+
+  let currentPlaylist = [];
+  let currentIndex = 0;
+
   const trackCards = document.querySelectorAll(".track-card");
   trackCards.forEach((track) => {
     track.addEventListener("mouseenter", () => {
@@ -651,6 +656,8 @@ const randomizePlayer = (e) => {
 const playAudio = (song) => {
   //aggiungo funzione per bottomBAR - MARTINA
   updateBottomBar(song);
+  // aggiungo chiave gloale per index
+  currentIndex = currentPlaylist.findIndex((s) => s.id === song.id);
   const playBtn = document.getElementById("play-btn");
   playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
 
@@ -699,9 +706,16 @@ const pauseAudio = () => {
 const skipAudio = () => {
   const songs = albumData.tracks.data;
   const randomize = document.getElementById("randomize");
+  //aggiungo shuffle - MARTINA
+  const shuffleBtn = document.getElementById("shuffle-btn");
   const nb_tracks = songs.length;
 
-  if (randomize.classList.contains("active")) {
+  //SHUFFLE - MARTINA
+  const isShuffleActive =
+    (randomize && randomize.classList.contains("active")) ||
+    (shuffleBtn && shuffleBtn.classList.contains("active"));
+
+  if (isShuffleActive) {
     let i = Math.floor(Math.random() * nb_tracks);
     playAudio(songs[i]);
   } else {
