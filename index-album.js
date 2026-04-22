@@ -564,7 +564,7 @@ const playAudio = (song) => {
       prevTrack.style.color = "";
     }
   }
-
+  // questa è la canzone selezionata che parte
   playing = song;
 
   // colora la traccia corrente
