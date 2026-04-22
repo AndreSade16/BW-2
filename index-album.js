@@ -367,6 +367,10 @@ let playing = {};
 let albumData = {};
 const fetchAlbumData = (id) => {
   let fetched;
+  main.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   fetch(albumApiLink + id)
     .then((res) => {
       if (res.ok) {
@@ -464,7 +468,7 @@ const displayAlbumData = (data) => {
   main.addEventListener("scroll", () => {
     const coverBottom = albumCover.getBoundingClientRect().bottom;
 
-    if (window.scrollY > 5) {
+    if (main.scrollY > 5) {
       topbarTitle.classList.remove("d-none");
     } else {
       topbar.style.top = `-${topbar.offsetHeight}px`;
@@ -473,6 +477,7 @@ const displayAlbumData = (data) => {
 
     if (coverBottom <= 90) {
       topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
+      topbarTitle.classList.remove("d-none");
       topbarTitle.style.opacity = 1;
     } else {
       topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
