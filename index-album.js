@@ -605,7 +605,7 @@ const displayAlbumData = (data) => {
   trackCards.forEach((track) => {
     track.addEventListener("mouseenter", () => {
       const lastEllipsis = track.querySelector(".ellipsis-h");
-      const ps = track.querySelectorAll(`p:not(".track-title")`);
+      const ps = track.querySelectorAll(`p:not(.track-title)`);
       lastEllipsis.classList.remove("opacity-0");
       track.classList.add("bg-secondary");
       ps.forEach((p) => p.classList.add("text-white"));
@@ -616,6 +616,8 @@ const displayAlbumData = (data) => {
       const lastEllipsis = track.querySelector(".ellipsis-h");
       lastEllipsis.classList.add("opacity-0");
       track.classList.remove("bg-secondary");
+      const ps = track.querySelectorAll(`p:not(.track-title)`);
+      ps.forEach((p) => p.classList.remove("text-white"));
     });
   });
 
