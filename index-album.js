@@ -1,37 +1,37 @@
-const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/"
-const main = document.getElementById("main")
-const albumProva = document.getElementById("album-prova")
+const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/";
+const main = document.getElementById("main");
+const albumProva = document.getElementById("album-prova");
 
 const showAlbumPage = (albumData) => {
-  console.log(albumData)
+  console.log(albumData);
   main.innerHTML = `
 
   <div id="album-page-body" class="bg-dark text-light container-fluid p-0">
     <div
       id="topbar"
-      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 px-3 pt-2 pb-2 px-lg-5 py-lg-2"
+      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 px-3 pt-2 pb-2 px-xl-5 py-xl-2"
     >
       <div id="forward-backwards-btn-group">
-        <span class="fa-stack fs-5 d-none d-lg-inline-block" type="button">
+        <span class="fa-stack fs-5 d-none d-xl-inline-block" type="button">
           <i class="fas fa-circle fa-stack-2x text-dark"></i>
           <i class="fas fa-chevron-left fa-stack-1x text-white"></i>
         </span>
-        <span class="fa-stack fs-5 d-none d-lg-inline-block" type="button">
+        <span class="fa-stack fs-5 d-none d-xl-inline-block" type="button">
           <i class="fas fa-circle fa-stack-2x text-dark"></i>
           <i class="fas fa-chevron-right fa-stack-1x text-white"></i>
         </span>
         <a href="#"
           ><i
-            class="fas fa-arrow-left fs-2 text-light d-lg-none"
+            class="fas fa-arrow-left fs-2 text-light d-xl-none"
             type="button"
           ></i
         ></a>
       </div>
       <p
         id="topbar-title"
-        class="fw-bold text-center d-none d-lg-none m-0 position-absolute start-50 translate-middle-x"
+        class="fw-bold text-center d-none d-xl-none m-0 position-absolute start-50 translate-middle-x"
       ></p>
-      <div id="user-dropdown" class="dropdown d-none d-lg-block">
+      <div id="user-dropdown" class="dropdown d-none d-xl-block">
         <a
           class="btn btn-secondary dropdown-toggle bg-black d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4 text-white"
           href="#"
@@ -61,10 +61,10 @@ const showAlbumPage = (albumData) => {
     </div>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col mx-lg-4 px-3">
+        <div class="col mx-xl-4 px-3">
           <div
             id="hero"
-            class="position-relative d-flex flex-column flex-lg-row align-items-center justify-content-center"
+            class="position-relative d-flex flex-column flex-xl-row align-items-center justify-content-center"
           >
             <div
               id="spinner"
@@ -78,31 +78,31 @@ const showAlbumPage = (albumData) => {
               id="album-cover"
               src=""
               alt="album-cover"
-              class="mt-lg-3 me-lg-3 shadow-lg"
+              class="mt-xl-3 me-xl-3 shadow-xl"
               style="width: 75%; max-width: 320px"
             />
             <div
               id="hero-text"
-              class="align-self-start align-self-lg-center mt-4 flex-lg-grow-1"
+              class="align-self-start align-self-xl-center mt-4 flex-xl-grow-1"
             >
               <h5
                 id="hero-record-type"
-                class="d-none d-lg-inline-block text-uppercase"
+                class="d-none d-xl-inline-block text-uppercase"
               >
                 ALBUM
               </h5>
-              <h2 id="album-title" class="h2 mb-lg-5 placeholder-glow">
+              <h2 id="album-title" class="h2 mb-xl-5 placeholder-glow">
                 <span class="placeholder col-6" style="width: 8rem"></span>
                 <span class="placeholder col-6" style="width: 5rem"></span>
                 <span class="placeholder col-6" style="width: 6rem"></span>
               </h2>
               <div
                 id="infos"
-                class="mt-3 d-lg-flex align-items-center gap-3 gap-lg-1"
+                class="mt-3 d-xl-flex align-items-center gap-3 gap-xl-1"
               >
                 <div
                   id="artist-info"
-                  class="d-flex align-items-center mb-1 mb-lg-0"
+                  class="d-flex align-items-center mb-1 mb-xl-0"
                 >
                   <img
                     id="artist-pic"
@@ -113,38 +113,38 @@ const showAlbumPage = (albumData) => {
                   />
                   <h4
                     id="artist-name"
-                    class="d-flex align-items-center m-0 ms-1 ms-lg-0 fs-6 placeholder-glow"
+                    class="d-flex align-items-center m-0 ms-1 ms-xl-0 fs-6 placeholder-glow"
                   >
                     <span class="placeholder col-6" style="width: 6rem"></span>
                   </h4>
                 </div>
                 <div
                   id="album-info"
-                  class="d-flex justify-content-start gap-1 text-secondary mt-2 mt-lg-0"
+                  class="d-flex justify-content-start gap-1 text-secondary mt-2 mt-xl-0"
                 >
                   <p
                     id="record-type"
-                    class="m-lg-0 mb-0 d-lg-none text-capitalize fw-semibold placeholder-glow"
+                    class="m-xl-0 mb-0 d-xl-none text-capitalize fw-semibold placeholder-glow"
                   >
                     <span class="placeholder col-6" style="width: 4rem"></span>
                   </p>
-                  <p class="m-lg-0 mb-0 fw-semibold">•</p>
+                  <p class="m-xl-0 mb-0 fw-semibold">•</p>
                   <p
                     id="hero-album-year"
-                    class="m-lg-0 mb-0 fw-semibold placeholder-glow"
+                    class="m-xl-0 mb-0 fw-semibold placeholder-glow"
                   >
                     <span class="placeholder col-6" style="width: 4rem"></span>
                   </p>
-                  <p class="m-lg-0 mb-0 d-none d-lg-block fw-semibold">•</p>
+                  <p class="m-xl-0 mb-0 d-none d-xl-block fw-semibold">•</p>
                   <p
                     id="hero-tracks-num"
-                    class="m-lg-0 mb-0 d-none d-lg-block fw-semibold placeholder-glow"
+                    class="m-xl-0 mb-0 d-none d-xl-block fw-semibold placeholder-glow"
                   >
                     <span class="placeholder col-6" style="width: 3rem"></span>
                   </p>
                   <p
                     id="hero-length"
-                    class="m-lg-0 mb-0 d-none d-lg-block fw-semibold placeholder-glow"
+                    class="m-xl-0 mb-0 d-none d-xl-block fw-semibold placeholder-glow"
                   >
                     <span class="placeholder col-6"></span>
                   </p>
@@ -155,7 +155,7 @@ const showAlbumPage = (albumData) => {
           <!-- FUNCTIONALITY BAR -->
           <div
             id="functionality-wrapper"
-            class="d-flex w-100 justify-content-between justify-content-lg-end mb-3 mt-0 pt-lg-5 pb-lg-3 flex-lg-row-reverse"
+            class="d-flex w-100 justify-content-between justify-content-xl-end mb-3 mt-0 pt-xl-5 pb-xl-3 flex-xl-row-reverse"
           >
             <div
               id="functionality-left"
@@ -186,7 +186,7 @@ const showAlbumPage = (albumData) => {
             >
               <i
                 id="randomize"
-                class="fas fa-random d-flex justify-content-center align-items-center fs-2 d-lg-none"
+                class="fas fa-random d-flex justify-content-center align-items-center fs-2 d-xl-none"
                 style="width: 2rem; color: white"
                 type="button"
                 onclick="randomizePlayer(event)"
@@ -194,7 +194,7 @@ const showAlbumPage = (albumData) => {
               <div
                 id="play-btn"
                 type="button"
-                class="p-4 d-flex justify-content-center align-items-center rounded-circle fs-2 me-lg-5"
+                class="p-4 d-flex justify-content-center align-items-center rounded-circle fs-2 me-xl-5"
                 style="background-color: #1ed760"
                 onclick="playBtnPlay()"
               >
@@ -203,10 +203,10 @@ const showAlbumPage = (albumData) => {
             </div>
           </div>
           <!-- TRACKS SECTION -->
-          <section id="tracks-section" class="mt-4">
+          <section id="tracks-section" class="mt-4 flex-grow-1">
             <div id="tracks-space" class="container-fluid">
               <div
-                class="row d-none d-lg-flex border-bottom border-1 text-secondary justify-content-between"
+                class="row d-none d-xl-flex border-bottom border-1 text-secondary justify-content-between"
               >
                 <div class="col-1">
                   <p class="text-end fw-semibold">#</p>
@@ -227,7 +227,7 @@ const showAlbumPage = (albumData) => {
               </div>
             </div>
           </section>
-          <div id="lenght-info" class="d-flex gap-1 mt-3 d-lg-none">
+          <div id="lenght-info" class="d-flex gap-1 mt-3 d-xl-none">
             <p id="tracks-qty-mobile" class="placeholder-glow">
               <span class="placeholder col-6" style="width: 5rem"></span>
             </p>
@@ -238,7 +238,7 @@ const showAlbumPage = (albumData) => {
           </div>
           <div
             id="publishing-info"
-            class="d-flex flex-column flex-lg-row gap-1 gap-lg-3 my-4"
+            class="d-flex flex-column flex-xl-row gap-1 gap-xl-3 my-4"
           >
             <p id="copyright" class="m-0 placeholder-glow">
               © <span class="placeholder col-3"></span>
@@ -354,67 +354,68 @@ const showAlbumPage = (albumData) => {
     </div>
   </div>
 
-    `
-  displayAlbumData(albumData)
-}
+    `;
+  displayAlbumData(albumData);
+};
 
 // CREAZIONE ELEMENTO AUDIO
 
-const audio = new Audio()
-let isPlaying = false
-let playing = {}
+const audio = new Audio();
+let isPlaying = false;
+let playing = {};
 
-let albumData = {}
+let albumData = {};
 const fetchAlbumData = (id) => {
+  let fetched;
   fetch(albumApiLink + id)
     .then((res) => {
       if (res.ok) {
-        return res.json()
+        return res.json();
       } else {
-        throw new Error("Failed to parse data")
+        throw new Error("Failed to parse data");
       }
     })
     .then((data) => {
-      albumData = data
-      return albumData
+      albumData = data;
+      showAlbumPage(data);
     })
     .catch((err) => {
-      console.log("Failed to fetch data", err)
-    })
-}
+      console.log("Failed to fetch data", err);
+    });
+};
 
 const displayOffcanvasData = (title, artistName, albumTitle, albumCover) => {
-  const offCanvasBottomLabel = document.getElementById("offcanvasBottomLabel")
-  const offCanvasArtistName = document.getElementById("offcanvas-artist-name")
-  const offCanvasAlbumName = document.getElementById("offcanvas-album-name")
-  const offCanvasAlbumCover = document.getElementById("offcanvas-album-cover")
-  offCanvasBottomLabel.innerText = title
-  offCanvasArtistName.innerText = artistName
-  offCanvasAlbumName.innerText = albumTitle
-  offCanvasAlbumCover.setAttribute("src", albumCover)
-}
+  const offCanvasBottomLabel = document.getElementById("offcanvasBottomLabel");
+  const offCanvasArtistName = document.getElementById("offcanvas-artist-name");
+  const offCanvasAlbumName = document.getElementById("offcanvas-album-name");
+  const offCanvasAlbumCover = document.getElementById("offcanvas-album-cover");
+  offCanvasBottomLabel.innerText = title;
+  offCanvasArtistName.innerText = artistName;
+  offCanvasAlbumName.innerText = albumTitle;
+  offCanvasAlbumCover.setAttribute("src", albumCover);
+};
 
 // FUNCTION TO GET THE AVERAGE COLOR FROM AN IMAGE
 const getAverageColor = (imgElement) => {
-  const canvas = document.createElement("canvas")
-  const context = canvas.getContext("2d")
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
 
-  canvas.width = 1
-  canvas.height = 1
+  canvas.width = 1;
+  canvas.height = 1;
 
-  context.drawImage(imgElement, 0, 0, 1, 1)
+  context.drawImage(imgElement, 0, 0, 1, 1);
 
-  const data = context.getImageData(0, 0, 1, 1).data
+  const data = context.getImageData(0, 0, 1, 1).data;
 
   return {
     r: data[0],
     g: data[1],
     b: data[2],
-  }
-}
+  };
+};
 
 const displayAlbumData = (data) => {
-  console.log(data)
+  console.log(data);
   const {
     cover_big,
     title,
@@ -423,76 +424,76 @@ const displayAlbumData = (data) => {
     nb_tracks,
     duration,
     label,
-  } = data
-  const { name, picture } = data.artist
-  const albumBody = document.getElementById("album-page-body")
-  const hero = document.getElementById("hero")
-  const topbar = document.getElementById("topbar")
-  const albumCover = document.getElementById("album-cover")
-  const albumTitle = document.getElementById("album-title")
-  const artistPic = document.getElementById("artist-pic")
-  const recordType = document.getElementById("record-type")
-  const heroRecordType = document.getElementById("hero-record-type")
-  const artistName = document.getElementById("artist-name")
-  const heroAlbumYear = document.getElementById("hero-album-year")
-  const heroTracksNum = document.getElementById("hero-tracks-num")
-  const heroLength = document.getElementById("hero-length")
-  const tracksQty = document.getElementById("tracks-qty-mobile")
-  const albumLengthMobile = document.getElementById("album-length-mins-mobile")
-  const copyright = document.getElementById("copyright")
-  const phonogram = document.getElementById("phonogram")
-  const tracksSpace = document.getElementById("tracks-space")
-  const topbarTitle = document.getElementById("topbar-title")
-  const tracks = data.tracks.data
-  albumCover.setAttribute("src", cover_big)
-  albumCover.crossOrigin = "Anonymous"
+  } = data;
+  const { name, picture } = data.artist;
+  const albumBody = document.getElementById("album-page-body");
+  const hero = document.getElementById("hero");
+  const topbar = document.getElementById("topbar");
+  const albumCover = document.getElementById("album-cover");
+  const albumTitle = document.getElementById("album-title");
+  const artistPic = document.getElementById("artist-pic");
+  const recordType = document.getElementById("record-type");
+  const heroRecordType = document.getElementById("hero-record-type");
+  const artistName = document.getElementById("artist-name");
+  const heroAlbumYear = document.getElementById("hero-album-year");
+  const heroTracksNum = document.getElementById("hero-tracks-num");
+  const heroLength = document.getElementById("hero-length");
+  const tracksQty = document.getElementById("tracks-qty-mobile");
+  const albumLengthMobile = document.getElementById("album-length-mins-mobile");
+  const copyright = document.getElementById("copyright");
+  const phonogram = document.getElementById("phonogram");
+  const tracksSpace = document.getElementById("tracks-space");
+  const topbarTitle = document.getElementById("topbar-title");
+  const tracks = data.tracks.data;
+  albumCover.setAttribute("src", cover_big);
+  albumCover.crossOrigin = "Anonymous";
   // LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
-  let avgColor = { r: 33, g: 37, b: 41 }
+  let avgColor = { r: 33, g: 37, b: 41 };
   albumCover.onload = function () {
-    const spinner = document.getElementById("spinner")
-    const spinnerTracks = document.getElementById("spinner-tracks")
-    spinner.classList.add("d-none")
-    spinnerTracks.classList.add("d-none")
-    avgColor = getAverageColor(albumCover)
+    const spinner = document.getElementById("spinner");
+    const spinnerTracks = document.getElementById("spinner-tracks");
+    spinner.classList.add("d-none");
+    spinnerTracks.classList.add("d-none");
+    avgColor = getAverageColor(albumCover);
     albumBody.style.background = `linear-gradient(
     to bottom,
     rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b}) 0%,
     #212529 28%
-  )`
-  }
+  )`;
+  };
   window.addEventListener("scroll", () => {
-    const coverBottom = albumCover.getBoundingClientRect().bottom
+    const coverBottom = albumCover.getBoundingClientRect().bottom;
 
     if (window.scrollY > 5) {
-      topbarTitle.classList.remove("d-none")
+      topbarTitle.classList.remove("d-none");
     } else {
-      topbar.style.top = `-${topbar.offsetHeight}px`
-      topbarTitle.classList.add("d-none")
+      topbar.style.top = `-${topbar.offsetHeight}px`;
+      topbarTitle.classList.add("d-none");
     }
 
     if (coverBottom <= 90) {
-      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`
-      topbarTitle.style.opacity = 1
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
+      topbarTitle.style.opacity = 1;
     } else {
-      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`
-      topbarTitle.style.opacity = 0
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
+      topbarTitle.style.opacity = 0;
     }
-  })
+  });
   // FINE LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
-  topbarTitle.innerText = title
-  artistPic.setAttribute("src", picture)
-  artistName.innerText = name
-  albumTitle.innerText = title
-  recordType.innerText = record_type
-  heroRecordType.innerText = record_type
-  heroAlbumYear.innerText = release_date.slice(0, 4)
-  heroTracksNum.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani," : "brano,"}`
-  heroLength.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec." : "."}`
-  tracksQty.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani" : "brano"}`
-  albumLengthMobile.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec" : ""}`
-  copyright.innerText = `© ${label}`
-  phonogram.innerText = `℗ ${label}`
-  let tracksHTML = ""
+  topbarTitle.innerText = title;
+  artistPic.setAttribute("src", picture);
+  artistName.innerText = name;
+  albumTitle.innerText = title;
+  recordType.innerText = record_type;
+  heroRecordType.innerText = record_type;
+  heroAlbumYear.innerText = release_date.slice(0, 4);
+  heroTracksNum.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani," : "brano,"}`;
+  heroLength.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec." : "."}`;
+  tracksQty.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani" : "brano"}`;
+  albumLengthMobile.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec" : ""}`;
+  copyright.innerText = `© ${label}`;
+  phonogram.innerText = `℗ ${label}`;
+  let tracksHTML = "";
   tracks.forEach((track, i) => {
     const {
       id,
@@ -505,25 +506,25 @@ const displayAlbumData = (data) => {
       artist,
       explicit_lyrics,
       album,
-    } = track
+    } = track;
     tracksHTML += `
             <div class="track-card row mt-3 justify-content-between align-items-center rounded-2">
-                <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
+                <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-xl-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
-                <div id="${id}"  class="track-title col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
+                <div id="${id}"  class="track-title col-11 col-xl-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
                   <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
-                <div class="col-2 d-none d-lg-inline-block text-end">
+                <div class="col-2 d-none d-xl-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
                 </div>
-                <div class="col-2 text-end d-none d-lg-inline-block">
+                <div class="col-2 text-end d-none d-xl-inline-block">
                   <p class="m-0 text-secondary fw-semibold">${Math.floor(duration / 60)}:${duration % 60 > 9 ? duration % 60 : "0" + (duration % 60)}</p>
                 </div>
-                    <i class="fas fa-ellipsis-v col-1 d-lg-none text-white align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
+                    <i class="fas fa-ellipsis-v col-1 d-xl-none text-white align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
-                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-lg-flex opacity-0 align-items-center  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
+                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-xl-flex opacity-0 align-items-center  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
                     <ul class="dropdown-menu w-auto dropdown-menu-end bg-dark border-1 border-white p-1">
                       <li
@@ -596,157 +597,157 @@ const displayAlbumData = (data) => {
                     </ul>
                   </div>
                 </div>
-              `
-  })
-  tracksSpace.innerHTML += tracksHTML
+              `;
+  });
+  tracksSpace.innerHTML += tracksHTML;
 
-  const trackCards = document.querySelectorAll(".track-card")
+  const trackCards = document.querySelectorAll(".track-card");
   trackCards.forEach((track) => {
     track.addEventListener("mouseenter", () => {
-      const lastEllipsis = track.querySelector(".ellipsis-h")
-      const ps = track.querySelectorAll(`p:not(".track-title")`)
-      lastEllipsis.classList.remove("opacity-0")
-      track.classList.add("bg-secondary")
-      ps.forEach((p) => p.classList.add("text-white"))
-    })
-  })
+      const lastEllipsis = track.querySelector(".ellipsis-h");
+      const ps = track.querySelectorAll(`p:not(.track-title)`);
+      lastEllipsis.classList.remove("opacity-0");
+      track.classList.add("bg-secondary");
+      ps.forEach((p) => p.classList.add("text-white"));
+    });
+  });
   trackCards.forEach((track) => {
     track.addEventListener("mouseleave", () => {
-      const lastEllipsis = track.querySelector(".ellipsis-h")
-      lastEllipsis.classList.add("opacity-0")
-      track.classList.remove("bg-secondary")
-    })
-  })
+      const lastEllipsis = track.querySelector(".ellipsis-h");
+      lastEllipsis.classList.add("opacity-0");
+      track.classList.remove("bg-secondary");
+      const ps = track.querySelectorAll(`p:not(.track-title)`);
+      ps.forEach((p) => p.classList.remove("text-white"));
+    });
+  });
 
   document.addEventListener("click", (e) => {
     const icon = e.target.closest(
       "#tracks-space .fa-ellipsis-v, #tracks-space .fa-ellipsis-h",
-    )
-    if (!icon) return
-    const { title, artist, album, cover } = icon.dataset
-    displayOffcanvasData(title, artist, album, cover)
-  })
-}
+    );
+    if (!icon) return;
+    const { title, artist, album, cover } = icon.dataset;
+    displayOffcanvasData(title, artist, album, cover);
+  });
+};
 
 const fillHearth = (e) => {
-  const target = e.target
+  const target = e.target;
   if (target.classList.contains("far")) {
-    target.classList.remove("far")
-    target.classList.add("fas")
+    target.classList.remove("far");
+    target.classList.add("fas");
   } else {
-    target.classList.remove("fas")
-    target.classList.add("far")
+    target.classList.remove("fas");
+    target.classList.add("far");
   }
-}
+};
 
 const randomizePlayer = (e) => {
   if (e.target.style.color === "white") {
-    e.target.style.color = "#1ed760"
-    e.target.classList.toggle("active")
+    e.target.style.color = "#1ed760";
+    e.target.classList.toggle("active");
   } else {
-    e.target.style.color = "white"
-    e.target.classList.toggle("active")
+    e.target.style.color = "white";
+    e.target.classList.toggle("active");
   }
-}
+};
 
 const playAudio = (song) => {
   //aggiungo funzione per bottomBAR - MARTINA
-  updateBottomBar(song)
-  const playBtn = document.getElementById("play-btn")
-  playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`
+  updateBottomBar(song);
+  const playBtn = document.getElementById("play-btn");
+  playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
 
   if (playing.id === song.id && audio.currentTime) {
-    audio.play()
-    isPlaying = true
-    return
+    audio.play();
+    isPlaying = true;
+    return;
   }
 
   // resetta il colore della traccia precedente
   if (playing.id) {
-    const prevTrack = document.getElementById(playing.id)
+    const prevTrack = document.getElementById(playing.id);
     if (prevTrack) {
-      prevTrack.style.color = ""
+      prevTrack.style.color = "";
     }
   }
 
-  playing = song
+  playing = song;
 
   // colora la traccia corrente
-  const currentTrack = document.getElementById(playing.id)
+  const currentTrack = document.getElementById(playing.id);
   if (currentTrack) {
-    currentTrack.style.color = "#1ed760"
+    currentTrack.style.color = "#1ed760";
   }
 
-  audio.src = song.preview
-  audio.play()
-  isPlaying = true
+  audio.src = song.preview;
+  audio.play();
+  isPlaying = true;
 
   // aggiorno bottone BUTTOM BAR - MARTINA
 
-  updatePlayerMainIcon()
-}
+  updatePlayerMainIcon();
+};
 
 const pauseAudio = () => {
-  const playBtn = document.getElementById("play-btn")
-  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`
-  audio.pause()
-  isPlaying = false
+  const playBtn = document.getElementById("play-btn");
+  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  audio.pause();
+  isPlaying = false;
 
   // aggiorno bottone BUTTOM BAR - MARTINA
 
-  updatePlayerMainIcon()
-}
+  updatePlayerMainIcon();
+};
 
 const skipAudio = () => {
-  const songs = albumData.tracks.data
-  const randomize = document.getElementById("randomize")
-  const nb_tracks = songs.length
+  const songs = albumData.tracks.data;
+  const randomize = document.getElementById("randomize");
+  const nb_tracks = songs.length;
 
   if (randomize.classList.contains("active")) {
-    let i = Math.floor(Math.random() * nb_tracks)
-    playAudio(songs[i])
+    let i = Math.floor(Math.random() * nb_tracks);
+    playAudio(songs[i]);
   } else {
-    const currentIndex = songs.findIndex((s) => s.id === playing.id)
-    const nextIndex = currentIndex + 1 < nb_tracks ? currentIndex + 1 : 0
-    playAudio(songs[nextIndex])
+    const currentIndex = songs.findIndex((s) => s.id === playing.id);
+    const nextIndex = currentIndex + 1 < nb_tracks ? currentIndex + 1 : 0;
+    playAudio(songs[nextIndex]);
   }
-}
+};
 
 const backAudio = () => {
-  const songs = albumData.tracks.data
-  const randomize = document.getElementById("randomize")
-  audio.pause()
-  isPlaying = false
-  const playBtn = document.getElementById("play-btn")
-  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`
+  const songs = albumData.tracks.data;
+  const randomize = document.getElementById("randomize");
+  audio.pause();
+  isPlaying = false;
+  const playBtn = document.getElementById("play-btn");
+  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
   if (audio.currentTime) {
-    audio.currentTime = 0
+    audio.currentTime = 0;
   } else {
-    const currentIndex = songs.findIndex((s) => s.id === playing.id)
-    const lastIndex = currentIndex - 1 > 0 ? currentIndex - 1 : 0
-    playAudio(songs[lastIndex])
+    const currentIndex = songs.findIndex((s) => s.id === playing.id);
+    const lastIndex = currentIndex - 1 > 0 ? currentIndex - 1 : 0;
+    playAudio(songs[lastIndex]);
   }
-}
+};
 
 const playBtnPlay = () => {
-  const randomize = document.getElementById("randomize")
-  const { nb_tracks } = albumData
-  const songs = albumData.tracks.data
-  let song = {}
+  const randomize = document.getElementById("randomize");
+  const { nb_tracks } = albumData;
+  const songs = albumData.tracks.data;
+  let song = {};
   if (!isPlaying) {
     if (randomize.classList.contains("active")) {
       if (playing.id) {
-        playAudio(playing)
+        playAudio(playing);
       } else {
-        let i = Math.floor(Math.random() * nb_tracks)
-        playAudio(songs[i])
+        let i = Math.floor(Math.random() * nb_tracks);
+        playAudio(songs[i]);
       }
     } else {
-      playing.id ? playAudio(playing) : playAudio(songs[0])
+      playing.id ? playAudio(playing) : playAudio(songs[0]);
     }
   } else {
-    pauseAudio()
+    pauseAudio();
   }
-}
-
-fetchAlbumData(13475611)
+};

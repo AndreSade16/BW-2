@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
     albums.forEach((album, index) => {
       const card = `
   <div class="col-6 col-md-3 col-lg-2">
-    <div class="card bg-dark text-light border-0 p-2" onclick="showAlbumPage(${fetchAlbumData(album.id)})">
+    <div class="card bg-dark text-light border-0 p-2" onclick="fetchAlbumData(${album.id})">
       <img src="${album.cover_medium}" class="img-fluid mb-2">
       <p class="mb-1">${album.title}</p>
       <small class="text-secondary">
@@ -94,8 +94,11 @@ window.addEventListener("DOMContentLoaded", function () {
   artistIds.forEach((id) => {
     fetch(artistUrl + id)
       .then((response) => {
-        if (!response.ok) throw new Error("Errore fetch");
-        return response.json();
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore fetch");
+        }
       })
       .then((artist) => {
         console.log(artist.id, artist.name);
