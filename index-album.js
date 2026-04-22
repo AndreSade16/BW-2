@@ -29,7 +29,7 @@ const showAlbumPage = (albumData) => {
       </div>
       <p
         id="topbar-title"
-        class="fw-bold text-center d-none d-xl-none m-0 position-absolute start-50 translate-middle-x"
+        class="fw-bold text-center d-xl-none m-0 position-absolute start-50 translate-middle-x"
       ></p>
       <div id="user-dropdown" class="dropdown d-none d-xl-block">
         <a
@@ -371,6 +371,10 @@ const fetchAlbumData = (id) => {
     top: 0,
     behavior: "smooth",
   });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   fetch(albumApiLink + id)
     .then((res) => {
       if (res.ok) {
@@ -468,12 +472,12 @@ const displayAlbumData = (data) => {
   main.addEventListener("scroll", () => {
     const coverBottom = albumCover.getBoundingClientRect().bottom;
 
-    if (main.scrollY > 5) {
-      topbarTitle.classList.remove("d-none");
-    } else {
-      topbar.style.top = `-${topbar.offsetHeight}px`;
-      topbarTitle.classList.add("d-none");
-    }
+    // if (main.scrollY > 5) {
+    //   topbarTitle.classList.remove("d-none");
+    // } else {
+    //   topbar.style.top = `-${topbar.offsetHeight}px`;
+    //   topbarTitle.classList.add("d-none");
+    // }
 
     if (coverBottom <= 90) {
       topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
@@ -519,7 +523,7 @@ const displayAlbumData = (data) => {
                 </div>
                 <div id="${id}"  class="track-title col-11 col-xl-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
-                  <p class="m-0 text-secondary fw-normal">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-normal px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
+                  <p class="m-0 text-secondary fw-normal">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
                 <div class="col-2 d-none d-xl-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
