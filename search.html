@@ -37,15 +37,16 @@
               placeholder="Cosa vuoi ascoltare?"
               aria-label="Cosa vuoi ascoltare?"
               aria-describedby="visible-addon"
+              autocomplete="off"
             />
             <div
               id="search-dropdown"
-              class="position-absolute w-100 bg-dark rounded-3 py-2 d-none mt-2"
+              class="position-absolute w-100 bg-dark rounded-3 py-2 d-none mt-2 d-flex pt-5 flex-column justify-content-center align-items-center"
               style="top: 100%; z-index: 2; height: 300px; overflow-y: scroll"
             >
-              <div class="dropdown-item text-light py-2 px-3">Risultato 1</div>
-              <div class="dropdown-item text-light py-2 px-3">Risultato 2</div>
-              <div class="dropdown-item text-light py-2 px-3">Risultato 3</div>
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,7 @@
+.dropdown-item:hover {
+  background-color: gray !important;
+}
+
 #topbar {
   transition: background-color 0.4s ease;
 }
