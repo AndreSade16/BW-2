@@ -514,7 +514,7 @@ const displayAlbumData = (data) => {
                 </div>
                 <div id="${id}"  class="track-title col-11 col-xl-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
-                  <p class="m-0 text-secondary fw-semibold">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
+                  <p class="m-0 text-secondary fw-normal">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-normal px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
                 <div class="col-2 d-none d-xl-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
