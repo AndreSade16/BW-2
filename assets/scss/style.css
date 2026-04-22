@@ -12568,6 +12568,7 @@ fieldset:disabled .btn {
     #1a1a1a 70%,
     #121212 100%
   );
+  width: 100%;
 }
 
 /* BUONASERA CARD */
@@ -12588,12 +12589,11 @@ fieldset:disabled .btn {
 }
 
 .square-grid {
-  width: 80px;
+  width: 130px;
   aspect-ratio: 1/1;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  line-height: 0;
 }
 .square-grid img {
   width: 50%;
