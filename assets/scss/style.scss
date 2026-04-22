@@ -92,16 +92,17 @@ $theme-colors: (
 }
 //GRIGLIA DIV CON 4 IMG//
 .square-grid {
-  width: 130px;
+  max-width: 100px;
+  min-width: 100px;
   aspect-ratio: 1 / 1;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
+}
 
-  img {
-    width: 50%;
-    height: 50%;
-    object-fit: cover;
-    display: block;
-  }
+.square-grid img {
+  flex: 0 0 50%;
+  height: 50%;
+  object-fit: contain;
+  display: block;
 }

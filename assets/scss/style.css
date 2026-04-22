@@ -12039,16 +12039,18 @@ textarea.form-control-lg {
 }
 
 .square-grid {
-  width: 130px;
+  max-width: 100px;
+  min-width: 100px;
   aspect-ratio: 1/1;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
 }
+
 .square-grid img {
-  width: 50%;
+  flex: 0 0 50%;
   height: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: block;
 }/*# sourceMappingURL=style.css.map */
