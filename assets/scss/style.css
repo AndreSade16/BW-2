@@ -12018,6 +12018,7 @@ textarea.form-control-lg {
 
 .viola {
   background: linear-gradient(to bottom left, #4d4d4d 0%, #2f2f2f 40%, #1a1a1a 70%, #121212 100%);
+  width: 100%;
 }
 
 /* BUONASERA CARD */
@@ -12038,12 +12039,11 @@ textarea.form-control-lg {
 }
 
 .square-grid {
-  width: 80px;
+  width: 130px;
   aspect-ratio: 1/1;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  line-height: 0;
 }
 .square-grid img {
   width: 50%;
