@@ -1,8 +1,9 @@
-const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/";
-const main = document.getElementById("main");
-const albumProva = document.getElementById("album-prova");
+const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/"
+const main = document.getElementById("main")
+const albumProva = document.getElementById("album-prova")
 
 const showAlbumPage = (albumData) => {
+  console.log(albumData)
   main.innerHTML = `
 
   <div id="album-page-body" class="bg-dark text-light container-fluid p-0">
@@ -353,67 +354,67 @@ const showAlbumPage = (albumData) => {
     </div>
   </div>
 
-    `;
-  displayAlbumData(albumData);
-};
-
-albumProva.addEventListener("click", () => showAlbumPage(albumData));
+    `
+  displayAlbumData(albumData)
+}
 
 // CREAZIONE ELEMENTO AUDIO
 
-const audio = new Audio();
-let isPlaying = false;
-let playing = {};
+const audio = new Audio()
+let isPlaying = false
+let playing = {}
 
-let albumData = {};
+let albumData = {}
 const fetchAlbumData = (id) => {
   fetch(albumApiLink + id)
     .then((res) => {
       if (res.ok) {
-        return res.json();
+        return res.json()
       } else {
-        throw new Error("Failed to parse data");
+        throw new Error("Failed to parse data")
       }
     })
     .then((data) => {
-      albumData = data;
+      albumData = data
+      return albumData
     })
     .catch((err) => {
-      console.log("Failed to fetch data", err);
-    });
-};
+      console.log("Failed to fetch data", err)
+    })
+}
 
 const displayOffcanvasData = (title, artistName, albumTitle, albumCover) => {
-  const offCanvasBottomLabel = document.getElementById("offcanvasBottomLabel");
-  const offCanvasArtistName = document.getElementById("offcanvas-artist-name");
-  const offCanvasAlbumName = document.getElementById("offcanvas-album-name");
-  const offCanvasAlbumCover = document.getElementById("offcanvas-album-cover");
-  offCanvasBottomLabel.innerText = title;
-  offCanvasArtistName.innerText = artistName;
-  offCanvasAlbumName.innerText = albumTitle;
-  offCanvasAlbumCover.setAttribute("src", albumCover);
-};
+  const offCanvasBottomLabel = document.getElementById("offcanvasBottomLabel")
+  const offCanvasArtistName = document.getElementById("offcanvas-artist-name")
+  const offCanvasAlbumName = document.getElementById("offcanvas-album-name")
+  const offCanvasAlbumCover = document.getElementById("offcanvas-album-cover")
+  offCanvasBottomLabel.innerText = title
+  offCanvasArtistName.innerText = artistName
+  offCanvasAlbumName.innerText = albumTitle
+  offCanvasAlbumCover.setAttribute("src", albumCover)
+}
 
 // FUNCTION TO GET THE AVERAGE COLOR FROM AN IMAGE
 const getAverageColor = (imgElement) => {
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
+  const canvas = document.createElement("canvas")
+  const context = canvas.getContext("2d")
 
-  canvas.width = 1;
-  canvas.height = 1;
+  canvas.width = 1
+  canvas.height = 1
 
-  context.drawImage(imgElement, 0, 0, 1, 1);
+  context.drawImage(imgElement, 0, 0, 1, 1)
 
-  const data = context.getImageData(0, 0, 1, 1).data;
+  const data = context.getImageData(0, 0, 1, 1).data
 
   return {
     r: data[0],
     g: data[1],
     b: data[2],
-  };
-};
+  }
+}
 
 const displayAlbumData = (data) => {
+  console.log(data)
   const {
     cover_big,
     title,
@@ -422,76 +423,76 @@ const displayAlbumData = (data) => {
     nb_tracks,
     duration,
     label,
-  } = data;
-  const { name, picture } = data.artist;
-  const albumBody = document.getElementById("album-page-body");
-  const hero = document.getElementById("hero");
-  const topbar = document.getElementById("topbar");
-  const albumCover = document.getElementById("album-cover");
-  const albumTitle = document.getElementById("album-title");
-  const artistPic = document.getElementById("artist-pic");
-  const recordType = document.getElementById("record-type");
-  const heroRecordType = document.getElementById("hero-record-type");
-  const artistName = document.getElementById("artist-name");
-  const heroAlbumYear = document.getElementById("hero-album-year");
-  const heroTracksNum = document.getElementById("hero-tracks-num");
-  const heroLength = document.getElementById("hero-length");
-  const tracksQty = document.getElementById("tracks-qty-mobile");
-  const albumLengthMobile = document.getElementById("album-length-mins-mobile");
-  const copyright = document.getElementById("copyright");
-  const phonogram = document.getElementById("phonogram");
-  const tracksSpace = document.getElementById("tracks-space");
-  const topbarTitle = document.getElementById("topbar-title");
-  const tracks = data.tracks.data;
-  albumCover.setAttribute("src", cover_big);
-  albumCover.crossOrigin = "Anonymous";
+  } = data
+  const { name, picture } = data.artist
+  const albumBody = document.getElementById("album-page-body")
+  const hero = document.getElementById("hero")
+  const topbar = document.getElementById("topbar")
+  const albumCover = document.getElementById("album-cover")
+  const albumTitle = document.getElementById("album-title")
+  const artistPic = document.getElementById("artist-pic")
+  const recordType = document.getElementById("record-type")
+  const heroRecordType = document.getElementById("hero-record-type")
+  const artistName = document.getElementById("artist-name")
+  const heroAlbumYear = document.getElementById("hero-album-year")
+  const heroTracksNum = document.getElementById("hero-tracks-num")
+  const heroLength = document.getElementById("hero-length")
+  const tracksQty = document.getElementById("tracks-qty-mobile")
+  const albumLengthMobile = document.getElementById("album-length-mins-mobile")
+  const copyright = document.getElementById("copyright")
+  const phonogram = document.getElementById("phonogram")
+  const tracksSpace = document.getElementById("tracks-space")
+  const topbarTitle = document.getElementById("topbar-title")
+  const tracks = data.tracks.data
+  albumCover.setAttribute("src", cover_big)
+  albumCover.crossOrigin = "Anonymous"
   // LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
-  let avgColor = { r: 33, g: 37, b: 41 };
+  let avgColor = { r: 33, g: 37, b: 41 }
   albumCover.onload = function () {
-    const spinner = document.getElementById("spinner");
-    const spinnerTracks = document.getElementById("spinner-tracks");
-    spinner.classList.add("d-none");
-    spinnerTracks.classList.add("d-none");
-    avgColor = getAverageColor(albumCover);
+    const spinner = document.getElementById("spinner")
+    const spinnerTracks = document.getElementById("spinner-tracks")
+    spinner.classList.add("d-none")
+    spinnerTracks.classList.add("d-none")
+    avgColor = getAverageColor(albumCover)
     albumBody.style.background = `linear-gradient(
     to bottom,
     rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b}) 0%,
     #212529 28%
-  )`;
-  };
+  )`
+  }
   window.addEventListener("scroll", () => {
-    const coverBottom = albumCover.getBoundingClientRect().bottom;
+    const coverBottom = albumCover.getBoundingClientRect().bottom
 
     if (window.scrollY > 5) {
-      topbarTitle.classList.remove("d-none");
+      topbarTitle.classList.remove("d-none")
     } else {
-      topbar.style.top = `-${topbar.offsetHeight}px`;
-      topbarTitle.classList.add("d-none");
+      topbar.style.top = `-${topbar.offsetHeight}px`
+      topbarTitle.classList.add("d-none")
     }
 
     if (coverBottom <= 90) {
-      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
-      topbarTitle.style.opacity = 1;
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`
+      topbarTitle.style.opacity = 1
     } else {
-      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`;
-      topbarTitle.style.opacity = 0;
+      topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 0)`
+      topbarTitle.style.opacity = 0
     }
-  });
+  })
   // FINE LOGICA COLORI COVERS E PLACEHOLDERS ONLOAD
-  topbarTitle.innerText = title;
-  artistPic.setAttribute("src", picture);
-  artistName.innerText = name;
-  albumTitle.innerText = title;
-  recordType.innerText = record_type;
-  heroRecordType.innerText = record_type;
-  heroAlbumYear.innerText = release_date.slice(0, 4);
-  heroTracksNum.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani," : "brano,"}`;
-  heroLength.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec." : "."}`;
-  tracksQty.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani" : "brano"}`;
-  albumLengthMobile.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec" : ""}`;
-  copyright.innerText = `© ${label}`;
-  phonogram.innerText = `℗ ${label}`;
-  let tracksHTML = "";
+  topbarTitle.innerText = title
+  artistPic.setAttribute("src", picture)
+  artistName.innerText = name
+  albumTitle.innerText = title
+  recordType.innerText = record_type
+  heroRecordType.innerText = record_type
+  heroAlbumYear.innerText = release_date.slice(0, 4)
+  heroTracksNum.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani," : "brano,"}`
+  heroLength.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec." : "."}`
+  tracksQty.innerText = `${nb_tracks} ${nb_tracks > 1 ? "brani" : "brano"}`
+  albumLengthMobile.innerText = `${Math.floor(duration / 60)} min ${duration % 60 !== 0 ? (duration % 60) + "sec" : ""}`
+  copyright.innerText = `© ${label}`
+  phonogram.innerText = `℗ ${label}`
+  let tracksHTML = ""
   tracks.forEach((track, i) => {
     const {
       id,
@@ -504,7 +505,7 @@ const displayAlbumData = (data) => {
       artist,
       explicit_lyrics,
       album,
-    } = track;
+    } = track
     tracksHTML += `
             <div class="track-card row mt-3 justify-content-between align-items-center rounded-2">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-lg-inline-block">
@@ -595,157 +596,157 @@ const displayAlbumData = (data) => {
                     </ul>
                   </div>
                 </div>
-              `;
-  });
-  tracksSpace.innerHTML += tracksHTML;
+              `
+  })
+  tracksSpace.innerHTML += tracksHTML
 
-  const trackCards = document.querySelectorAll(".track-card");
+  const trackCards = document.querySelectorAll(".track-card")
   trackCards.forEach((track) => {
     track.addEventListener("mouseenter", () => {
-      const lastEllipsis = track.querySelector(".ellipsis-h");
-      const ps = track.querySelectorAll(`p:not(".track-title")`);
-      lastEllipsis.classList.remove("opacity-0");
-      track.classList.add("bg-secondary");
-      ps.forEach((p) => p.classList.add("text-white"));
-    });
-  });
+      const lastEllipsis = track.querySelector(".ellipsis-h")
+      const ps = track.querySelectorAll(`p:not(".track-title")`)
+      lastEllipsis.classList.remove("opacity-0")
+      track.classList.add("bg-secondary")
+      ps.forEach((p) => p.classList.add("text-white"))
+    })
+  })
   trackCards.forEach((track) => {
     track.addEventListener("mouseleave", () => {
-      const lastEllipsis = track.querySelector(".ellipsis-h");
-      lastEllipsis.classList.add("opacity-0");
-      track.classList.remove("bg-secondary");
-    });
-  });
+      const lastEllipsis = track.querySelector(".ellipsis-h")
+      lastEllipsis.classList.add("opacity-0")
+      track.classList.remove("bg-secondary")
+    })
+  })
 
   document.addEventListener("click", (e) => {
     const icon = e.target.closest(
       "#tracks-space .fa-ellipsis-v, #tracks-space .fa-ellipsis-h",
-    );
-    if (!icon) return;
-    const { title, artist, album, cover } = icon.dataset;
-    displayOffcanvasData(title, artist, album, cover);
-  });
-};
+    )
+    if (!icon) return
+    const { title, artist, album, cover } = icon.dataset
+    displayOffcanvasData(title, artist, album, cover)
+  })
+}
 
 const fillHearth = (e) => {
-  const target = e.target;
+  const target = e.target
   if (target.classList.contains("far")) {
-    target.classList.remove("far");
-    target.classList.add("fas");
+    target.classList.remove("far")
+    target.classList.add("fas")
   } else {
-    target.classList.remove("fas");
-    target.classList.add("far");
+    target.classList.remove("fas")
+    target.classList.add("far")
   }
-};
+}
 
 const randomizePlayer = (e) => {
   if (e.target.style.color === "white") {
-    e.target.style.color = "#1ed760";
-    e.target.classList.toggle("active");
+    e.target.style.color = "#1ed760"
+    e.target.classList.toggle("active")
   } else {
-    e.target.style.color = "white";
-    e.target.classList.toggle("active");
+    e.target.style.color = "white"
+    e.target.classList.toggle("active")
   }
-};
+}
 
 const playAudio = (song) => {
   //aggiungo funzione per bottomBAR - MARTINA
-  updateBottomBar(song);
-  const playBtn = document.getElementById("play-btn");
-  playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
+  updateBottomBar(song)
+  const playBtn = document.getElementById("play-btn")
+  playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`
 
   if (playing.id === song.id && audio.currentTime) {
-    audio.play();
-    isPlaying = true;
-    return;
+    audio.play()
+    isPlaying = true
+    return
   }
 
   // resetta il colore della traccia precedente
   if (playing.id) {
-    const prevTrack = document.getElementById(playing.id);
+    const prevTrack = document.getElementById(playing.id)
     if (prevTrack) {
-      prevTrack.style.color = "";
+      prevTrack.style.color = ""
     }
   }
 
-  playing = song;
+  playing = song
 
   // colora la traccia corrente
-  const currentTrack = document.getElementById(playing.id);
+  const currentTrack = document.getElementById(playing.id)
   if (currentTrack) {
-    currentTrack.style.color = "#1ed760";
+    currentTrack.style.color = "#1ed760"
   }
 
-  audio.src = song.preview;
-  audio.play();
-  isPlaying = true;
+  audio.src = song.preview
+  audio.play()
+  isPlaying = true
 
   // aggiorno bottone BUTTOM BAR - MARTINA
 
-  updatePlayerMainIcon();
-};
+  updatePlayerMainIcon()
+}
 
 const pauseAudio = () => {
-  const playBtn = document.getElementById("play-btn");
-  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
-  audio.pause();
-  isPlaying = false;
+  const playBtn = document.getElementById("play-btn")
+  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`
+  audio.pause()
+  isPlaying = false
 
   // aggiorno bottone BUTTOM BAR - MARTINA
 
-  updatePlayerMainIcon();
-};
+  updatePlayerMainIcon()
+}
 
 const skipAudio = () => {
-  const songs = albumData.tracks.data;
-  const randomize = document.getElementById("randomize");
-  const nb_tracks = songs.length;
+  const songs = albumData.tracks.data
+  const randomize = document.getElementById("randomize")
+  const nb_tracks = songs.length
 
   if (randomize.classList.contains("active")) {
-    let i = Math.floor(Math.random() * nb_tracks);
-    playAudio(songs[i]);
+    let i = Math.floor(Math.random() * nb_tracks)
+    playAudio(songs[i])
   } else {
-    const currentIndex = songs.findIndex((s) => s.id === playing.id);
-    const nextIndex = currentIndex + 1 < nb_tracks ? currentIndex + 1 : 0;
-    playAudio(songs[nextIndex]);
+    const currentIndex = songs.findIndex((s) => s.id === playing.id)
+    const nextIndex = currentIndex + 1 < nb_tracks ? currentIndex + 1 : 0
+    playAudio(songs[nextIndex])
   }
-};
+}
 
 const backAudio = () => {
-  const songs = albumData.tracks.data;
-  const randomize = document.getElementById("randomize");
-  audio.pause();
-  isPlaying = false;
-  const playBtn = document.getElementById("play-btn");
-  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  const songs = albumData.tracks.data
+  const randomize = document.getElementById("randomize")
+  audio.pause()
+  isPlaying = false
+  const playBtn = document.getElementById("play-btn")
+  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`
   if (audio.currentTime) {
-    audio.currentTime = 0;
+    audio.currentTime = 0
   } else {
-    const currentIndex = songs.findIndex((s) => s.id === playing.id);
-    const lastIndex = currentIndex - 1 > 0 ? currentIndex - 1 : 0;
-    playAudio(songs[lastIndex]);
+    const currentIndex = songs.findIndex((s) => s.id === playing.id)
+    const lastIndex = currentIndex - 1 > 0 ? currentIndex - 1 : 0
+    playAudio(songs[lastIndex])
   }
-};
+}
 
 const playBtnPlay = () => {
-  const randomize = document.getElementById("randomize");
-  const { nb_tracks } = albumData;
-  const songs = albumData.tracks.data;
-  let song = {};
+  const randomize = document.getElementById("randomize")
+  const { nb_tracks } = albumData
+  const songs = albumData.tracks.data
+  let song = {}
   if (!isPlaying) {
     if (randomize.classList.contains("active")) {
       if (playing.id) {
-        playAudio(playing);
+        playAudio(playing)
       } else {
-        let i = Math.floor(Math.random() * nb_tracks);
-        playAudio(songs[i]);
+        let i = Math.floor(Math.random() * nb_tracks)
+        playAudio(songs[i])
       }
     } else {
-      playing.id ? playAudio(playing) : playAudio(songs[0]);
+      playing.id ? playAudio(playing) : playAudio(songs[0])
     }
   } else {
-    pauseAudio();
+    pauseAudio()
   }
-};
+}
 
-fetchAlbumData(13475611);
+fetchAlbumData(13475611)
