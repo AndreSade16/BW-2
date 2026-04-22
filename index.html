@@ -25,8 +25,7 @@
     <div class="container-fluid">
       <div class="row">
         <!--COL: LEFT -->
-        <!-- <div class="sidebar-left col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
-        <!-- bottom-navbar in mobile view che sparisce in md view -->
+        <!-- barra di ricerca in basso che esiste solo in mobile -->
         <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black">
           <div class="d-flex justify-content-around text-center py-2">
             <a href="#" class="text-decoration-none text-light small">
@@ -232,7 +231,6 @@
           </section>
 
           <!-- ARTISTI CONSIGLIATI -->
-          <!-- prototipo card da aggiungere via JS -->
           <section class="container-fluid text-light my-4">
             <h4 class="mb-3">Artisti consigliati</h4>
 
@@ -258,18 +256,42 @@
           <section class="container-fluid text-light my-4">
             <h4 class="mb-3">Album consigliati</h4>
 
-            <div class="row g-3">
-              <div class="col-6 col-md-4 col-lg-2">
-                <div class="card bg-dark text-light border-0 p-2">
-                  <div class="bg-secondary mb-2" style="height: 120px"></div>
-                  <p id="album-prova" class="mb-1">Album</p>
-                  <small class="text-secondary">Dettagli</small>
+            <!-- inizio carosello album -->
+            <div id="albumCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- SLIDE 1, primi 5-->
+                <div class="carousel-item active">
+                  <div class="row" id="album-slide-1"></div>
+                </div>
+
+                <!-- SLIDE 2, secondi 5-->
+                <div class="carousel-item">
+                  <div class="row" id="album-slide-2"></div>
                 </div>
               </div>
 
-              <!-- x5 -->
+              <!-- frecce carosello -->
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#albumCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#albumCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
             </div>
+            <!-- fine carosello album -->
           </section>
+
           <!-- bottone controllo sidebar-right -->
           <button
             id="openSidebar"
@@ -278,49 +300,62 @@
             <i class="fas fa-users"></i>
           </button>
 
-        <!-- HOMEPAGE (Vale + Riccio) -->
-  <section id="home-page" class="d-none">
-  </section>
+          <!-- HOMEPAGE (Vale + Riccio) -->
+          <section id="home-page" class="d-none"></section>
 
-    <!-- ARTIST PAGE (Noe) -->
-  <section id="artist-page" class="d-none">
-    
-    <div id="artist-hero" class="mb-4">
-      <img id="artist-banner" src="" alt="" class="w-100" style="height: 400px; object-fit: cover; object-position: center top;">
-      <div class="p-4 bg-dark">
-        <span class="text-white small">
-          <i class="fas fa-check-circle text-primary me-1"></i>Artista verificato
-        </span>
-        <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
-        <p id="artist-fans" class="text-white"></p>
-      </div>
-      <!-- Tasto Play + Following -->
-      <div class="d-flex align-items-center gap-3 p-4">
-        <button class="btn rounded-circle d-flex align-items-center justify-content-center p-3" 
-                style="background-color: #1ed760; width: 56px; height: 56px;"
-                onclick="playArtistAudio(artistTracksData[0])">
-          <i class="fas fa-play text-black fs-5"></i>
-        </button>
-        <button class="btn btn-outline-light rounded-pill px-3">Following</button>
-        <i class="fas fa-ellipsis-h text-white fs-5"></i>
-      </div>
+          <!-- ARTIST PAGE (Noe) -->
+          <section id="artist-page" class="d-none">
+            <div id="artist-hero" class="mb-4">
+              <img
+                id="artist-banner"
+                src=""
+                alt=""
+                class="w-100"
+                style="
+                  height: 400px;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+              <div class="p-4 bg-dark">
+                <span class="text-white small">
+                  <i class="fas fa-check-circle text-primary me-1"></i>Artista
+                  verificato
+                </span>
+                <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
+                <p id="artist-fans" class="text-white"></p>
+              </div>
+              <!-- Tasto Play + Following -->
+              <div class="d-flex align-items-center gap-3 p-4">
+                <button
+                  class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
+                  style="background-color: #1ed760; width: 56px; height: 56px"
+                  onclick="playArtistAudio(artistTracksData[0])"
+                >
+                  <i class="fas fa-play text-black fs-5"></i>
+                </button>
+                <button class="btn btn-outline-light rounded-pill px-3">
+                  Following
+                </button>
+                <i class="fas fa-ellipsis-h text-white fs-5"></i>
+              </div>
+            </div>
 
-    </div>
-    
-    <div class="container-fluid px-4">
-      <h2 class="text-white mb-3">Popolari</h2>
-      <ul id="artist-tracks" class="list-unstyled"></ul>
+            <div class="container-fluid px-4">
+              <h2 class="text-white mb-3">Popolari</h2>
+              <ul id="artist-tracks" class="list-unstyled"></ul>
 
-      <h2 class="text-white mt-4 mb-3">Discografia</h2>
-      <div id="artist-albums" class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"></div>
-    </div>
-    
-  </section>
+              <h2 class="text-white mt-4 mb-3">Discografia</h2>
+              <div
+                id="artist-albums"
+                class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"
+              ></div>
+            </div>
+          </section>
 
-  <!-- ALBUM PAGE (Andrea) -->
-  <section id="album-page" class="d-none">
-  </section>
-</div>
+          <!-- ALBUM PAGE (Andrea) -->
+          <section id="album-page" class="d-none"></section>
+        </div>
         <!--COL: ATTIVITÀ AMICI -->
         <!-- d-none di default, appare solo in lg view -->
         <!-- Versione colonna BOOTSTRAP -->
