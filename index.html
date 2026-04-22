@@ -17,27 +17,26 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/main-content.css" />
+    <link rel="stylesheet" href="./assets/scss/style.css" />
     <link rel="stylesheet" href="./assets/css/album.css" />
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <!--COL: LEFT -->
-        <!-- <div class="sidebar-left col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
+        <!-- <div class=" col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
         <!-- bottom-navbar in mobile view che sparisce in md view -->
-        <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black">
+        <div class="col-12 fixed-bottom d-md-none bg-black">
           <div class="d-flex justify-content-around text-center py-2">
-            <a href="#" class="text-decoration-none text-light small">
+            <a class="text-secondary" href="#">
               <i class="fas fa-home d-block"></i>
               <span>Home</span>
             </a>
-            <a href="#" class="text-decoration-none text-light small">
+            <a class="text-secondary" href="#">
               <i class="fas fa-search d-block"></i>
               <span>Cerca</span>
             </a>
-            <a href="#" class="text-decoration-none text-light small">
+            <a class="text-secondary" href="#">
               <i class="fas fa-book d-block"></i>
               <span>La tua libreria</span>
             </a>
@@ -45,21 +44,19 @@
         </div>
         <!-- col che appare da md in poi a sx -->
         <div
-          class="sidebar-left d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1"
+          class="d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1"
         >
           <section>
             <!-- LINKS: icons + p -->
             <nav class="container mb-2">
               <!-- icone HOME, CERCA, LIBRARY -->
-              <div class="row text-light-minimization gap-2">
-                <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
-                  href="#"
+              <div class="row gap-2">
+                <a class="text-light my-1 d-flex align-items-center" href="#"
                   ><div><i class="fas fa-ellipsis-h"></i></div
                 ></a>
 
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar"
                   href="#"
                   ><div>
                     <img
@@ -72,7 +69,7 @@
                 </a>
 
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none"
                   href="#"
                   ><div>
                     <img
@@ -85,7 +82,7 @@
                 </a>
 
                 <a
-                  class="col-12 my-1 text-light d-flex align-items-center text-decoration-none"
+                  class="col-12 my-1 d-flex align-items-center text-decoration-none"
                   href="#"
                   ><div>
                     <img
@@ -94,14 +91,14 @@
                       alt=""
                     />
                   </div>
-                  <span class="mx-3">La tua libreria</span>
+                  <span class="mx-3 text-secondary">La tua libreria</span>
                 </a>
               </div>
 
               <!-- crea playlist, ...-->
               <div class="row my-3 gap-2">
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
                   href="#"
                   ><div>
                     <img
@@ -114,7 +111,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
                   href="#"
                   ><div>
                     <img
@@ -127,7 +124,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-light text-decoration-none"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
                   href="#"
                   ><div>
                     <img
@@ -142,7 +139,7 @@
             </nav>
 
             <!-- song list -->
-            <div class="text-light small container text-light-minimization">
+            <div class="small container text-secondary">
               <hr class="text-secondary border-2 border-secondary" />
               <p>early stage emily syndrome (sett-ott 2022)</p>
               <p>Be The Young</p>
@@ -184,7 +181,7 @@
         <!-- COL: MAIN-CONTENT -->
         <div
           id="main"
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 p-0 d-flex flex-column align-items-center"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -192,7 +189,7 @@
 
           <!-- MAIN HOMEPAGE CONTENT -->
           <!-- Blocco adds, VIOLA -->
-          <section class="viola p-4 text-light mt-3" style="width: 90%">
+          <section class="viola p-4 text-light mt-3">
             <div class="d-flex align-items-center">
               <img
                 src="./assets/imgs/main/VIOLA.jpeg"
@@ -205,14 +202,19 @@
                 <p>Fedez, Salmo</p>
                 <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
 
-                <button class="btn btn-success me-2">Play</button>
-                <button class="btn btn-outline-light">Salva</button>
+                <button class="btn btn-primary fw-bold rounded-5 px-4 py-2">
+                  Play
+                </button>
+                <button class="btn btn-outline-light p-2 px-4 rounded-5">
+                  Salva
+                </button>
+                <i class="fas fa-ellipsis-h ms-3 text-secondary"></i>
               </div>
             </div>
           </section>
 
           <!-- BUONASERA -->
-          <section class="container-fluid text-light my-4">
+          <section class="container-fluid text-light my-4 p-0">
             <h3 class="mb-3">Buonasera</h3>
 
             <div class="row g-3">
@@ -221,7 +223,87 @@
                 <div
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
-                  <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
+                  <p class="ms-3 mb-0">
+                    early stage emily syndrome (sett-ott 2022)
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                  </div>
                   <p class="ms-3 mb-0">
                     early stage emily syndrome (sett-ott 2022)
                   </p>
@@ -233,14 +315,18 @@
 
           <!-- ARTISTI CONSIGLIATI -->
           <!-- prototipo card da aggiungere via JS -->
-          <section class="container-fluid text-light my-4">
+          <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Artisti consigliati</h4>
 
             <div class="row g-3">
               <div class="col-6 col-md-4 col-lg-2">
                 <div class="card bg-dark text-light border-0 p-3 text-center">
                   <!-- CONTENUTO -->
-                  <div class="bg-secondary rounded-circle mb-3" style="height: 100px; cursor: pointer;" onclick="loadArtistPage(412)">
+                  <div
+                    class="bg-secondary rounded-circle mb-3"
+                    style="height: 100px; cursor: pointer"
+                    onclick="loadArtistPage(412)"
+                  >
                     <img src="" alt="" />
                   </div>
                   <p class="mb-1">Artista</p>
@@ -252,7 +338,7 @@
           </section>
 
           <!-- ALBUM CONSIGLIATI -->
-          <section class="container-fluid text-light my-4">
+          <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Album consigliati</h4>
 
             <div class="row g-3">
@@ -275,73 +361,98 @@
             <i class="fas fa-users"></i>
           </button>
 
-        <!-- HOMEPAGE (Vale + Riccio) -->
-  <section id="home-page" class="d-none">
-  </section>
+          <!-- HOMEPAGE (Vale + Riccio) -->
+          <section id="home-page" class="d-none"></section>
 
-    <!-- ARTIST PAGE (Noe) -->
-  <section id="artist-page" class="d-none">
-    
-    <div id="artist-hero" class="mb-4">
-      <img id="artist-banner" src="" alt="" class="w-100" style="height: 400px; object-fit: cover; object-position: center top;">
-      <div class="p-4 bg-dark">
-        <span class="text-white small">
-          <i class="fas fa-check-circle text-primary me-1"></i>Artista verificato
-        </span>
-        <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
-        <p id="artist-fans" class="text-white"></p>
-      </div>
-      <!-- Tasto Play + Following -->
-      <div class="d-flex align-items-center gap-3 p-4">
-        <button class="btn rounded-circle d-flex align-items-center justify-content-center p-3" 
-                style="background-color: #1ed760; width: 56px; height: 56px;"
-                onclick="playArtistAudio(artistTracksData[0])">
-          <i class="fas fa-play text-black fs-5"></i>
-        </button>
-        <button class="btn btn-outline-light rounded-pill px-3">Following</button>
-        <i class="fas fa-ellipsis-h text-white fs-5"></i>
-      </div>
+          <!-- ARTIST PAGE (Noe) -->
+          <section id="artist-page" class="d-none">
+            <div id="artist-hero" class="mb-4">
+              <img
+                id="artist-banner"
+                src=""
+                alt=""
+                class="w-100"
+                style="
+                  height: 400px;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+              <div class="p-4 bg-dark">
+                <span class="text-white small">
+                  <i class="fas fa-check-circle text-primary me-1"></i>Artista
+                  verificato
+                </span>
+                <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
+                <p id="artist-fans" class="text-white"></p>
+              </div>
+              <!-- Tasto Play + Following -->
+              <div class="d-flex align-items-center gap-3 p-4">
+                <button
+                  class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
+                  style="background-color: #1ed760; width: 56px; height: 56px"
+                  onclick="playArtistAudio(artistTracksData[0])"
+                >
+                  <i class="fas fa-play text-black fs-5"></i>
+                </button>
+                <button class="btn btn-outline-light rounded-pill px-3">
+                  Following
+                </button>
+                <i class="fas fa-ellipsis-h text-white fs-5"></i>
+              </div>
+            </div>
 
-    </div>
-    
-    <div class="container-fluid px-4">
-  <div class="row">
-    <!-- Colonna tracce popolari -->
-    <div class="col-12 col-lg-7">
-      <h2 class="text-white mb-3">Popolari</h2>
-      <ul id="artist-tracks" class="list-unstyled"></ul>
-    </div>
-    
-    <!-- Box brani che ti piacciono -->
-    <div class="col-12 col-lg-5">
-      <h2 class="text-white mb-3">Brani che ti piacciono</h2>
-      <div class="d-flex align-items-center gap-3">
-        <div class="position-relative">
-          <img id="artist-liked-img" src="" alt="" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+            <div class="container-fluid px-4">
+              <div class="row">
+                <!-- Colonna tracce popolari -->
+                <div class="col-12 col-lg-7">
+                  <h2 class="text-white mb-3">Popolari</h2>
+                  <ul id="artist-tracks" class="list-unstyled"></ul>
+                </div>
+
+                <!-- Box brani che ti piacciono -->
+                <div class="col-12 col-lg-5">
+                  <h2 class="text-white mb-3">Brani che ti piacciono</h2>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative">
+                      <img
+                        id="artist-liked-img"
+                        src=""
+                        alt=""
+                        class="rounded-circle"
+                        style="width: 80px; height: 80px; object-fit: cover"
+                      />
+                    </div>
+                    <div>
+                      <p class="text-white fw-bold mb-0">
+                        Hai messo Mi piace a brani
+                      </p>
+                      <p
+                        class="text-secondary small mb-0"
+                        id="artist-liked-name"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h2 class="text-white mt-4 mb-3">Discografia</h2>
+              <div
+                id="artist-albums"
+                class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"
+              ></div>
+            </div>
+          </section>
+
+          <!-- ALBUM PAGE (Andrea) -->
+          <section id="album-page" class="d-none"></section>
         </div>
-        <div>
-          <p class="text-white fw-bold mb-0">Hai messo Mi piace a brani</p>
-          <p class="text-secondary small mb-0" id="artist-liked-name"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="text-white mt-4 mb-3">Discografia</h2>
-  <div id="artist-albums" class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"></div>
-</div>
-  </section>
-
-  <!-- ALBUM PAGE (Andrea) -->
-  <section id="album-page" class="d-none">
-  </section>
-</div>
         <!--COL: ATTIVITÀ AMICI -->
         <!-- d-none di default, appare solo in lg view -->
         <!-- Versione colonna BOOTSTRAP -->
         <aside
           id="sidebarRight"
-          class="sidebar-right d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-light"
+          class="d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-secondary"
         >
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="text-light">Attività amici</h5>
@@ -352,7 +463,7 @@
           </div>
           <div class="my-4">
             <!-- PRIMO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center my-4">
+            <div class="d-flex align-items-center gap-3 my-4">
               <img
                 width="40px"
                 height="40px"
@@ -370,7 +481,7 @@
               <cite class="small align-self-start">4 ore</cite>
             </div>
             <!-- SECONDO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center my-4">
+            <div class="d-flex align-items-center gap-3 my-4">
               <img
                 width="40px"
                 height="40px"
@@ -388,7 +499,7 @@
               <cite class="small align-self-start">8 ore</cite>
             </div>
             <!-- TERZO BLOCCO AUTORE -->
-            <div class="d-flex justify-content-around align-items-center my-4">
+            <div class="d-flex align-items-center gap-3 my-4">
               <img
                 width="40px"
                 height="40px"
@@ -409,6 +520,25 @@
         </aside>
       </div>
     </div>
+    <!-- FOOTER CON PLAYER BAR MARTINA -->
+    <footer class="player-bar text-white" id="player-bar">
+      <div class="container-fluid h-100">
+        <div class="row align-items-center h-100">
+          <div
+            class="col-3 d-flex align-items-center"
+            id="player-bar-left"
+          ></div>
+          <div
+            class="col-6 d-flex justify-content-center text-center"
+            id="player-bar-center"
+          ></div>
+          <div
+            class="col-3 d-flex justify-content-end align-items-center"
+            id="player-bar-right"
+          ></div>
+        </div>
+      </div>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -416,6 +546,7 @@
     ></script>
     <script src="./index.js"></script>
     <script src="./index-album.js"></script>
+    <script src="./player-bar.js"></script>
     <script src="./script/artist.js"></script>
   </body>
 </html>
