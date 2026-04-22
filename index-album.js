@@ -32,7 +32,7 @@ const showAlbumPage = (albumData) => {
       ></p>
       <div id="user-dropdown" class="dropdown d-none d-lg-block">
         <a
-          class="btn btn-secondary dropdown-toggle bg-black d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4"
+          class="btn btn-secondary dropdown-toggle bg-black d-flex align-items-center gap-2 p-0 pe-2 border-0 rounded-4 text-white"
           href="#"
           role="button"
           data-bs-toggle="dropdown"
