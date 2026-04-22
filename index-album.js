@@ -461,7 +461,7 @@ const displayAlbumData = (data) => {
     #212529 28%
   )`;
   };
-  window.addEventListener("scroll", () => {
+  main.addEventListener("scroll", () => {
     const coverBottom = albumCover.getBoundingClientRect().bottom;
 
     if (window.scrollY > 5) {
