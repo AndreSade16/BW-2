@@ -12092,6 +12092,10 @@ h3, .h3 {
   background: #555;
 }
 
-.sidebar-link:hover {
+.sidebar-link:hover span {
   color: #fff;
+}
+
+.sidebar-link:hover img {
+  filter: brightness(0) invert(1);
 }/*# sourceMappingURL=style.css.map */

@@ -136,7 +136,11 @@ h3 {
     background: #555;
   }
 }
-// HOVER sidebar-left //
-.sidebar-link:hover {
+// HOVER SIDEBAR //
+.sidebar-link:hover span {
   color: #fff;
+}
+
+.sidebar-link:hover img {
+  filter: brightness(0) invert(1);
 }
