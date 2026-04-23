@@ -1011,7 +1011,9 @@ const backAudio = () => {
   audio.pause();
   isPlaying = false;
   const playBtn = document.getElementById("play-btn");
-  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  if (playBtn) {
+    playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  }
   if (audio.currentTime) {
     audio.currentTime = 0;
   } else {
