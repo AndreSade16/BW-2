@@ -578,11 +578,11 @@ const displayAlbumData = (data) => {
                       </li>
                       <li
                         class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
-                        type="button"
+                        type="button" onclick="loadArtistPage(${artist.id})"
                       >
                         <i class="far fa-gem text-center" style="width: 1.5rem"></i>
                         <p class="fs-6 d-flex align-items-center m-0 fw-normal">
-                          Ascolta la musica senza pubblicità
+                          Vai all'artista
                         </p>
                       </li>
                       <li
