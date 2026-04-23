@@ -37,7 +37,7 @@ async function loadArtistPage(artistId, push = true) {
                 <button
                   id="play-btn" class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
                   style="background-color: #1ed760; width: 56px; height: 56px"
-                  onclick="playArtistAudio(artistTracksData[0])"
+                  onclick="playBtnPlayArtist()"
                 >
                   <i class="fas fa-play text-black fs-5"></i>
                 </button>
@@ -134,6 +134,7 @@ async function loadArtistPage(artistId, push = true) {
     // Gradient dinamico
     let avgColor = { r: 33, g: 37, b: 41 };
     artistBanner.onload = function () {
+      console.log("ONLOAD TRIGGERED");
       avgColor = getAverageColorArtist(artistBanner);
       const darkColor = `rgb(33, 37, 41)`;
       document.getElementById("artist-page").style.background =
@@ -203,3 +204,27 @@ const params = new URLSearchParams(window.location.search);
 if (params.get("artistId")) {
   loadArtistPage(params.get("artistId"));
 }
+
+const playBtnPlayArtist = () => {
+  const randomize = document.getElementById("randomize");
+  const songs = artistTracksData;
+  let song = {};
+  console.log(isPlaying);
+  if (!isPlaying) {
+    const isShuffleActive =
+      (randomize && randomize.classList.contains("active")) ||
+      (shuffleBtn && shuffleBtn.classList.contains("active"));
+    if (isShuffleActive) {
+      if (playing.id) {
+        playAudio(playing);
+      } else {
+        let i = Math.floor(Math.random() * 5);
+        playAudio(songs[i]);
+      }
+    } else {
+      playing.id ? playAudio(playing) : playAudio(songs[0]);
+    }
+  } else {
+    pauseAudio();
+  }
+};
