@@ -38,10 +38,12 @@ const forwardBtn = document.getElementById("btn-forward");
 
 backBtn.addEventListener("click", () => {
   history.back();
+  location.reload();
 });
 
 forwardBtn.addEventListener("click", () => {
   history.forward();
+  location.reload();
 });
 
 window.addEventListener("DOMContentLoaded", function () {
