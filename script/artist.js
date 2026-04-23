@@ -11,6 +11,87 @@ const getAverageColorArtist = (imgElement) => {
 
 async function loadArtistPage(artistId) {
   // Mostra solo questa sezione (nascondi le altre)
+  const artistHTML = `<section id="artist-page" class="d-none">
+            <div id="artist-hero" class="mb-4">
+              <img
+                id="artist-banner"
+                src=""
+                alt=""
+                class="w-100"
+                style="
+                  height: 400px;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+              <div class="p-4 bg-dark">
+                <span class="text-white small">
+                  <i class="fas fa-check-circle text-primary me-1"></i>Artista
+                  verificato
+                </span>
+                <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
+                <p id="artist-fans" class="text-white"></p>
+              </div>
+              <!-- Tasto Play + Following -->
+              <div class="d-flex align-items-center gap-3 p-4">
+                <button
+                  class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
+                  style="background-color: #1ed760; width: 56px; height: 56px"
+                  onclick="playArtistAudio(artistTracksData[0])"
+                >
+                  <i class="fas fa-play text-black fs-5"></i>
+                </button>
+                <button class="btn btn-outline-light rounded-pill px-3">
+                  Following
+                </button>
+                <i class="fas fa-ellipsis-h text-white fs-5"></i>
+              </div>
+            </div>
+
+            <div class="container-fluid px-4">
+              <div class="row">
+                <!-- Colonna tracce popolari -->
+                <div class="col-12 col-lg-7">
+                  <h2 class="text-white mb-3">Popolari</h2>
+                  <ul id="artist-tracks" class="list-unstyled"></ul>
+                </div>
+
+                <!-- Box brani che ti piacciono -->
+                <div class="col-12 col-lg-5">
+                  <h2 class="text-white mb-3">Brani che ti piacciono</h2>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative">
+                      <img
+                        id="artist-liked-img"
+                        src=""
+                        alt=""
+                        class="rounded-circle"
+                        style="width: 80px; height: 80px; object-fit: cover"
+                      />
+                    </div>
+                    <div>
+                      <p class="text-white fw-bold mb-0">
+                        Hai messo Mi piace a brani
+                      </p>
+                      <p
+                        class="text-secondary small mb-0"
+                        id="artist-liked-name"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h2 class="text-white mt-4 mb-3">Discografia</h2>
+              <div
+                id="artist-albums"
+                class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"
+              ></div>
+            </div>
+          </section>`;
+  const main = document.getElementById("main");
+  main.innerHTML = artistHTML;
+
   showSection("artist-page");
 
   const BASE = "https://striveschool-api.herokuapp.com/api/deezer";
@@ -25,10 +106,6 @@ async function loadArtistPage(artistId) {
     const artist = await artistRes.json();
     const tracksData = await tracksRes.json();
 
-    // aggiungo variabili per player footer - MARTINA
-    artistTracksData = tracksData.data;
-    currentPlaylist = tracksData.data;
-
     // --- Header ---
     const artistBanner = document.getElementById("artist-banner");
     artistBanner.crossOrigin = "Anonymous"; // PRIMA di src!
@@ -41,7 +118,9 @@ async function loadArtistPage(artistId) {
     // --- Box brani che ti piacciono ---
     const artistLikedImg = document.getElementById("artist-liked-img");
     artistLikedImg.crossOrigin = "Anonymous";
-    artistLikedImg.src = artist.picture_medium;
+    if (artist.picture_medium) {
+      artistLikedImg.src = artist.picture_medium;
+    }
     document.getElementById("artist-liked-name").textContent =
       `Di ${artist.name}`;
 
@@ -95,7 +174,7 @@ async function loadArtistPage(artistId) {
 // Nasconde tutte le sezioni e mostra solo quella richiesta
 function showSection(sectionId) {
   document
-    .querySelectorAll("section")
+    .querySelectorAll("#main section")
     .forEach((s) => s.classList.add("d-none"));
   document.getElementById(sectionId).classList.remove("d-none");
 }
@@ -107,59 +186,10 @@ function formatDuration(seconds) {
   return `${m}:${s}`;
 }
 
-/*
 const playArtistAudio = (track) => {
   const audio = new Audio(track.preview);
   audio.play();
-}; */
-
-/*
-const playArtistAudio = (track) => {
-  console.log("track artista:", track);
-  console.log("typeof window.playAudio:", typeof window.playAudio);
-  console.log("preview:", track.preview);
-
-  if (!track.preview) return;
-
-  currentPlaylist = artistTracksData;
-  window.playAudio(track);
-}; */
-
-// --- Carosello artisti homepage ---
-const artistIds = [
-  27, 412, 384236, 13, 246791, 4050205, 75798, 530653, 111114, 1562681, 757,
-  12178,
-];
-
-const loadArtistCarousel = async () => {
-  const container = document.getElementById("artists-carousel");
-  if (!container) return;
-
-  const promises = artistIds.map((id) =>
-    fetch(
-      `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`,
-    ).then((res) => res.json()),
-  );
-
-  const artists = await Promise.all(promises);
-
-  artists.forEach((artist) => {
-    container.innerHTML += `
-      <div class="col-6 col-md-4 col-lg-2">
-        <div class="card bg-dark text-light border-0 p-3 text-center"
-             onclick="loadArtistPage(${artist.id})"
-             style="cursor: pointer;">
-          <img src="${artist.picture_medium}" alt="${artist.name}" 
-               class="rounded-circle mb-3 mx-auto" 
-               style="width: 100px; height: 100px; object-fit: cover;">
-          <p class="mb-1 fw-bold">${artist.name}</p>
-          <small class="text-secondary">Artista</small>
-        </div>
-      </div>`;
-  });
 };
-
-loadArtistCarousel();
 
 // Es. click su un nome artista in homepage o album page
 const params = new URLSearchParams(window.location.search);
