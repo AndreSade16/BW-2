@@ -1,79 +1,88 @@
 window.addEventListener("DOMContentLoaded", function () {
   // Logica chiusura sidebar-right al click del bottone "X"
-  const closeButton = document.getElementById("closeSidebar");
-  const openButton = document.getElementById("openSidebar");
-  const sidebar = document.getElementById("sidebarRight");
+  const closeButton = document.getElementById("closeSidebar")
+  const openButton = document.getElementById("openSidebar")
+  const sidebar = document.getElementById("sidebarRight")
 
   // stato iniziale
-  openButton.classList.add("d-none");
+  openButton.classList.add("d-none")
 
   // CHIUDI
   closeButton.addEventListener("click", function () {
-    sidebar.classList.remove("d-lg-block");
-    openButton.classList.remove("d-none");
-  });
+    sidebar.classList.remove("d-lg-block")
+    openButton.classList.remove("d-none")
+  })
 
   // APRI
   openButton.addEventListener("click", function () {
-    sidebar.classList.add("d-lg-block");
-    openButton.classList.add("d-none");
-  });
+    sidebar.classList.add("d-lg-block")
+    openButton.classList.add("d-none")
+  })
 
   // Logica popolamento album carousel
 
-  const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/";
+  const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/"
   const albumIds = [
-    13475611, 75621062, 119606, 111114312, 217794942, 14560832, 103248,
-    132971892, 113728, 225204, 154910, 198908,
-  ];
-  const albumMain = [];
+    111114312, 75621062, 217794942, 113728, 103248, 198908, 70928652, 13475611,
+    119606, 154910, 302127, 75621062,
+  ]
+
+  const albumMain = []
 
   albumIds.forEach((id) => {
     fetch(`${albumUrl}${id}`)
       .then((response) => {
-        if (!response.ok) throw new Error("Errore fetch");
-        return response.json();
+        if (!response.ok) throw new Error("Errore fetch")
+        return response.json()
       })
       .then((album) => {
-        albumMain.push(album);
+        albumMain.push(album)
 
         if (albumMain.length === albumIds.length) {
-          showAlbums(albumMain);
+          showAlbums(albumMain)
         }
       })
-      .catch((err) => console.log("ERRORE:", err));
-  });
+      .catch((err) => console.log("ERRORE:", err))
+  })
 
   const showAlbums = function (albums) {
-    const slide1 = document.getElementById("album-slide-1");
-    const slide2 = document.getElementById("album-slide-2");
+    const container = document.getElementById("album-container")
+    container.innerHTML = ""
 
-    slide1.innerHTML = "";
-    slide2.innerHTML = "";
+    albums.forEach((album) => {
+      if (!album || !album.cover_medium) return
 
-    albums.forEach((album, index) => {
       const card = `
-  <div class="col-6 col-md-3 col-lg-2">
-    <div class="card bg-dark text-light border-0 p-2" onclick="fetchAlbumData(${album.id})">
-      <img src="${album.cover_medium}" class="img-fluid mb-2">
-      <p class="mb-1">${album.title}</p>
-      <small class="text-secondary">
-        ${album.artist?.name}
-      </small>
-    </div>
-  </div>
-`;
+      <div 
+        class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+        style="width: 150px; cursor: pointer;"
+        onclick="fetchAlbumData(${album.id})"
+      >
+        <img src="${album.cover_medium}" class="img-fluid mb-2">
+        <p class="mb-1">${album.title}</p>
+        <small class="text-secondary">
+          ${album.artist?.name || "Unknown"}
+        </small>
+      </div>
+    `
 
-      if (index < 6) {
-        slide1.innerHTML += card;
-      } else {
-        slide2.innerHTML += card;
-      }
-    });
-  };
+      container.innerHTML += card
+    })
+  }
+
+  // frecce
+  const albumContainer = document.getElementById("album-container")
+
+  document.getElementById("albumScrollLeft").addEventListener("click", () => {
+    albumContainer.scrollBy({ left: -300, behavior: "smooth" })
+  })
+
+  document.getElementById("albumScrollRight").addEventListener("click", () => {
+    albumContainer.scrollBy({ left: 300, behavior: "smooth" })
+  })
 
   // Logica popolamento artisti carousel
-  const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/";
+  const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/"
   const artistIds = [
     27, // Daft Punk
     412, // Queen
@@ -87,59 +96,66 @@ window.addEventListener("DOMContentLoaded", function () {
     1562681, // Olivia Rodrigo
     757, // David Guetta
     12178, // Arctic Monkeys
-  ];
+  ]
 
-  const artistMain = [];
+  const artistMain = []
 
   artistIds.forEach((id) => {
     fetch(artistUrl + id)
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.json()
         } else {
-          throw new Error("Errore fetch");
+          throw new Error("Errore fetch")
         }
       })
       .then((artist) => {
-        console.log(artist.id, artist.name);
-        artistMain.push(artist);
+        artistMain.push(artist)
 
         if (artistMain.length === artistIds.length) {
-          showArtists(artistMain);
+          showArtists(artistMain)
         }
       })
-      .catch((err) => console.log("ERRORE:", err));
-  });
+      .catch((err) => console.log("ERRORE:", err))
+  })
 
   const showArtists = function (artists) {
-    const slide1 = document.getElementById("artist-slide-1");
-    const slide2 = document.getElementById("artist-slide-2");
+    const container = document.getElementById("artist-container")
 
-    slide1.innerHTML = "";
-    slide2.innerHTML = "";
+    container.innerHTML = ""
 
-    artists.forEach((artist, index) => {
+    artists.forEach((artist) => {
+      console.log(artist)
       const card = `
-      <div class="col-6 col-md-3 col-lg-3 col-xl-2 ">
-        <div class="card bg-dark text-light border-0 p-3 text-center align-items-center"  onclick="loadArtistPage(${artist.id})">
-          
-          <img 
-            src="${artist.picture_medium}" 
-            class="rounded-circle mb-3 img-fluid"
-            style="width: 100px; height: auto; object-fit: cover;"
-          >
+      <div 
+        class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
+        style="width: 150px; cursor: pointer;"
+        onclick="loadArtistPage(${artist.id})"
+      >
+        <img 
+          src="${artist.picture_medium}" 
+          class="rounded-circle mb-3 mx-auto"
+          style="width: 100px; height: 100px; object-fit: cover;"
+        >
 
-          <p class="mb-1">${artist.name}</p>
-          <small class="text-secondary">Artista</small>
-        </div>
+        <p class="mb-1">${artist.name}</p>
+        <small class="text-secondary">Artista</small>
       </div>
-    `;
+    `
+      console.log("ARTISTI:", artists.length)
 
-      if (index < 6) {
-        slide1.innerHTML += card;
-      } else {
-        slide2.innerHTML += card;
-      }
-    });
-  };
-});
+      container.innerHTML += card
+    })
+  }
+})
+
+// frecce
+const artistContainer = document.getElementById("artist-container")
+
+document.getElementById("scrollLeft").addEventListener("click", () => {
+  artistContainer.scrollBy({ left: -300, behavior: "smooth" })
+})
+
+document.getElementById("scrollRight").addEventListener("click", () => {
+  artistContainer.scrollBy({ left: 300, behavior: "smooth" })
+})
