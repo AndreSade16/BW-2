@@ -27,32 +27,25 @@ window.addEventListener("DOMContentLoaded", function () {
     119606, 154910, 302127, 75621062,
   ]
 
-  const albumMain = []
+  const fetchAlbums = albumIds.map((id) =>
+    fetch(albumUrl + id).then((res) => res.json()),
+  )
 
-  albumIds.forEach((id) => {
-    fetch(`${albumUrl}${id}`)
-      .then((response) => {
-        if (!response.ok) throw new Error("Errore fetch")
-        return response.json()
-      })
-      .then((album) => {
-        albumMain.push(album)
-
-        if (albumMain.length === albumIds.length) {
-          showAlbums(albumMain)
-        }
-      })
-      .catch((err) => console.log("ERRORE:", err))
-  })
+  Promise.all(fetchAlbums)
+    .then((albums) => {
+      showAlbums(albums)
+    })
+    .catch((err) => console.log("ERRORE:", err))
 
   const showAlbums = function (albums) {
     const container = document.getElementById("album-container")
-    container.innerHTML = ""
+
+    let cards = ""
 
     albums.forEach((album) => {
       if (!album || !album.cover_medium) return
 
-      const card = `
+      cards += `
       <div 
         class="card bg-dark text-light border-0 p-2 flex-shrink-0"
         style="width: 150px; cursor: pointer;"
@@ -65,9 +58,9 @@ window.addEventListener("DOMContentLoaded", function () {
         </small>
       </div>
     `
-
-      container.innerHTML += card
     })
+
+    container.innerHTML = cards
   }
 
   // frecce
@@ -98,35 +91,23 @@ window.addEventListener("DOMContentLoaded", function () {
     12178, // Arctic Monkeys
   ]
 
-  const artistMain = []
+  const fetchArtists = artistIds.map((id) =>
+    fetch(artistUrl + id).then((res) => res.json()),
+  )
 
-  artistIds.forEach((id) => {
-    fetch(artistUrl + id)
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error("Errore fetch")
-        }
-      })
-      .then((artist) => {
-        artistMain.push(artist)
-
-        if (artistMain.length === artistIds.length) {
-          showArtists(artistMain)
-        }
-      })
-      .catch((err) => console.log("ERRORE:", err))
-  })
+  Promise.all(fetchArtists)
+    .then((artists) => {
+      showArtists(artists)
+    })
+    .catch((err) => console.log("ERRORE:", err))
 
   const showArtists = function (artists) {
     const container = document.getElementById("artist-container")
 
-    container.innerHTML = ""
+    let cards = ""
 
     artists.forEach((artist) => {
-      console.log(artist)
-      const card = `
+      cards += `
       <div 
         class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
         style="width: 150px; cursor: pointer;"
@@ -137,25 +118,23 @@ window.addEventListener("DOMContentLoaded", function () {
           class="rounded-circle mb-3 mx-auto"
           style="width: 100px; height: 100px; object-fit: cover;"
         >
-
         <p class="mb-1">${artist.name}</p>
         <small class="text-secondary">Artista</small>
       </div>
     `
-      console.log("ARTISTI:", artists.length)
-
-      container.innerHTML += card
     })
+
+    container.innerHTML = cards
   }
-})
 
-// frecce
-const artistContainer = document.getElementById("artist-container")
+  // frecce
+  const artistContainer = document.getElementById("artist-container")
 
-document.getElementById("scrollLeft").addEventListener("click", () => {
-  artistContainer.scrollBy({ left: -300, behavior: "smooth" })
-})
+  document.getElementById("scrollLeft").addEventListener("click", () => {
+    artistContainer.scrollBy({ left: -300, behavior: "smooth" })
+  })
 
-document.getElementById("scrollRight").addEventListener("click", () => {
-  artistContainer.scrollBy({ left: 300, behavior: "smooth" })
+  document.getElementById("scrollRight").addEventListener("click", () => {
+    artistContainer.scrollBy({ left: 300, behavior: "smooth" })
+  })
 })
