@@ -16,6 +16,8 @@ const showHomePage = () => {
 };
 
 const showAlbumPage = (albumData) => {
+  console.log("Hai chiamato showAlbumPage!");
+
   const { artist } = albumData;
   main.innerHTML = `
 
