@@ -1,10 +1,10 @@
 // GLOBALE PER AVANTI E DIETRO - MARTINA
 
-const main = document.getElementById("main");
-const homeMarkup = main.innerHTML;
+const homePage = document.getElementById("main");
+const homeMarkup = homePage.innerHTML;
 
 const loadHomePage = () => {
-  main.innerHTML = homeMarkup;
+  homePage.innerHTML = homeMarkup;
 };
 
 // salvo la home come stato iniziale - MARTINA
