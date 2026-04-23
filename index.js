@@ -36,7 +36,6 @@ window.addEventListener("DOMContentLoaded", function () {
         return response.json()
       })
       .then((album) => {
-        console.log(album.id, album.title)
         albumMain.push(album)
 
         if (albumMain.length === albumIds.length) {
@@ -115,6 +114,7 @@ window.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = ""
 
     artists.forEach((artist) => {
+      console.log(artist)
       const card = `
       <div 
         class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
@@ -136,4 +136,14 @@ window.addEventListener("DOMContentLoaded", function () {
       container.innerHTML += card
     })
   }
+})
+
+const container = document.getElementById("artist-container")
+
+document.getElementById("scrollLeft").addEventListener("click", () => {
+  container.scrollBy({ left: -300, behavior: "smooth" })
+})
+
+document.getElementById("scrollRight").addEventListener("click", () => {
+  container.scrollBy({ left: 300, behavior: "smooth" })
 })

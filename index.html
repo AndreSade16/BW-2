@@ -319,37 +319,38 @@
             <!-- inizio carosello artisti -->
             <div id="artistCarousel" class="carousel slide">
               <div class="carousel-inner">
-                <!-- SLIDE 1, primi 5-->
+                <!-- CARDS CONTAINER-->
                 <div class="carousel-item active">
-                  <div class="d-flex gap-3 overflow-auto" id="artist-container"></div>
-                </div>
-
-                <!-- SLIDE 2, secondi 5-->
-                <div class="carousel-item">
-                  <div class="row g-3" id="artist-slide-2"></div>
+                  <div
+                    class="d-flex gap-3 overflow-auto"
+                    id="artist-container"
+                  ></div>
                 </div>
               </div>
 
               <!-- frecce carosello -->
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#artistCarousel"
-                data-bs-slide="prev"
-              >
-                <span class="carousel-control-prev-icon"></span>
-              </button>
+              <div class="position-relative">
+                <button
+                  id="scrollLeft"
+                  class="btn btn-dark position-absolute start-0 top-50"
+                >
+                  ◀
+                </button>
 
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#artistCarousel"
-                data-bs-slide="next"
-              >
-                <span class="carousel-control-next-icon"></span>
-              </button>
+                <div
+                  id="artist-container"
+                  class="d-flex gap-3 overflow-auto"
+                ></div>
+
+                <button
+                  id="scrollRight"
+                  class="btn btn-dark position-absolute end-0 top-50"
+                >
+                  ▶
+                </button>
+              </div>
             </div>
-            <!-- fine carosello album -->
+            <!-- fine carosello artists -->
           </section>
           <!-- ALBUM CONSIGLIATI -->
           <section class="container-fluid text-light my-4 p-0">
