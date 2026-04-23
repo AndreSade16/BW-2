@@ -1,3 +1,4 @@
+// codice eseguito dopo che il dom è caricato
 window.addEventListener("DOMContentLoaded", function () {
   // Logica chiusura sidebar-right al click del bottone "X"
   const closeButton = document.getElementById("closeSidebar")
@@ -18,7 +19,20 @@ window.addEventListener("DOMContentLoaded", function () {
     sidebar.classList.add("d-lg-block")
     openButton.classList.add("d-none")
   })
-
+  // funzione che ritenta al fallimento della fetch
+  const fetchWithRetry = (url, retries = 2) => {
+    return fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("Errore fetch")
+        return res.json()
+      })
+      .catch((err) => {
+        if (retries > 0) {
+          return fetchWithRetry(url, retries - 1)
+        }
+        throw err
+      })
+  }
   // Logica popolamento album carousel
 
   const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/"
@@ -29,39 +43,37 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const container = document.getElementById("album-container")
 
+  let albumCards = ""
+  let loaded = 0
 
-  Promise.allSettled(
-  albumIds.map((id) =>
-    fetch(albumUrl + id).then((res) => {
-      if (!res.ok) throw new Error("Errore fetch")
-      return res.json()
-    })
-  )
-).then((results) => {
-  let cards = ""
+  albumIds.forEach((id) => {
+    fetchWithRetry(albumUrl + id)
+      .then((album) => {
+        if (album && album.id) {
+          albumCards += `
+        <div 
+          class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+          style="width: 150px; height: 230px; cursor: pointer;"
+          onclick="fetchAlbumData(${album.id})"
+        >
+          <img src="${album.cover_medium}" class="img-fluid mb-2">
+          <p class="mb-1 text-truncate">${album.title}</p>
+          <small class="text-secondary text-truncate d-block">
+            ${album.artist?.name || "Unknown"}
+          </small>
+        </div>
+        `
+        }
+      })
+      .catch((err) => console.log("Errore album:", err))
+      .finally(() => {
+        loaded++
 
-  results.forEach((result) => {
-    if (result.status === "fulfilled") {
-      const album = result.value
-
-      cards += `
-      <div 
-        class="card bg-dark text-light border-0 p-2 flex-shrink-0"
-        style="width: 150px; height: 230px; cursor: pointer;"
-        onclick="fetchAlbumData(${album.id})"
-      >
-        <img src="${album.cover_medium}" class="img-fluid mb-2">
-        <p class="mb-1 text-truncate">${album.title}</p>
-        <small class="text-secondary text-truncate d-block">
-          ${album.artist?.name || "Unknown"}
-        </small>
-      </div>
-      `
-    }
+        if (loaded === albumIds.length) {
+          container.innerHTML = albumCards
+        }
+      })
   })
-
-  container.innerHTML = cards
-})
 
   // frecce
   document.getElementById("albumScrollLeft").addEventListener("click", () => {
@@ -91,41 +103,39 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const artistContainer = document.getElementById("artist-container")
 
+  let artistCards = ""
+  let loadedArtists = 0
 
-  Promise.allSettled(
-  artistIds.map((id) =>
-    fetch(artistUrl + id).then((res) => {
-      if (!res.ok) throw new Error("Errore fetch")
-      return res.json()
-    })
-  )
-).then((results) => {
-  let cards = ""
-
-  results.forEach((result) => {
-    if (result.status === "fulfilled") {
-      const artist = result.value
-
-      cards += `
-      <div 
-        class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
-        style="width: 150px; cursor: pointer;"
-        onclick="loadArtistPage(${artist.id})"
-      >
-        <img 
-          src="${artist.picture_medium}" 
-          class="rounded-circle mb-3 mx-auto"
-          style="width: 100px; height: 100px; object-fit: cover;"
+  artistIds.forEach((id) => {
+    fetchWithRetry(artistUrl + id)
+      .then((artist) => {
+        if (artist && artist.id) {
+          artistCards += `
+        <div 
+          class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
+          style="width: 150px; cursor: pointer;"
+          onclick="loadArtistPage(${artist.id})"
         >
-        <p class="mb-1 text-truncate">${artist.name}</p>
-        <small class="text-secondary">Artista</small>
-      </div>
-      `
-    }
-  })
+          <img 
+            src="${artist.picture_medium}" 
+            class="rounded-circle mb-3 mx-auto"
+            style="width: 100px; height: 100px; object-fit: cover;"
+          >
+          <p class="mb-1 text-truncate">${artist.name}</p>
+          <small class="text-secondary">Artista</small>
+        </div>
+        `
+        }
+      })
+      .catch((err) => console.log("Errore artist:", err))
+      .finally(() => {
+        loadedArtists++
 
-  artistContainer.innerHTML = cards
-})
+        if (loadedArtists === artistIds.length) {
+          artistContainer.innerHTML = artistCards
+        }
+      })
+  })
 
   // frecce
 
