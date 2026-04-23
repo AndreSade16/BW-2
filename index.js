@@ -46,32 +46,40 @@ window.addEventListener("DOMContentLoaded", function () {
   })
 
   const showAlbums = function (albums) {
-    const slide1 = document.getElementById("album-slide-1")
-    const slide2 = document.getElementById("album-slide-2")
+    const container = document.getElementById("album-container")
+    container.innerHTML = ""
 
-    slide1.innerHTML = ""
-    slide2.innerHTML = ""
+    albums.forEach((album) => {
+      if (!album || !album.cover_medium) return
 
-    albums.forEach((album, index) => {
       const card = `
-  <div class="col-6 col-md-3 col-lg-2">
-    <div class="card bg-dark text-light border-0 p-2" onclick="fetchAlbumData(${album.id})">
-      <img src="${album.cover_medium}" class="img-fluid mb-2">
-      <p class="mb-1">${album.title}</p>
-      <small class="text-secondary">
-        ${album.artist?.name}
-      </small>
-    </div>
-  </div>
-`
+      <div 
+        class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+        style="width: 150px; cursor: pointer;"
+        onclick="fetchAlbumData(${album.id})"
+      >
+        <img src="${album.cover_medium}" class="img-fluid mb-2">
+        <p class="mb-1">${album.title}</p>
+        <small class="text-secondary">
+          ${album.artist?.name || "Unknown"}
+        </small>
+      </div>
+    `
 
-      if (index < 6) {
-        slide1.innerHTML += card
-      } else {
-        slide2.innerHTML += card
-      }
+      container.innerHTML += card
     })
   }
+
+  // frecce
+  const albumContainer = document.getElementById("album-container")
+
+  document.getElementById("albumScrollLeft").addEventListener("click", () => {
+    albumContainer.scrollBy({ left: -300, behavior: "smooth" })
+  })
+
+  document.getElementById("albumScrollRight").addEventListener("click", () => {
+    albumContainer.scrollBy({ left: 300, behavior: "smooth" })
+  })
 
   // Logica popolamento artisti carousel
   const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/"
@@ -96,9 +104,9 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch(artistUrl + id)
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.json()
         } else {
-          throw new Error("Errore fetch");
+          throw new Error("Errore fetch")
         }
       })
       .then((artist) => {
@@ -141,12 +149,13 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 })
 
-const container = document.getElementById("artist-container")
+// frecce
+const artistContainer = document.getElementById("artist-container")
 
 document.getElementById("scrollLeft").addEventListener("click", () => {
-  container.scrollBy({ left: -300, behavior: "smooth" })
+  artistContainer.scrollBy({ left: -300, behavior: "smooth" })
 })
 
 document.getElementById("scrollRight").addEventListener("click", () => {
-  container.scrollBy({ left: 300, behavior: "smooth" })
+  artistContainer.scrollBy({ left: 300, behavior: "smooth" })
 })
