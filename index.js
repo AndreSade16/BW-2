@@ -4,9 +4,16 @@ const homePage = document.getElementById("main");
 const homeMarkup = homePage.innerHTML;
 
 const loadHomePage = () => {
-  homePage.innerHTML = homeMarkup;
-};
+  main.innerHTML = homeMarkup;
 
+  if (typeof loadArtistCarousel === "function") {
+    loadArtistCarousel();
+  }
+
+  if (typeof loadAlbumCarousel === "function") {
+    loadAlbumCarousel();
+  }
+};
 // salvo la home come stato iniziale - MARTINA
 
 window.addEventListener("DOMContentLoaded", () => {

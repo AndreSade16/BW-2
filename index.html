@@ -27,9 +27,10 @@
     <link rel="stylesheet" href="./assets/css/search.css" />
   </head>
   <body>
+    <!-- NAV DESKTOP MARTINA -->
     <header
       id="topbar-global"
-      class="d-flex align-items-center justify-content-between px-3 py-2 bg-black text-white position-fixed top-0 w-100"
+      class="d-flex align-items-center justify-content-between px-3 py-2 bg-black text-white position-fixed top-0 w-100 d-none d-md-flex"
       style="z-index: 2000; height: 72px"
     >
       <!-- sinistra navbar - MARTINA -->
@@ -101,6 +102,31 @@
         <i class="bi bi-people text-secondary fs-5 d-none d-md-block"></i>
 
         <button class="btn btn-dark rounded-circle fw-bold">M</button>
+      </div>
+    </header>
+
+    <!-- NAV MOBILE MARTINA -->
+    <header id="mobile-topbar" class="d-md-none px-3 pt-4 pb-3 text-white">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fs-1 fw-bold m-0">Buonasera</h1>
+
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn p-0 border-0 bg-transparent text-white">
+            <i class="bi bi-bell fs-3"></i>
+          </button>
+          <button class="btn p-0 border-0 bg-transparent text-white">
+            <i class="bi bi-clock-history fs-3"></i>
+          </button>
+          <button class="btn p-0 border-0 bg-transparent text-white">
+            <i class="bi bi-gear fs-3"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-success rounded-pill px-3">Tutti</button>
+        <button class="btn btn-dark rounded-pill px-3">Musica</button>
+        <button class="btn btn-dark rounded-pill px-3">Podcast e show</button>
       </div>
     </header>
 
