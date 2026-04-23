@@ -360,6 +360,14 @@ const showAlbumPage = (albumData) => {
 };
 
 const showSearchPage = () => {
+  main.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   const searchHTML = `<div class="container-fluid">
       <div class="row justify-content-center pt-3 bg-dark-subtle">
         <div id="search-h2" class="col-12 mb-4">
