@@ -27,53 +27,50 @@ window.addEventListener("DOMContentLoaded", function () {
     119606, 154910, 302127, 75621062,
   ]
 
-  const fetchAlbums = albumIds.map((id) =>
-    fetch(albumUrl + id).then((res) => res.json()),
-  )
+  const container = document.getElementById("album-container")
 
-  Promise.all(fetchAlbums)
-    .then((albums) => {
-      showAlbums(albums)
-    })
-    .catch((err) => console.log("ERRORE:", err))
+  container.innerHTML = ""
 
-  const showAlbums = function (albums) {
-    const container = document.getElementById("album-container")
+  const addAlbumCard = function (album) {
+    const card = `
+    <div 
+      class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+      style="width: 150px; height: 230px; cursor: pointer;"
+      onclick="fetchAlbumData(${album.id})"
+    >
+      <img src="${album.cover_medium}" class="img-fluid mb-2">
+      <p class="mb-1 text-truncate">${album.title}</p>
+      <small class="text-secondary text-truncate d-block">
+        ${album.artist?.name || "Unknown"}
+      </small>
+    </div>
+  `
 
-    let cards = ""
-
-    albums.forEach((album) => {
-      if (!album || !album.cover_medium) return
-
-      cards += `
-      <div 
-        class="card bg-dark text-light border-0 p-2 flex-shrink-0"
-       style="width: 150px; height: 230px; cursor: pointer;"
-       onclick="fetchAlbumData(${album.id})"
-      >
-       <img src="${album.cover_medium}" class="img-fluid mb-2">
-
-       <p class="mb-1 text-truncate">${album.title}</p>
-
-       <small class="text-secondary text-truncate d-block">
-       ${album.artist?.name || "Unknown"}
-       </small>
-      </div>
-      `
-    })
-
-    container.innerHTML = cards
+    container.innerHTML += card
   }
 
-  // frecce
-  const albumContainer = document.getElementById("album-container")
+  albumIds.forEach((id) => {
+    fetch(albumUrl + id)
+      .then((res) => {
+        if (!res.ok) throw new Error("Errore fetch")
 
+        return res.json()
+      })
+
+      .then((album) => {
+        addAlbumCard(album)
+      })
+
+      .catch((err) => console.log("ERRORE:", err))
+  })
+
+  // frecce
   document.getElementById("albumScrollLeft").addEventListener("click", () => {
-    albumContainer.scrollBy({ left: -300, behavior: "smooth" })
+    container.scrollBy({ left: -300, behavior: "smooth" })
   })
 
   document.getElementById("albumScrollRight").addEventListener("click", () => {
-    albumContainer.scrollBy({ left: 300, behavior: "smooth" })
+    container.scrollBy({ left: 300, behavior: "smooth" })
   })
 
   // Logica popolamento artisti carousel
@@ -93,44 +90,49 @@ window.addEventListener("DOMContentLoaded", function () {
     12178, // Arctic Monkeys
   ]
 
-  const fetchArtists = artistIds.map((id) =>
-    fetch(artistUrl + id).then((res) => res.json()),
-  )
+  const artistContainer = document.getElementById("artist-container")
 
-  Promise.all(fetchArtists)
-    .then((artists) => {
-      showArtists(artists)
-    })
-    .catch((err) => console.log("ERRORE:", err))
+  artistContainer.innerHTML = ""
 
-  const showArtists = function (artists) {
-    const container = document.getElementById("artist-container")
+  const addArtistCard = function (artist) {
+    const card = `
 
-    let cards = ""
-
-    artists.forEach((artist) => {
-      cards += `
-      <div 
-        class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
-        style="width: 150px; cursor: pointer;"
-        onclick="loadArtistPage(${artist.id})"
+    <div 
+      class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
+      style="width: 150px; cursor: pointer;"
+      onclick="loadArtistPage(${artist.id})"
+    >
+      <img 
+        src="${artist.picture_medium}" 
+        class="rounded-circle mb-3 mx-auto"
+        style="width: 100px; height: 100px; object-fit: cover;"
       >
-        <img 
-          src="${artist.picture_medium}" 
-          class="rounded-circle mb-3 mx-auto"
-          style="width: 100px; height: 100px; object-fit: cover;"
-        >
-        <p class="mb-1">${artist.name}</p>
-        <small class="text-secondary">Artista</small>
-      </div>
-    `
-    })
+      <p class="mb-1 text-truncate">${artist.name}</p>
+      <small class="text-secondary">
+        Artista
+      </small>
+    </div>
+  `
 
-    container.innerHTML = cards
+    artistContainer.innerHTML += card
   }
 
-  // frecce artist
-  const artistContainer = document.getElementById("artist-container")
+  artistIds.forEach((id) => {
+    fetch(artistUrl + id)
+      .then((res) => {
+        if (!res.ok) throw new Error("Errore fetch")
+
+        return res.json()
+      })
+
+      .then((artist) => {
+        addArtistCard(artist)
+      })
+
+      .catch((err) => console.log("ERRORE artist:", err))
+  })
+
+  // frecce
 
   document.getElementById("scrollLeft").addEventListener("click", () => {
     artistContainer.scrollBy({ left: -300, behavior: "smooth" })
