@@ -919,6 +919,8 @@ const playAudio = (song) => {
   //aggiungo funzione per bottomBAR - MARTINA
   updateBottomBar(song);
   const playBtn = document.getElementById("play-btn");
+  // aggiungo funzione per player mobile - MARTINA
+  updateMobileBottomBar(song);
 
   if (playBtn) {
     playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
@@ -952,6 +954,7 @@ const playAudio = (song) => {
   // aggiorno bottone BUTTOM BAR - MARTINA
 
   updatePlayerMainIcon();
+  updateMobilePlayerIcon();
 };
 
 const pauseAudio = () => {
@@ -965,14 +968,21 @@ const pauseAudio = () => {
   // aggiorno bottone BUTTOM BAR - MARTINA
 
   updatePlayerMainIcon();
+  updateMobilePlayerIcon();
 };
 
 const skipAudio = () => {
   const songs = albumData.tracks.data;
   const randomize = document.getElementById("randomize");
+  //aggiungo shuffle - MARTINA
+  const shuffleBtn = document.getElementById("shuffle-btn");
   const nb_tracks = songs.length;
+  //SHUFFLE - MARTINA
+  const isShuffleActive =
+    (randomize && randomize.classList.contains("active")) ||
+    (shuffleBtn && shuffleBtn.classList.contains("active"));
 
-  if (randomize.classList.contains("active")) {
+  if (isShuffleActive) {
     let i = Math.floor(Math.random() * nb_tracks);
     playAudio(songs[i]);
   } else {

@@ -156,7 +156,7 @@ h3 {
   width: 100%;
   object-fit: cover;
 }
-/* BOTTOM BAR MARTINA */
+ /* BOTTOM BAR MARTINA */
 
 .player-bar {
   position: fixed;
@@ -169,10 +169,57 @@ h3 {
   z-index: 1050;
 }
 
-.player-bar .row {
-  height: 100%;
+.player-icon 
+{ cursor: pointer;}
+
+.player-bar .row { height: 100%;}
+
+body { padding-bottom: 90px;}
+
+.liked {
+  color: #1ed760 !important;
 }
 
-body {
-  padding-bottom: 90px;
+/* barra tempo canzoni MARTINA */
+
+.player-progress {
+  background-color: #4d4d4d !important;
+  border-radius: 999px;
+  overflow: visible !important;
+}
+
+.player-progress-fill {
+  background-color: #1ed760 !important;
+  position: relative;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.player-progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.knob-hidden::after {
+  display: none;
+}
+
+.progress-bar.player-progress-fill {
+  box-shadow: none !important;
+}
+
+#mobile-player {
+  position: fixed;
+  left: 0;
+  bottom: 60px;
+  width: 100%;
+  z-index: 1060;
+  background: transparent;
 }
