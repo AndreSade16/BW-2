@@ -298,6 +298,10 @@ const updateBottomBar = (song) => {
   const artist = document.querySelector(".player-artist");
 
   cover.src = song.album.cover_small;
+  cover.setAttribute("type", "button");
+  artist.setAttribute("type", "button");
+  cover.addEventListener("click", () => fetchAlbumData(song.album.id));
+  artist.addEventListener("click", () => loadArtistPage(song.artist.id));
   cover.alt = song.title;
 
   title.textContent = song.title;
@@ -359,6 +363,10 @@ const updateMobileBottomBar = (song) => {
   cover.alt = song.title;
   title.textContent = song.title;
   artist.textContent = song.artist.name;
+  cover.setAttribute("type", "button");
+  artist.setAttribute("type", "button");
+  cover.addEventListener("click", () => fetchAlbumData(song.album.id));
+  artist.addEventListener("click", () => loadArtistPage(song.artist.id));
 
   //CAMBIA COLORE IN BASE AL BRANO
 
