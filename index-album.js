@@ -107,7 +107,7 @@ const showAlbumPage = (albumData) => {
   <div id="album-page-body" class="bg-dark text-light container-fluid p-0">
     <div
       id="topbar"
-      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 px-3 pt-2 pb-2 px-xl-5 py-xl-2"
+      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 py-1 px-3 pt-2 pb-2 px-xl-5 py-xl-2"
     >
       <div id="forward-backwards-btn-group">
         <span class="fa-stack fs-5 d-none d-xl-inline-block" type="button">
@@ -304,7 +304,7 @@ const showAlbumPage = (albumData) => {
           <section id="tracks-section" class="mt-4 flex-grow-1">
             <div id="tracks-space" class="container-fluid">
               <div
-                class="row d-none d-xl-flex border-bottom border-1 text-secondary justify-content-between"
+                class="row d-none d-xl-flex border-bottom border-1 text-secondary justify-content-between ps-2"
               >
                 <div class="col-1">
                   <p class="text-end fw-semibold">#</p>
@@ -764,7 +764,7 @@ const displayAlbumData = (data) => {
       album,
     } = track;
     tracksHTML += `
-            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2">
+            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2 ps-2">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-xl-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
