@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="./assets/scss/style.css" />
     <link rel="stylesheet" href="./assets/css/album.css" />
+    <link rel="stylesheet" href="./assets/css/search.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -36,10 +37,10 @@
               <i class="fas fa-home d-block"></i>
               <span>Home</span>
             </a>
-            <a class="text-secondary" href="#">
+            <div class="show-search text-secondary" href="#">
               <i class="fas fa-search d-block"></i>
               <span>Cerca</span>
-            </a>
+            </div>
             <a class="text-secondary" href="#">
               <i class="fas fa-book d-block"></i>
               <span>La tua libreria</span>
@@ -74,10 +75,11 @@
                   <span class="mx-3">Home</span>
                 </a>
 
-                <a
-                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
-                  href="#"
-                  ><div>
+                <div
+                  class="show-search text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
+                  onclick="showSearchPage()"
+                >
+                  <div>
                     <img
                       class="img-box"
                       src="./assets/imgs/icona lente.png"
@@ -85,7 +87,7 @@
                     />
                   </div>
                   <span class="mx-3">Cerca</span>
-                </a>
+                </div>
 
                 <a
                   class="col-12 my-1 text-secondary d-flex align-items-center text-decoration-none sidebar-link"
@@ -187,7 +189,7 @@
         <!-- COL: MAIN-CONTENT -->
         <div
           id="main"
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center overflow-auto vh-100"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center overflow-y-auto overflow-x-hidden vh-100 p-0"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -195,14 +197,15 @@
 
           <!-- MAIN HOMEPAGE CONTENT -->
           <!-- Blocco adds, VIOLA -->
-          <section class="viola p-4 text-light mt-3">
-            <div class="d-flex align-items-center">
-              <img
-                src="./assets/imgs/main/VIOLA.jpeg"
-                class="me-4"
-                style="width: 200px"
-              />
-              <div>
+          <section class="viola p-4 text-light mt-3 container">
+            <div class="d-flex align-items-center row">
+              <div class="col-8 offset-2 col-md-4 col-lg-3 offset-md-0">
+                <img
+                  src="./assets/imgs/main/VIOLA.jpeg"
+                  class="me-4 img-fluid"
+                />
+              </div>
+              <div class="col-12 col-md-8 col-lg-9">
                 <small>ALBUM</small>
                 <h1 class="fw-bold display-4">VIOLA (feat. Salmo)</h1>
                 <p>Fedez, Salmo</p>
@@ -361,12 +364,26 @@
               <div class="carousel-inner">
                 <!-- SLIDE 1, primi 5-->
                 <div class="carousel-item active">
-                  <div class="row g-3" id="album-slide-1"></div>
+                  <div
+                    class="row g-3 justify-content-center"
+                    id="album-slide-1"
+                  >
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- SLIDE 2, secondi 5-->
                 <div class="carousel-item">
-                  <div class="row g-3" id="album-slide-2"></div>
+                  <div
+                    class="row g-3 justify-content-center"
+                    id="album-slide-2"
+                  >
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -402,86 +419,6 @@
 
           <!-- HOMEPAGE (Vale + Riccio) -->
           <section id="home-page" class="d-none"></section>
-
-          <!-- ARTIST PAGE (Noe) -->
-          <section id="artist-page" class="d-none">
-            <div id="artist-hero" class="mb-4">
-              <img
-                id="artist-banner"
-                src=""
-                alt=""
-                class="w-100"
-                style="
-                  height: 400px;
-                  object-fit: cover;
-                  object-position: center top;
-                "
-              />
-              <div class="p-4 bg-dark">
-                <span class="text-white small">
-                  <i class="fas fa-check-circle text-primary me-1"></i>Artista
-                  verificato
-                </span>
-                <h1 id="artist-name" class="text-white fw-bold display-3"></h1>
-                <p id="artist-fans" class="text-white"></p>
-              </div>
-              <!-- Tasto Play + Following -->
-              <div class="d-flex align-items-center gap-3 p-4">
-                <button
-                  class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
-                  style="background-color: #1ed760; width: 56px; height: 56px"
-                  onclick="playArtistAudio(artistTracksData[0])"
-                >
-                  <i class="fas fa-play text-black fs-5"></i>
-                </button>
-                <button class="btn btn-outline-light rounded-pill px-3">
-                  Following
-                </button>
-                <i class="fas fa-ellipsis-h text-white fs-5"></i>
-              </div>
-            </div>
-
-            <div class="container-fluid px-4">
-              <div class="row">
-                <!-- Colonna tracce popolari -->
-                <div class="col-12 col-lg-7">
-                  <h2 class="text-white mb-3">Popolari</h2>
-                  <ul id="artist-tracks" class="list-unstyled"></ul>
-                </div>
-
-                <!-- Box brani che ti piacciono -->
-                <div class="col-12 col-lg-5">
-                  <h2 class="text-white mb-3">Brani che ti piacciono</h2>
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="position-relative">
-                      <img
-                        id="artist-liked-img"
-                        src=""
-                        alt=""
-                        class="rounded-circle"
-                        style="width: 80px; height: 80px; object-fit: cover"
-                      />
-                    </div>
-                    <div>
-                      <p class="text-white fw-bold mb-0">
-                        Hai messo Mi piace a brani
-                      </p>
-                      <p
-                        class="text-secondary small mb-0"
-                        id="artist-liked-name"
-                      ></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 class="text-white mt-4 mb-3">Discografia</h2>
-              <div
-                id="artist-albums"
-                class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"
-              ></div>
-            </div>
-          </section>
 
           <!-- ALBUM PAGE (Andrea) -->
           <section id="album-page" class="d-none"></section>
