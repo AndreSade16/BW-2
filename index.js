@@ -57,6 +57,13 @@ window.addEventListener("DOMContentLoaded", function () {
     openButton.classList.add("d-none");
   }
 
+  // logo spotify riporta alla home
+
+  document.getElementById("spotify-logo").addEventListener("click", () => {
+    loadHomePage();
+    history.pushState({ page: "home" }, "", "/");
+  });
+
   // CHIUDI
   closeButton.addEventListener("click", function () {
     sidebar.classList.remove("d-lg-block");
