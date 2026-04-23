@@ -44,7 +44,7 @@ const showAlbumPage = (albumData) => {
       </div>
       <p
         id="topbar-title"
-        class="fw-bold text-center d-xl-none m-0 position-absolute start-50 translate-middle-x"
+        class="fw-bold text-center d-xl-none m-0 position-absolute start-50 translate-middle-x" style="text-shadow: 0px 0px 3px rgba(0,0,0,1);"
       ></p>
       <div id="user-dropdown" class="dropdown d-none d-xl-block">
         <a
