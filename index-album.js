@@ -1,6 +1,89 @@
 const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/";
 const main = document.getElementById("main");
 const albumProva = document.getElementById("album-prova");
+const searchInput = document.getElementById("search-input");
+const searchDropdown = document.getElementById("search-dropdown");
+
+// LOGICA SEARCH NAVBAR
+
+if (searchInput) {
+  searchInput.addEventListener("focus", () => {
+    searchDropdown.classList.remove("d-none");
+  });
+
+  searchInput.addEventListener("input", () => {
+    const searchApiLink =
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
+    const trimmedValue = searchInput.value.trim();
+    if (trimmedValue.length > 0) {
+      searchDropdown.classList.remove("d-none");
+      fetch(searchApiLink + trimmedValue)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Can't search right now...");
+          }
+        })
+        .then((obj) => {
+          searchDropdown.innerHTML = "";
+          console.log(obj.data);
+          let dropdownHTML;
+          obj.data.forEach((result) => {
+            const { album, id, title, type, artist } = result;
+            const cover = album.cover_small;
+            const albumTitle = album.title;
+            dropdownHTML += `
+            <div id="result-${id}" class="dropdown-item text-light py-2 px-3 d-flex gap-2" type="button">
+                <img src="${cover}" alt="${albumTitle}-cover" style="max-height: 50px">
+                <div class="d-flex flex-column justify-content-center gap-2">
+                  <p class="text-capitalize fw-semibold text-light fs-6 m-0" style="height: 1rem">
+                  ${title}
+                  </p>
+                  <div class="d-flex gap-2 text-body-tertiary">
+                    <p class="fw-semibold fs-6 text-capitalize m-0">
+                        ${type}
+                    </p>
+                    <p class="fw-semibold fs-6 m-0">•</p>
+                    <p class="fw-semibold fs-6 m-0">
+                        ${artist.name}
+                    </p>
+                  </div>
+                </div>
+            </div>
+            `;
+          });
+          searchDropdown.innerHTML = dropdownHTML;
+          obj.data.forEach((result) => {
+            const searchResultDiv = document.getElementById(
+              `result-${result.id}`,
+            );
+            searchResultDiv.addEventListener("click", () => {
+              playAudio(result);
+            });
+          });
+        })
+        .catch((err) => console.log("Failed to fetch", err));
+    } else {
+      searchDropdown.classList.add("d-none");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+      searchDropdown.classList.add("d-none");
+    }
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      searchDropdown.classList.add("d-none");
+      searchInput.blur();
+    }
+  });
+}
+
+//
 
 const showHomePage = () => {
   main.scrollTo({
@@ -16,13 +99,15 @@ const showHomePage = () => {
 };
 
 const showAlbumPage = (albumData) => {
+  console.log("Hai chiamato showAlbumPage!");
+
   const { artist } = albumData;
   main.innerHTML = `
 
   <div id="album-page-body" class="bg-dark text-light container-fluid p-0">
     <div
       id="topbar"
-      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 px-3 pt-2 pb-2 px-xl-5 py-xl-2"
+      class="d-flex justify-content-between align-items-center position-sticky top-0 start-0 end-0 z-1 py-1 px-3 pt-2 pb-2 px-xl-5 py-xl-2"
     >
       <div id="forward-backwards-btn-group">
         <span class="fa-stack fs-5 d-none d-xl-inline-block" type="button">
@@ -42,7 +127,7 @@ const showAlbumPage = (albumData) => {
       </div>
       <p
         id="topbar-title"
-        class="fw-bold text-center d-xl-none m-0 position-absolute start-50 translate-middle-x"
+        class="fw-bold text-center d-xl-none m-0 position-absolute start-50 translate-middle-x" style="text-shadow: 0px 0px 3px rgba(0,0,0,1);"
       ></p>
       <div id="user-dropdown" class="dropdown d-none d-xl-block">
         <a
@@ -219,7 +304,7 @@ const showAlbumPage = (albumData) => {
           <section id="tracks-section" class="mt-4 flex-grow-1">
             <div id="tracks-space" class="container-fluid">
               <div
-                class="row d-none d-xl-flex border-bottom border-1 text-secondary justify-content-between"
+                class="row d-none d-xl-flex border-bottom border-1 text-secondary justify-content-between ps-2"
               >
                 <div class="col-1">
                   <p class="text-end fw-semibold">#</p>
@@ -268,7 +353,7 @@ const showAlbumPage = (albumData) => {
       tabindex="-1"
       id="offcanvasBottom"
       aria-labelledby="offcanvasBottomLabel"
-      style="height: auto"
+      style="height: auto; z-index: 9999; position: fixed"
     >
       <div
         id="offcanvas-body"
@@ -383,34 +468,6 @@ const showSearchPage = () => {
   });
   const searchHTML = `<div class="container-fluid">
       <div class="row justify-content-center pt-3 bg-dark-subtle">
-        <div id="search-h2" class="col-12 mb-4">
-          <h2 class="text-white">Cerca</h2>
-        </div>
-        <div class="col-12 d-flex justify-content-center px-3 px-sm-5">
-          <div id="input-group" class="input-group position-relative">
-            <span class="input-group-text border-0 bg-dark" id="visible-addon">
-              <i class="fas fa-search text-light fs-2"></i>
-            </span>
-            <input
-              type="text"
-              id="search-input"
-              class="form-control border-0 bg-dark fw-semibold py-3 shadow-none fs-5"
-              placeholder="Cosa vuoi ascoltare?"
-              aria-label="Cosa vuoi ascoltare?"
-              aria-describedby="visible-addon"
-              autocomplete="off"
-            />
-            <div
-              id="search-dropdown"
-              class="position-absolute w-100 bg-dark rounded-3 py-2 d-none mt-2 d-flex pt-5 flex-column justify-content-center align-items-center"
-              style="top: 100%; z-index: 2; height: 300px; overflow-y: scroll"
-            >
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row d-flex flex-column align-items-center px-3">
           <h3 class="text-center mt-4">Sfoglia tutto</h3>
           <div class="container-fluid">
@@ -546,83 +603,6 @@ const showSearchPage = () => {
       </div>
     </div>`;
   main.innerHTML = searchHTML;
-  const searchInput = document.getElementById("search-input");
-  const searchDropdown = document.getElementById("search-dropdown");
-
-  searchInput.addEventListener("focus", () => {
-    searchDropdown.classList.remove("d-none");
-  });
-
-  searchInput.addEventListener("input", () => {
-    const searchApiLink =
-      "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
-    const trimmedValue = searchInput.value.trim();
-    if (trimmedValue.length > 0) {
-      searchDropdown.classList.remove("d-none");
-      fetch(searchApiLink + trimmedValue)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            throw new Error("Can't search right now...");
-          }
-        })
-        .then((obj) => {
-          searchDropdown.innerHTML = "";
-          console.log(obj.data);
-          let dropdownHTML;
-          obj.data.forEach((result) => {
-            const { album, id, title, type, artist } = result;
-            const cover = album.cover_small;
-            const albumTitle = album.title;
-            dropdownHTML += `
-            <div id="result-${id}" class="dropdown-item text-light py-2 px-3 d-flex gap-2" type="button">
-                <img src="${cover}" alt="${albumTitle}-cover" style="max-height: 50px">
-                <div class="d-flex flex-column justify-content-center gap-2">
-                  <p class="text-capitalize fw-semibold text-light fs-6 m-0" style="height: 1rem">
-                  ${title}
-                  </p>
-                  <div class="d-flex gap-2 text-body-tertiary">
-                    <p class="fw-semibold fs-6 text-capitalize m-0">
-                        ${type}
-                    </p>
-                    <p class="fw-semibold fs-6 m-0">•</p>
-                    <p class="fw-semibold fs-6 m-0">
-                        ${artist.name}
-                    </p>
-                  </div>
-                </div>
-            </div>
-            `;
-          });
-          searchDropdown.innerHTML = dropdownHTML;
-          obj.data.forEach((result) => {
-            const searchResultDiv = document.getElementById(
-              `result-${result.id}`,
-            );
-            searchResultDiv.addEventListener("click", () => {
-              playAudio(result);
-            });
-          });
-        })
-        .catch((err) => console.log("Failed to fetch", err));
-    } else {
-      searchDropdown.classList.add("d-none");
-    }
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
-      searchDropdown.classList.add("d-none");
-    }
-  });
-
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      searchDropdown.classList.add("d-none");
-      searchInput.blur();
-    }
-  });
 };
 
 // CREAZIONE ELEMENTO AUDIO
@@ -784,7 +764,7 @@ const displayAlbumData = (data) => {
       album,
     } = track;
     tracksHTML += `
-            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2">
+            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2 ps-2">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-xl-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
@@ -985,7 +965,8 @@ const pauseAudio = () => {
 };
 
 const skipAudio = () => {
-  const songs = albumData.tracks.data;
+  console.log(albumData.tracks, artistTracksData);
+  const songs = albumData.tracks ? albumData.tracks.data : artistTracksData;
   const randomize = document.getElementById("randomize");
   //aggiungo shuffle - MARTINA
   const shuffleBtn = document.getElementById("shuffle-btn");
@@ -1006,7 +987,7 @@ const skipAudio = () => {
 };
 
 const backAudio = () => {
-  const songs = albumData.tracks.data;
+  const songs = albumData.tracks ? albumData.tracks.data : artistTracksData;
   const randomize = document.getElementById("randomize");
   audio.pause();
   isPlaying = false;
@@ -1043,3 +1024,5 @@ const playBtnPlay = () => {
     pauseAudio();
   }
 };
+
+// logica ARTIST PAGE

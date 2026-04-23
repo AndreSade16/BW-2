@@ -27,10 +27,80 @@
     <link rel="stylesheet" href="./assets/css/search.css" />
   </head>
   <body>
-    <div class="container-fluid">
+    <header
+      id="topbar-global"
+      class="d-flex align-items-center justify-content-between px-3 py-2 bg-black text-white position-fixed top-0 w-100"
+      style="z-index: 2000; height: 72px"
+    >
+      <!-- sinistra navbar - MARTINA -->
+      <div class="d-flex align-items-center gap-2">
+        <!-- logo -->
+        <button
+          class="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px"
+        >
+          <i class="bi bi-spotify text-dark fs-4"></i>
+        </button>
+
+        <!-- freccia indietro -->
+        <button
+          id="btn-back"
+          class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px"
+        >
+          <i class="bi bi-chevron-left text-white fs-5"></i>
+        </button>
+
+        <!--  freccia avanti -->
+        <button
+          id="btn-forward"
+          class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px"
+        >
+          <i class="bi bi-chevron-right text-white fs-5"></i>
+        </button>
+      </div>
+      <!-- centro navbar - MARTINA -->
+      <div class="flex-grow-1 d-flex justify-content-center px-3">
+        <div
+          class="d-flex align-items-center gap-2 px-3 rounded-pill bg-dark position-relative"
+          style="max-width: 600px; width: 100%; height: 48px"
+        >
+          <i class="bi bi-search text-secondary"></i>
+
+          <input
+            id="search-input"
+            type="text"
+            class="form-control bg-transparent border-0 text-white p-0 shadow-none"
+            placeholder="Cosa vuoi ascoltare?"
+            autocomplete="off"
+          />
+          <div
+            id="search-dropdown"
+            class="position-absolute w-100 bg-dark rounded-3 py-2 d-none mt-2 d-flex pt-5 flex-column justify-content-center align-items-center"
+            style="top: 100%; z-index: 2; height: 300px; overflow-y: scroll"
+          >
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <i class="bi bi-collection text-secondary fs-5"></i>
+        </div>
+      </div>
+
+      <!-- destra navbar - MARTINA -->
+      <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-bell text-secondary fs-5"></i>
+        <i class="bi bi-people text-secondary fs-5"></i>
+
+        <button class="btn btn-dark rounded-circle fw-bold">M</button>
+      </div>
+    </header>
+
+    <div class="container-fluid pt-5 mt-4">
       <div class="row">
         <!--COL: LEFT -->
-
         <!-- col che appare da md in poi a sx -->
         <div
           class="d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1 overflow-auto vh-100"
@@ -62,6 +132,7 @@
                 <div
                   class="show-search text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
                   onclick="showSearchPage()"
+                  type="button"
                 >
                   <div>
                     <img
@@ -70,7 +141,7 @@
                       alt=""
                     />
                   </div>
-                  <span class="mx-3">Cerca</span>
+                  <span class="mx-3">Sfoglia</span>
                 </div>
 
                 <a
@@ -312,34 +383,35 @@
             <div class="px-3">
               <h4 class="mb-3">Artisti consigliati</h4>
 
-            <div class="position-relative">
-              <!-- container -->
-              <div
-                id="artist-container"
-                class="d-flex gap-3 overflow-auto justify-content-center align-items-center ps-5"
-                style="min-height: 180px"
-              >
-                <!-- SPINNER -->
-                <div class="spinner-border text-light" role="status">
-                  <span class="visually-hidden">Loading...</span>
+              <div class="position-relative">
+                <!-- container -->
+                <div
+                  id="artist-container"
+                  class="d-flex gap-3 overflow-auto align-items-center px-3 justify-content-start"
+                  style="min-height: 180px"
+                >
+                  <!-- SPINNER -->
+                  <div class="w-100 d-flex justify-content-center">
+                    <div class="spinner-border text-light"></div>
+                  </div>
                 </div>
+
+                <!-- freccia sinistra -->
+                <button
+                  id="scrollLeft"
+                  class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
+                >
+                  ◀
+                </button>
+
+                <!-- freccia destra -->
+                <button
+                  id="scrollRight"
+                  class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
+                >
+                  ▶
+                </button>
               </div>
-
-              <!-- freccia sinistra -->
-              <button
-                id="scrollLeft"
-                class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
-              >
-                ◀
-              </button>
-
-              <!-- freccia destra -->
-              <button
-                id="scrollRight"
-                class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
-              >
-                ▶
-              </button>
             </div>
           </section>
           <!-- fine artist -->
@@ -349,34 +421,35 @@
             <div class="px-3">
               <h4 class="mb-3">Album consigliati</h4>
 
-            <div class="position-relative">
-              <!-- container -->
-              <div
-                id="album-container"
-                class="d-flex gap-3 overflow-auto justify-content-center align-items-center ps-5"
-                style="min-height: 180px"
-              >
-                <!-- SPINNER -->
-                <div class="spinner-border text-light" role="status">
-                  <span class="visually-hidden">Loading...</span>
+              <div class="position-relative">
+                <!-- container -->
+                <div
+                  id="album-container"
+                  class="d-flex gap-3 overflow-auto justify-content-start align-items-center px-3"
+                  style="min-height: 180px"
+                >
+                  <!-- SPINNER -->
+                  <div class="w-100 d-flex justify-content-center">
+                    <div class="spinner-border text-light"></div>
+                  </div>
                 </div>
+
+                <!-- freccia sinistra -->
+                <button
+                  id="albumScrollLeft"
+                  class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
+                >
+                  ◀
+                </button>
+
+                <!-- freccia destra -->
+                <button
+                  id="albumScrollRight"
+                  class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
+                >
+                  ▶
+                </button>
               </div>
-
-              <!-- freccia sinistra -->
-              <button
-                id="albumScrollLeft"
-                class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
-              >
-                ◀
-              </button>
-
-              <!-- freccia destra -->
-              <button
-                id="albumScrollRight"
-                class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
-              >
-                ▶
-              </button>
             </div>
           </section>
           <!-- fine album -->
@@ -411,58 +484,76 @@
           </div>
           <div class="my-4">
             <!-- PRIMO BLOCCO AUTORE -->
-            <div class="d-flex align-items-center gap-3 my-4">
+            <div
+              class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3 my-4"
+            >
               <img
-                width="40px"
-                height="40px"
+                width="40"
+                height="40"
                 class="rounded-circle img-fluid"
                 src="https://placecats.com/50/50"
                 alt="pfp"
               />
-              <div class="d-flex flex-column align-self-start flex-grow-1">
-                <p class="m-0 fw-bold">Charlie Hookhman</p>
-                <cite class="small">In Camera • Yumi Zouma</cite>
-                <cite class="small"
-                  ><i class="far fa-dot-circle"> EP III</i></cite
-                >
+
+              <div
+                class="d-flex flex-column align-self-start flex-grow-1 text-truncate"
+              >
+                <p class="m-0 fw-bold text-truncate">Charlie Hookhman</p>
+                <cite class="small text-truncate">In Camera • Yumi Zouma</cite>
+                <cite class="small text-truncate">
+                  <i class="far fa-dot-circle"></i> EP III
+                </cite>
               </div>
-              <cite class="small align-self-start">4 ore</cite>
+
+              <cite class="small align-self-start flex-shrink-0">4 ore</cite>
             </div>
             <!-- SECONDO BLOCCO AUTORE -->
             <div class="d-flex align-items-center gap-3 my-4">
               <img
-                width="40px"
-                height="40px"
+                width="40"
+                height="40"
                 class="rounded-circle img-fluid"
                 src="https://placecats.com/50/50"
                 alt="pfp"
               />
-              <div class="d-flex flex-column align-self-start flex-grow-1">
-                <p class="m-0 fw-bold">lightdark02</p>
-                <cite class="small">Aimed to Kill • Jade LeMac</cite>
-                <cite class="small"
-                  ><i class="far fa-dot-circle"> Aimed to Kill</i></cite
+
+              <div
+                class="d-flex flex-column align-self-start flex-grow-1 text-truncate"
+              >
+                <p class="m-0 fw-bold text-truncate">lightdark02</p>
+                <cite class="small text-truncate"
+                  >Aimed to Kill • Jade LeMac</cite
                 >
+                <cite class="small text-truncate">
+                  <i class="far fa-dot-circle"></i> Aimed to Kill
+                </cite>
               </div>
-              <cite class="small align-self-start">8 ore</cite>
+
+              <cite class="small align-self-start flex-shrink-0">8 ore</cite>
             </div>
             <!-- TERZO BLOCCO AUTORE -->
             <div class="d-flex align-items-center gap-3 my-4">
               <img
-                width="40px"
-                height="40px"
+                width="40"
+                height="40"
                 class="rounded-circle img-fluid"
                 src="https://placecats.com/50/50"
                 alt="pfp"
               />
-              <div class="d-flex flex-column align-self-start flex-grow-1">
-                <p class="m-0 fw-bold">Valeria Traverso</p>
-                <cite class="small">New Kings • Sleeping Wolf</cite>
-                <cite class="small"
-                  ><i class="fas fa-music"> Twint Badass mood</i></cite
+
+              <div
+                class="d-flex flex-column align-self-start flex-grow-1 text-truncate"
+              >
+                <p class="m-0 fw-bold text-truncate">Valeria Traverso</p>
+                <cite class="small text-truncate"
+                  >New Kings • Sleeping Wolf</cite
                 >
+                <cite class="small text-truncate">
+                  <i class="fas fa-music"></i> Twint Badass mood
+                </cite>
               </div>
-              <cite class="small align-self-start">3 giorni</cite>
+
+              <cite class="small align-self-start flex-shrink-0">3 giorni</cite>
             </div>
           </div>
         </aside>
@@ -535,18 +626,44 @@
     </footer>
     <!-- barra di ricerca in basso che esiste solo in mobile // chi l'ha fatto-->
     <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black">
-      <div class="d-flex justify-content-around text-center py-2">
-        <a class="text-secondary" href="#">
-          <i class="fas fa-home d-block"></i>
-          <span>Home</span>
+      <div class="d-flex justify-content-around py-3">
+        <a
+          href="#"
+          class="d-flex justify-content-center align-items-center"
+          style="width: 25px; height: 25px"
+        >
+          <img
+            class="w-100 h-100"
+            style="object-fit: contain"
+            src="./assets/imgs/icona home.png"
+            alt=""
+          />
         </a>
-        <a class="text-secondary" href="#">
-          <i class="fas fa-search d-block"></i>
-          <span>Cerca</span>
+
+        <a
+          href="#"
+          class="d-flex justify-content-center align-items-center"
+          style="width: 25px; height: 25px"
+        >
+          <img
+            class="w-100 h-100"
+            style="object-fit: contain"
+            src="./assets/imgs/icona lente.png"
+            alt=""
+          />
         </a>
-        <a class="text-secondary" href="#">
-          <i class="fas fa-book d-block"></i>
-          <span>La tua libreria</span>
+
+        <a
+          href="#"
+          class="d-flex justify-content-center align-items-center"
+          style="width: 25px; height: 25px"
+        >
+          <img
+            class="w-100 h-100"
+            style="object-fit: contain"
+            src="./assets/imgs/icona library.png"
+            alt=""
+          />
         </a>
       </div>
     </div>

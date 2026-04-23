@@ -354,7 +354,7 @@ const updateMobileBottomBar = (song) => {
   const artist = document.getElementById("mobile-player-artist");
 
   if (!cover || !title || !artist) return;
-
+  cover.crossOrigin = "Anonymous";
   cover.src = song.album.cover_small;
   cover.alt = song.title;
   title.textContent = song.title;
@@ -365,8 +365,9 @@ const updateMobileBottomBar = (song) => {
   const mobilePlayerInner = document.querySelector(".mobile-player-inner");
   cover.onload = () => {
     const avgColor = getAverageColor(cover);
-
-    mobilePlayerInner.style.backgroundColor = `rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b})`;
+    if (mobilePlayerInner) {
+      mobilePlayerInner.style.backgroundColor = `rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b})`;
+    }
   };
 };
 
@@ -377,7 +378,11 @@ const mobilePlayerMainButton = document.getElementById(
 
 if (mobilePlayerMainButton) {
   mobilePlayerMainButton.addEventListener("click", () => {
-    if (!playing.id) return;
+    console.log("hai schiacciato");
+    if (!playing.id && artistTracksData) {
+      playAudio(artistTracksData[0]);
+      return;
+    }
 
     if (isPlaying) {
       pauseAudio();

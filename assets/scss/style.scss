@@ -156,7 +156,8 @@ h3 {
   width: 100%;
   object-fit: cover;
 }
- /* BOTTOM BAR MARTINA */
+
+/* BOTTOM BAR MARTINA */
 
 .player-bar {
   position: fixed;
@@ -169,12 +170,17 @@ h3 {
   z-index: 1050;
 }
 
-.player-icon 
-{ cursor: pointer;}
+.player-icon {
+  cursor: pointer;
+}
 
-.player-bar .row { height: 100%;}
+.player-bar .row {
+  height: 100%;
+}
 
-body { padding-bottom: 90px;}
+body {
+  padding-bottom: 90px;
+}
 
 .liked {
   color: #1ed760 !important;
