@@ -9,9 +9,9 @@ const getAverageColorArtist = (imgElement) => {
   return { r: data[0], g: data[1], b: data[2] };
 };
 
-async function loadArtistPage(artistId) {
+async function loadArtistPage(artistId, push = true) {
   // Mostra solo questa sezione (nascondi le altre)
-  const artistHTML = `<section id="artist-page" class="d-none">
+  const artistHTML = `<section id="artist-page">
             <div id="artist-hero" class="mb-4">
               <img
                 id="artist-banner"
@@ -92,7 +92,14 @@ async function loadArtistPage(artistId) {
   const main = document.getElementById("main");
   main.innerHTML = artistHTML;
 
-  showSection("artist-page");
+  // aggiungo funzione per far funzionare avanti e dietro - MARTINA
+  if (push) {
+    history.pushState(
+      { page: "artist", artistId: artistId },
+      "",
+      `?artistId=${artistId}`,
+    );
+  }
 
   const BASE = "https://striveschool-api.herokuapp.com/api/deezer";
 
