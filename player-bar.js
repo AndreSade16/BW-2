@@ -298,6 +298,7 @@ const updateBottomBar = (song) => {
   const artist = document.querySelector(".player-artist");
 
   cover.src = song.album.cover_small;
+  cover.addEventListener("click", () => fetchAlbumData(song.album.id));
   cover.alt = song.title;
 
   title.textContent = song.title;

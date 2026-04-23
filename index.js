@@ -53,7 +53,9 @@ window.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.getElementById("sidebarRight");
 
   // stato iniziale
-  openButton.classList.add("d-none");
+  if (openButton) {
+    openButton.classList.add("d-none");
+  }
 
   // CHIUDI
   closeButton.addEventListener("click", function () {
