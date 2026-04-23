@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="./assets/scss/style.css" />
     <link rel="stylesheet" href="./assets/css/album.css" />
+    <link rel="stylesheet" href="./assets/css/search.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -36,10 +37,10 @@
               <i class="fas fa-home d-block"></i>
               <span>Home</span>
             </a>
-            <a class="text-secondary" href="#">
+            <div class="show-search text-secondary" href="#">
               <i class="fas fa-search d-block"></i>
               <span>Cerca</span>
-            </a>
+            </div>
             <a class="text-secondary" href="#">
               <i class="fas fa-book d-block"></i>
               <span>La tua libreria</span>
@@ -74,10 +75,11 @@
                   <span class="mx-3">Home</span>
                 </a>
 
-                <a
-                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
-                  href="#"
-                  ><div>
+                <div
+                  class="show-search text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
+                  onclick="showSearchPage()"
+                >
+                  <div>
                     <img
                       class="img-box"
                       src="./assets/imgs/icona lente.png"
@@ -85,7 +87,7 @@
                     />
                   </div>
                   <span class="mx-3">Cerca</span>
-                </a>
+                </div>
 
                 <a
                   class="col-12 my-1 text-secondary d-flex align-items-center text-decoration-none sidebar-link"
