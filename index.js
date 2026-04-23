@@ -64,7 +64,20 @@ window.addEventListener("DOMContentLoaded", function () {
     sidebar.classList.add("d-lg-block");
     openButton.classList.add("d-none");
   });
-
+  // funzione che ritenta al fallimento della fetch
+  const fetchWithRetry = (url, retries = 2) => {
+    return fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("Errore fetch");
+        return res.json();
+      })
+      .catch((err) => {
+        if (retries > 0) {
+          return fetchWithRetry(url, retries - 1);
+        }
+        throw err;
+      });
+  };
   // Logica popolamento album carousel
 
   const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/";
@@ -75,39 +88,36 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const container = document.getElementById("album-container");
 
-  container.innerHTML = "";
-
-  const addAlbumCard = function (album) {
-    const card = `
-    <div 
-      class="card bg-dark text-light border-0 p-2 flex-shrink-0"
-      style="width: 150px; height: 230px; cursor: pointer;"
-      onclick="fetchAlbumData(${album.id})"
-    >
-      <img src="${album.cover_medium}" class="img-fluid mb-2">
-      <p class="mb-1 text-truncate">${album.title}</p>
-      <small class="text-secondary text-truncate d-block">
-        ${album.artist?.name || "Unknown"}
-      </small>
-    </div>
-  `;
-
-    container.innerHTML += card;
-  };
+  let albumCards = "";
+  let loaded = 0;
 
   albumIds.forEach((id) => {
-    fetch(albumUrl + id)
-      .then((res) => {
-        if (!res.ok) throw new Error("Errore fetch");
-
-        return res.json();
-      })
-
+    fetchWithRetry(albumUrl + id)
       .then((album) => {
-        addAlbumCard(album);
+        if (album && album.id) {
+          albumCards += `
+        <div 
+          class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+          style="width: 150px; height: 230px; cursor: pointer;"
+          onclick="fetchAlbumData(${album.id})"
+        >
+          <img src="${album.cover_medium}" class="img-fluid mb-2">
+          <p class="mb-1 text-truncate">${album.title}</p>
+          <small class="text-secondary text-truncate d-block">
+            ${album.artist?.name || "Unknown"}
+          </small>
+        </div>
+        `;
+        }
       })
+      .catch((err) => console.log("Errore album:", err))
+      .finally(() => {
+        loaded++;
 
-      .catch((err) => console.log("ERRORE:", err));
+        if (loaded === albumIds.length) {
+          container.innerHTML = albumCards;
+        }
+      });
   });
 
   // frecce
@@ -138,44 +148,38 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const artistContainer = document.getElementById("artist-container");
 
-  artistContainer.innerHTML = "";
-
-  const addArtistCard = function (artist) {
-    const card = `
-
-    <div 
-      class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
-      style="width: 150px; cursor: pointer;"
-      onclick="loadArtistPage(${artist.id})"
-    >
-      <img 
-        src="${artist.picture_medium}" 
-        class="rounded-circle mb-3 mx-auto"
-        style="width: 100px; height: 100px; object-fit: cover;"
-      >
-      <p class="mb-1 text-truncate">${artist.name}</p>
-      <small class="text-secondary">
-        Artista
-      </small>
-    </div>
-  `;
-
-    artistContainer.innerHTML += card;
-  };
+  let artistCards = "";
+  let loadedArtists = 0;
 
   artistIds.forEach((id) => {
-    fetch(artistUrl + id)
-      .then((res) => {
-        if (!res.ok) throw new Error("Errore fetch");
-
-        return res.json();
-      })
-
+    fetchWithRetry(artistUrl + id)
       .then((artist) => {
-        addArtistCard(artist);
+        if (artist && artist.id) {
+          artistCards += `
+        <div 
+          class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
+          style="width: 150px; cursor: pointer;"
+          onclick="loadArtistPage(${artist.id})"
+        >
+          <img 
+            src="${artist.picture_medium}" 
+            class="rounded-circle mb-3 mx-auto"
+            style="width: 100px; height: 100px; object-fit: cover;"
+          >
+          <p class="mb-1 text-truncate">${artist.name}</p>
+          <small class="text-secondary">Artista</small>
+        </div>
+        `;
+        }
       })
+      .catch((err) => console.log("Errore artist:", err))
+      .finally(() => {
+        loadedArtists++;
 
-      .catch((err) => console.log("ERRORE artist:", err));
+        if (loadedArtists === artistIds.length) {
+          artistContainer.innerHTML = artistCards;
+        }
+      });
   });
 
   // frecce

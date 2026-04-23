@@ -371,34 +371,35 @@
             <div class="px-3">
               <h4 class="mb-3">Artisti consigliati</h4>
 
-            <div class="position-relative">
-              <!-- container -->
-              <div
-                id="artist-container"
-                class="d-flex gap-3 overflow-auto justify-content-center align-items-center ps-5"
-                style="min-height: 180px"
-              >
-                <!-- SPINNER -->
-                <div class="spinner-border text-light" role="status">
-                  <span class="visually-hidden">Loading...</span>
+              <div class="position-relative">
+                <!-- container -->
+                <div
+                  id="artist-container"
+                  class="d-flex gap-3 overflow-auto align-items-center px-3 justify-content-start"
+                  style="min-height: 180px"
+                >
+                  <!-- SPINNER -->
+                  <div class="w-100 d-flex justify-content-center">
+                    <div class="spinner-border text-light"></div>
+                  </div>
                 </div>
+
+                <!-- freccia sinistra -->
+                <button
+                  id="scrollLeft"
+                  class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
+                >
+                  ◀
+                </button>
+
+                <!-- freccia destra -->
+                <button
+                  id="scrollRight"
+                  class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
+                >
+                  ▶
+                </button>
               </div>
-
-              <!-- freccia sinistra -->
-              <button
-                id="scrollLeft"
-                class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
-              >
-                ◀
-              </button>
-
-              <!-- freccia destra -->
-              <button
-                id="scrollRight"
-                class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
-              >
-                ▶
-              </button>
             </div>
           </section>
           <!-- fine artist -->
@@ -408,34 +409,35 @@
             <div class="px-3">
               <h4 class="mb-3">Album consigliati</h4>
 
-            <div class="position-relative">
-              <!-- container -->
-              <div
-                id="album-container"
-                class="d-flex gap-3 overflow-auto justify-content-center align-items-center ps-5"
-                style="min-height: 180px"
-              >
-                <!-- SPINNER -->
-                <div class="spinner-border text-light" role="status">
-                  <span class="visually-hidden">Loading...</span>
+              <div class="position-relative">
+                <!-- container -->
+                <div
+                  id="album-container"
+                  class="d-flex gap-3 overflow-auto justify-content-start align-items-center px-3"
+                  style="min-height: 180px"
+                >
+                  <!-- SPINNER -->
+                  <div class="w-100 d-flex justify-content-center">
+                    <div class="spinner-border text-light"></div>
+                  </div>
                 </div>
+
+                <!-- freccia sinistra -->
+                <button
+                  id="albumScrollLeft"
+                  class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
+                >
+                  ◀
+                </button>
+
+                <!-- freccia destra -->
+                <button
+                  id="albumScrollRight"
+                  class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
+                >
+                  ▶
+                </button>
               </div>
-
-              <!-- freccia sinistra -->
-              <button
-                id="albumScrollLeft"
-                class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
-              >
-                ◀
-              </button>
-
-              <!-- freccia destra -->
-              <button
-                id="albumScrollRight"
-                class="btn btn-dark position-absolute end-0 top-50 translate-middle-y"
-              >
-                ▶
-              </button>
             </div>
           </section>
           <!-- fine album -->
