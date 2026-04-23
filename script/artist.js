@@ -204,6 +204,9 @@ const playBtnPlayArtist = () => {
   let song = {};
   console.log(isPlaying);
   if (!isPlaying) {
+    const isShuffleActive =
+      (randomize && randomize.classList.contains("active")) ||
+      (shuffleBtn && shuffleBtn.classList.contains("active"));
     if (isShuffleActive) {
       if (playing.id) {
         playAudio(playing);

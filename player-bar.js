@@ -378,7 +378,11 @@ const mobilePlayerMainButton = document.getElementById(
 
 if (mobilePlayerMainButton) {
   mobilePlayerMainButton.addEventListener("click", () => {
-    if (!playing.id) return;
+    console.log("hai schiacciato");
+    if (!playing.id && artistTracksData) {
+      playAudio(artistTracksData[0]);
+      return;
+    }
 
     if (isPlaying) {
       pauseAudio();

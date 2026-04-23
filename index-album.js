@@ -987,7 +987,8 @@ const pauseAudio = () => {
 };
 
 const skipAudio = () => {
-  const songs = albumData.tracks.data;
+  console.log(albumData.tracks, artistTracksData);
+  const songs = albumData.tracks ? albumData.tracks.data : artistTracksData;
   const randomize = document.getElementById("randomize");
   //aggiungo shuffle - MARTINA
   const shuffleBtn = document.getElementById("shuffle-btn");
@@ -1008,7 +1009,7 @@ const skipAudio = () => {
 };
 
 const backAudio = () => {
-  const songs = albumData.tracks.data;
+  const songs = albumData.tracks ? albumData.tracks.data : artistTracksData;
   const randomize = document.getElementById("randomize");
   audio.pause();
   isPlaying = false;
@@ -1045,3 +1046,5 @@ const playBtnPlay = () => {
     pauseAudio();
   }
 };
+
+// logica ARTIST PAGE
