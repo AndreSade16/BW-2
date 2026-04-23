@@ -353,7 +353,7 @@ const showAlbumPage = (albumData) => {
       tabindex="-1"
       id="offcanvasBottom"
       aria-labelledby="offcanvasBottomLabel"
-      style="height: auto"
+      style="height: auto; z-index: 9999; position: fixed"
     >
       <div
         id="offcanvas-body"
