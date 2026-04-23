@@ -956,7 +956,9 @@ const playAudio = (song) => {
 
 const pauseAudio = () => {
   const playBtn = document.getElementById("play-btn");
-  playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  if (playBtn) {
+    playBtn.innerHTML = `<i class="fas fa-play text-black"></i>`;
+  }
   audio.pause();
   isPlaying = false;
 
