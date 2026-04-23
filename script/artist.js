@@ -113,6 +113,7 @@ const playArtistAudio = (track) => {
   audio.play();
 }; */
 
+/*
 const playArtistAudio = (track) => {
   console.log("track artista:", track);
   console.log("typeof window.playAudio:", typeof window.playAudio);
@@ -122,7 +123,8 @@ const playArtistAudio = (track) => {
 
   currentPlaylist = artistTracksData;
   window.playAudio(track);
-};
+}; */
+
 // --- Carosello artisti homepage ---
 const artistIds = [
   27, 412, 384236, 13, 246791, 4050205, 75798, 530653, 111114, 1562681, 757,

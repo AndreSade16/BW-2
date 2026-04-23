@@ -3,7 +3,7 @@ const main = document.getElementById("main");
 const albumProva = document.getElementById("album-prova");
 
 const showAlbumPage = (albumData) => {
-  console.log(albumData);
+  const { artist } = albumData;
   main.innerHTML = `
 
   <div id="album-page-body" class="bg-dark text-light container-fluid p-0">
@@ -29,7 +29,7 @@ const showAlbumPage = (albumData) => {
       </div>
       <p
         id="topbar-title"
-        class="fw-bold text-center d-none d-xl-none m-0 position-absolute start-50 translate-middle-x"
+        class="fw-bold text-center d-xl-none m-0 position-absolute start-50 translate-middle-x"
       ></p>
       <div id="user-dropdown" class="dropdown d-none d-xl-block">
         <a
@@ -327,10 +327,11 @@ const showAlbumPage = (albumData) => {
           </div>
           <div
             class="d-flex justify-content-start gap-3 text-light align-items-center"
+            onclick="loadArtistPage(${artist.id})"
           >
             <i class="far fa-gem text-center" style="width: 1.5rem"></i>
             <p class="fs-6 d-flex align-items-center m-0 fw-normal">
-              Ascolta la musica senza pubblicità
+              Vai all'artista
             </p>
           </div>
           <div
@@ -358,6 +359,241 @@ const showAlbumPage = (albumData) => {
   displayAlbumData(albumData);
 };
 
+const showSearchPage = () => {
+  const searchHTML = `<div class="container-fluid">
+      <div class="row justify-content-center pt-3 bg-dark-subtle">
+        <div id="search-h2" class="col-12 mb-4">
+          <h2 class="text-white">Cerca</h2>
+        </div>
+        <div class="col-12 d-flex justify-content-center px-3 px-sm-5">
+          <div id="input-group" class="input-group position-relative">
+            <span class="input-group-text border-0 bg-dark" id="visible-addon">
+              <i class="fas fa-search text-light fs-2"></i>
+            </span>
+            <input
+              type="text"
+              id="search-input"
+              class="form-control border-0 bg-dark fw-semibold py-3 shadow-none fs-5"
+              placeholder="Cosa vuoi ascoltare?"
+              aria-label="Cosa vuoi ascoltare?"
+              aria-describedby="visible-addon"
+              autocomplete="off"
+            />
+            <div
+              id="search-dropdown"
+              class="position-absolute w-100 bg-dark rounded-3 py-2 d-none mt-2 d-flex pt-5 flex-column justify-content-center align-items-center"
+              style="top: 100%; z-index: 2; height: 300px; overflow-y: scroll"
+            >
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex flex-column align-items-center px-3">
+          <h3 class="text-center mt-4">Sfoglia tutto</h3>
+          <div class="container-fluid">
+            <div
+              class="row justify-content-between justify-content-sm-center gap-sm-3 gap-lg-4 gap-xl-5 mb-3"
+            >
+              <div
+                id="search-box-1"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Podcast</h4>
+                <img
+                  src="./assets/imgs/search/image-2.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-2"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Create per te</h4>
+                <img
+                  src="./assets/imgs/search/image-3.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-3"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Nuove uscite</h4>
+                <img
+                  src="./assets/imgs/search/image-4.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-4"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Pop</h4>
+                <img
+                  src="./assets/imgs/search/image-5.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-5"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Hip Hop</h4>
+                <img
+                  src="./assets/imgs/search/image-6.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-6"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">
+                  Dance/<br />
+                  Elettronica
+                </h4>
+                <img
+                  src="./assets/imgs/search/image-7.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-7"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Latina</h4>
+                <img
+                  src="./assets/imgs/search/image-8.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-8"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Classifiche</h4>
+                <img
+                  src="./assets/imgs/search/image-9.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-9"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Classici</h4>
+                <img
+                  src="./assets/imgs/search/image-10.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+              <div
+                id="search-box-10"
+                class="search-box col-5 rounded-2 px-3 py-3 mt-4 position-relative overflow-hidden"
+                type="button"
+              >
+                <h4 class="text-light">Riascolta</h4>
+                <img
+                  src="./assets/imgs/search/image-11.jpg"
+                  alt="search-box-img"
+                  class="search-box-img img-fluid rounded-3 -lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  main.innerHTML = searchHTML;
+  const searchInput = document.getElementById("search-input");
+  const searchDropdown = document.getElementById("search-dropdown");
+
+  searchInput.addEventListener("focus", () => {
+    searchDropdown.classList.remove("d-none");
+  });
+
+  searchInput.addEventListener("input", () => {
+    const searchApiLink =
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
+    const trimmedValue = searchInput.value.trim();
+    if (trimmedValue.length > 0) {
+      searchDropdown.classList.remove("d-none");
+      fetch(searchApiLink + trimmedValue)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Can't search right now...");
+          }
+        })
+        .then((obj) => {
+          searchDropdown.innerHTML = "";
+          console.log(obj.data);
+          obj.data.forEach((result) => {
+            const { album, id, title, type, artist } = result;
+            const cover = album.cover_small;
+            const albumTitle = album.title;
+            searchDropdown.innerHTML += `
+            <div class="dropdown-item text-light py-2 px-3 d-flex gap-2">
+                <img src="${cover}" alt="${albumTitle}-cover" style="max-height: 50px">
+                <div class="d-flex flex-column justify-content-center gap-2">
+                  <p class="text-capitalize fw-semibold text-light fs-6 m-0" style="height: 1rem">
+                  ${title}
+                  </p>
+                  <div class="d-flex gap-2 text-body-tertiary">
+                    <p class="fw-semibold fs-6 text-capitalize m-0">
+                        ${type}
+                    </p>
+                    <p class="fw-semibold fs-6 m-0">•</p>
+                    <p class="fw-semibold fs-6 m-0">
+                        ${artist.name}
+                    </p>
+                  </div>
+                </div>
+            </div>
+            `;
+          });
+        })
+        .catch((err) => console.log("Failed to fetch", err));
+    } else {
+      searchDropdown.classList.add("d-none");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+      searchDropdown.classList.add("d-none");
+    }
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      searchDropdown.classList.add("d-none");
+      searchInput.blur();
+    }
+  });
+};
+
 // CREAZIONE ELEMENTO AUDIO
 
 const audio = new Audio();
@@ -368,6 +604,10 @@ let albumData = {};
 const fetchAlbumData = (id) => {
   let fetched;
   main.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+  window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
@@ -468,12 +708,12 @@ const displayAlbumData = (data) => {
   main.addEventListener("scroll", () => {
     const coverBottom = albumCover.getBoundingClientRect().bottom;
 
-    if (main.scrollY > 5) {
-      topbarTitle.classList.remove("d-none");
-    } else {
-      topbar.style.top = `-${topbar.offsetHeight}px`;
-      topbarTitle.classList.add("d-none");
-    }
+    // if (main.scrollY > 5) {
+    //   topbarTitle.classList.remove("d-none");
+    // } else {
+    //   topbar.style.top = `-${topbar.offsetHeight}px`;
+    //   topbarTitle.classList.add("d-none");
+    // }
 
     if (coverBottom <= 90) {
       topbar.style.backgroundColor = `rgba(${avgColor.r}, ${avgColor.g}, ${avgColor.b}, 1)`;
@@ -519,7 +759,7 @@ const displayAlbumData = (data) => {
                 </div>
                 <div id="${id}" data-track-id="${id}" class="col-11 col-lg-5 p-0" type="button" onclick="playAudio(albumData.tracks.data[${i}])">
                   <p class="m-0 fw-semibold">${title}</p>
-                  <p class="m-0 text-secondary fw-normal">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-normal px-1 border border-1 border-black rounded-1'>E</span> " : ""}${artist.name}</p>
+                  <p class="m-0 text-secondary fw-normal">${explicit_lyrics ? "<span style='font-size: 0.8rem' class='text-black bg-secondary fw-semibold px-1 rounded-1'>E</span> " : ""}${artist.name}</p>
                 </div>
                 <div class="col-2 d-none d-xl-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
@@ -574,11 +814,11 @@ const displayAlbumData = (data) => {
                       </li>
                       <li
                         class="dropdown-item d-flex justify-content-start gap-3 text-light align-items-center mb-2 mt-2 rounded-1"
-                        type="button"
+                        type="button" onclick="loadArtistPage(${artist.id})"
                       >
                         <i class="far fa-gem text-center" style="width: 1.5rem"></i>
                         <p class="fs-6 d-flex align-items-center m-0 fw-normal">
-                          Ascolta la musica senza pubblicità
+                          Vai all'artista
                         </p>
                       </li>
                       <li
