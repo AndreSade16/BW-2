@@ -29,40 +29,39 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const container = document.getElementById("album-container")
 
-  container.innerHTML = ""
 
-  const addAlbumCard = function (album) {
-    const card = `
-    <div 
-      class="card bg-dark text-light border-0 p-2 flex-shrink-0"
-      style="width: 150px; height: 230px; cursor: pointer;"
-      onclick="fetchAlbumData(${album.id})"
-    >
-      <img src="${album.cover_medium}" class="img-fluid mb-2">
-      <p class="mb-1 text-truncate">${album.title}</p>
-      <small class="text-secondary text-truncate d-block">
-        ${album.artist?.name || "Unknown"}
-      </small>
-    </div>
-  `
+  Promise.allSettled(
+  albumIds.map((id) =>
+    fetch(albumUrl + id).then((res) => {
+      if (!res.ok) throw new Error("Errore fetch")
+      return res.json()
+    })
+  )
+).then((results) => {
+  let cards = ""
 
-    container.innerHTML += card
-  }
+  results.forEach((result) => {
+    if (result.status === "fulfilled") {
+      const album = result.value
 
-  albumIds.forEach((id) => {
-    fetch(albumUrl + id)
-      .then((res) => {
-        if (!res.ok) throw new Error("Errore fetch")
-
-        return res.json()
-      })
-
-      .then((album) => {
-        addAlbumCard(album)
-      })
-
-      .catch((err) => console.log("ERRORE:", err))
+      cards += `
+      <div 
+        class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+        style="width: 150px; height: 230px; cursor: pointer;"
+        onclick="fetchAlbumData(${album.id})"
+      >
+        <img src="${album.cover_medium}" class="img-fluid mb-2">
+        <p class="mb-1 text-truncate">${album.title}</p>
+        <small class="text-secondary text-truncate d-block">
+          ${album.artist?.name || "Unknown"}
+        </small>
+      </div>
+      `
+    }
   })
+
+  container.innerHTML = cards
+})
 
   // frecce
   document.getElementById("albumScrollLeft").addEventListener("click", () => {
@@ -92,45 +91,41 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const artistContainer = document.getElementById("artist-container")
 
-  artistContainer.innerHTML = ""
 
-  const addArtistCard = function (artist) {
-    const card = `
+  Promise.allSettled(
+  artistIds.map((id) =>
+    fetch(artistUrl + id).then((res) => {
+      if (!res.ok) throw new Error("Errore fetch")
+      return res.json()
+    })
+  )
+).then((results) => {
+  let cards = ""
 
-    <div 
-      class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
-      style="width: 150px; cursor: pointer;"
-      onclick="loadArtistPage(${artist.id})"
-    >
-      <img 
-        src="${artist.picture_medium}" 
-        class="rounded-circle mb-3 mx-auto"
-        style="width: 100px; height: 100px; object-fit: cover;"
+  results.forEach((result) => {
+    if (result.status === "fulfilled") {
+      const artist = result.value
+
+      cards += `
+      <div 
+        class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
+        style="width: 150px; cursor: pointer;"
+        onclick="loadArtistPage(${artist.id})"
       >
-      <p class="mb-1 text-truncate">${artist.name}</p>
-      <small class="text-secondary">
-        Artista
-      </small>
-    </div>
-  `
-
-    artistContainer.innerHTML += card
-  }
-
-  artistIds.forEach((id) => {
-    fetch(artistUrl + id)
-      .then((res) => {
-        if (!res.ok) throw new Error("Errore fetch")
-
-        return res.json()
-      })
-
-      .then((artist) => {
-        addArtistCard(artist)
-      })
-
-      .catch((err) => console.log("ERRORE artist:", err))
+        <img 
+          src="${artist.picture_medium}" 
+          class="rounded-circle mb-3 mx-auto"
+          style="width: 100px; height: 100px; object-fit: cover;"
+        >
+        <p class="mb-1 text-truncate">${artist.name}</p>
+        <small class="text-secondary">Artista</small>
+      </div>
+      `
+    }
   })
+
+  artistContainer.innerHTML = cards
+})
 
   // frecce
 
