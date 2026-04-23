@@ -29,39 +29,24 @@
     <div class="container-fluid">
       <div class="row">
         <!--COL: LEFT -->
-        <!-- <div class=" col-12 fixed-bottom position-md-static col-md-3 order-md-1 bg-danger">left</div> -->
-        <!-- bottom-navbar in mobile view che sparisce in md view -->
-        <div class="col-12 fixed-bottom d-md-none bg-black">
-          <div class="d-flex justify-content-around text-center py-2">
-            <a class="text-secondary" href="#">
-              <i class="fas fa-home d-block"></i>
-              <span>Home</span>
-            </a>
-            <a class="text-secondary" href="#">
-              <i class="fas fa-search d-block"></i>
-              <span>Cerca</span>
-            </a>
-            <a class="text-secondary" href="#">
-              <i class="fas fa-book d-block"></i>
-              <span>La tua libreria</span>
-            </a>
-          </div>
-        </div>
+
         <!-- col che appare da md in poi a sx -->
         <div
-          class="d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1"
+          class="d-none d-md-block col-md-4 col-lg-3 order-md-1 bg-black pt-1 overflow-auto vh-100"
         >
           <section>
             <!-- LINKS: icons + p -->
             <nav class="container mb-2">
               <!-- icone HOME, CERCA, LIBRARY -->
               <div class="row gap-2">
-                <a class="text-light my-1 d-flex align-items-center" href="#"
+                <a
+                  class="text-light my-1 d-flex align-items-center sidebar-link"
+                  href="#"
                   ><div><i class="fas fa-ellipsis-h"></i></div
                 ></a>
 
                 <a
-                  class="col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar"
+                  class="col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -74,7 +59,7 @@
                 </a>
 
                 <a
-                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none"
+                  class="text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -87,7 +72,7 @@
                 </a>
 
                 <a
-                  class="col-12 my-1 d-flex align-items-center text-decoration-none"
+                  class="col-12 my-1 text-secondary d-flex align-items-center text-decoration-none sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -96,14 +81,14 @@
                       alt=""
                     />
                   </div>
-                  <span class="mx-3 text-secondary">La tua libreria</span>
+                  <span class="mx-3">La tua libreria</span>
                 </a>
               </div>
 
               <!-- crea playlist, ...-->
               <div class="row my-3 gap-2">
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -116,7 +101,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -129,7 +114,7 @@
                 </a>
 
                 <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary"
+                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
                   href="#"
                   ><div>
                     <img
@@ -144,7 +129,7 @@
             </nav>
 
             <!-- song list -->
-            <div class="small container text-secondary">
+            <div class="small container text-secondary font">
               <hr class="text-secondary border-2 border-secondary" />
               <p>early stage emily syndrome (sett-ott 2022)</p>
               <p>Be The Young</p>
@@ -186,7 +171,7 @@
         <!-- COL: MAIN-CONTENT -->
         <div
           id="main"
-          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center px-0"
+          class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center overflow-y-auto overflow-x-hidden vh-100 p-0"
         >
           <!-- -------------------------------- -->
           <!-- inserire qui i bottoni "< >" e il dropdown -->
@@ -194,26 +179,28 @@
 
           <!-- MAIN HOMEPAGE CONTENT -->
           <!-- Blocco adds, VIOLA -->
-          <section class="viola p-4 text-light mt-3">
-            <div class="d-flex align-items-center">
-              <img
-                src="./assets/imgs/main/VIOLA.jpeg"
-                class="me-4"
-                style="width: 200px"
-              />
-              <div>
+          <section class="viola p-4 text-light mt-3 container">
+            <div class="d-flex align-items-center row">
+              <div class="col-8 offset-2 col-md-4 col-lg-3 offset-md-0">
+                <img
+                  src="./assets/imgs/main/VIOLA.jpeg"
+                  class="me-4 img-fluid"
+                />
+              </div>
+              <div class="col-12 col-md-8 col-lg-9">
                 <small>ALBUM</small>
                 <h1 class="fw-bold display-4">VIOLA (feat. Salmo)</h1>
                 <p>Fedez, Salmo</p>
                 <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
-
-                <button class="btn btn-primary fw-bold rounded-5 px-4 py-2">
-                  Play
-                </button>
-                <button class="btn btn-outline-light p-2 px-4 rounded-5">
-                  Salva
-                </button>
-                <i class="fas fa-ellipsis-h ms-3 text-secondary"></i>
+                <div class="d-flex align-items-center gap-3">
+                  <button class="btn btn-primary fw-bold rounded-5 px-4 py-2">
+                    Play
+                  </button>
+                  <button class="btn btn-outline-light p-2 px-4 rounded-5">
+                    Salva
+                  </button>
+                  <i class="fas fa-ellipsis-h text-secondary ms-1"></i>
+                </div>
               </div>
             </div>
           </section>
@@ -223,7 +210,7 @@
             <h3 class="mb-3">Buonasera</h3>
 
             <div class="row g-3">
-              <!-- CARD (daduplicare x 6)-->
+              <!-- CARD (daduplicate x 6)-->
               <div class="col-12 col-md-6 col-lg-4">
                 <div
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
@@ -244,14 +231,12 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-5.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-6.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-7.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-8.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">Be The Young</p>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
@@ -259,14 +244,27 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-9.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-10.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-11.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-12.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">saggio vibes💃👏</p>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div
+                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
+                >
+                  <div>
+                    <img
+                      class="square-grid"
+                      style="height: 101px"
+                      src="./assets/imgs/icona cuoreX20.png"
+                      alt=""
+                    />
+                  </div>
+                  <p class="ms-3 mb-0">Brani che ti piacciono</p>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
@@ -274,14 +272,12 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-13.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-14.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-15.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-16.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">2021 lol</p>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
@@ -289,58 +285,125 @@
                   class="buonasera-card d-flex align-items-center rounded overflow-hidden"
                 >
                   <div class="d-flex flex-wrap square-grid">
+                    <img src="./assets/imgs/main/image-17.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-18.jpg" alt="" />
+                    <img src="./assets/imgs/main/image-19.jpg" alt="" />
                     <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
                   </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
+                  <p class="ms-3 mb-0">Deep Dive with Alì Abdaal</p>
                 </div>
               </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div
-                  class="buonasera-card d-flex align-items-center rounded overflow-hidden"
-                >
-                  <div class="d-flex flex-wrap square-grid">
-                    <img src="./assets/imgs/main/image-1.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-2.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-3.jpg" alt="" />
-                    <img src="./assets/imgs/main/image-4.jpg" alt="" />
-                  </div>
-                  <p class="ms-3 mb-0">
-                    early stage emily syndrome (sett-ott 2022)
-                  </p>
-                </div>
-              </div>
-              <!-- fine card -->
+              <!-- FINE CARD X6 -->
             </div>
           </section>
 
           <!-- ARTISTI CONSIGLIATI -->
-          <!-- prototipo card da aggiungere via JS -->
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Artisti consigliati</h4>
-            <div class="row g-3" id="artists-carousel"></div>
-          </section>
 
+            <!-- inizio carosello artisti -->
+            <div id="artistCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- SLIDE 1, primi 5-->
+                <div class="carousel-item active">
+                  <div
+                    class="row g-3 justify-content-center"
+                    id="artist-slide-1"
+                  >
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SLIDE 2, secondi 5-->
+                <div class="carousel-item">
+                  <div
+                    class="row g-3 justify-content-center"
+                    id="artist-slide-2"
+                  >
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- frecce carosello -->
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#artistCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#artistCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+            <!-- fine carosello album -->
+          </section>
           <!-- ALBUM CONSIGLIATI -->
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Album consigliati</h4>
 
-            <div class="row g-3">
-              <div class="col-6 col-md-4 col-lg-2">
-                <div class="card bg-dark text-light border-0 p-2">
-                  <div class="bg-secondary mb-2" style="height: 120px"></div>
-                  <p id="album-prova" class="mb-1">Album</p>
-                  <small class="text-secondary">Dettagli</small>
+            <!-- inizio carosello album -->
+            <div id="albumCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- SLIDE 1, primi 5-->
+                <div class="carousel-item active">
+                  <div
+                    class="row g-3 justify-content-center"
+                    id="album-slide-1"
+                  >
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SLIDE 2, secondi 5-->
+                <div class="carousel-item">
+                  <div
+                    class="row g-3 justify-content-center"
+                    id="album-slide-2"
+                  >
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- x5 -->
+              <!-- frecce carosello -->
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#albumCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#albumCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
             </div>
+            <!-- fine carosello album -->
           </section>
+
           <!-- bottone controllo sidebar-right -->
           <button
             id="openSidebar"
@@ -440,7 +503,7 @@
         <!-- Versione colonna BOOTSTRAP -->
         <aside
           id="sidebarRight"
-          class="d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-secondary"
+          class="d-none d-lg-block col-lg-2 order-lg-3 bg-black pt-1 text-secondary overflow-auto vh-100"
         >
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="text-light">Attività amici</h5>
@@ -509,7 +572,8 @@
       </div>
     </div>
     <!-- FOOTER CON PLAYER BAR MARTINA -->
-    <footer class="player-bar text-white" id="player-bar">
+    <!-- PLAYER BAR DESKTOP -->
+    <footer id="player-bar" class="player-bar text-white d-none d-md-block">
       <div class="container-fluid h-100">
         <div class="row align-items-center h-100">
           <div
@@ -527,6 +591,68 @@
         </div>
       </div>
     </footer>
+    <!-- MOBILE -->
+    <footer id="mobile-player" class="d-md-none text-white px-2 pb-2">
+      <div
+        class="d-flex align-items-center justify-content-between px-3 rounded-3"
+        style="min-height: 64px; background-color: #4a3535"
+      >
+        <div
+          class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden"
+        >
+          <img
+            id="mobile-player-cover"
+            src="https://picsum.photos/60"
+            alt="cover"
+            class="rounded"
+            style="width: 42px; height: 42px; object-fit: cover"
+          />
+
+          <div class="d-flex flex-column overflow-hidden">
+            <span
+              id="mobile-player-title"
+              class="fw-semibold small text-truncate"
+            >
+              Nome brano
+            </span>
+            <span
+              id="mobile-player-artist"
+              class="small text-white-50 text-truncate"
+            >
+              Artista
+            </span>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ms-3">
+          <i id="mobile-device-btn" class="bi bi-speaker fs-5"></i>
+
+          <button
+            id="mobile-player-main-button"
+            class="btn p-0 border-0 bg-transparent text-white"
+          >
+            <i id="mobile-player-main-icon" class="bi bi-play-fill fs-2"></i>
+          </button>
+        </div>
+      </div>
+    </footer>
+    <!-- barra di ricerca in basso che esiste solo in mobile // chi l'ha fatto-->
+    <div class="sidebar-left col-12 fixed-bottom d-md-none bg-black">
+      <div class="d-flex justify-content-around text-center py-2">
+        <a class="text-secondary" href="#">
+          <i class="fas fa-home d-block"></i>
+          <span>Home</span>
+        </a>
+        <a class="text-secondary" href="#">
+          <i class="fas fa-search d-block"></i>
+          <span>Cerca</span>
+        </a>
+        <a class="text-secondary" href="#">
+          <i class="fas fa-book d-block"></i>
+          <span>La tua libreria</span>
+        </a>
+      </div>
+    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

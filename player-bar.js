@@ -343,3 +343,60 @@ playerMainButton.addEventListener("click", () => {
 
   updatePlayerMainIcon();
 });
+
+// PLAYER MOBILE
+
+// PER AGGIORNARE IN BASE AL BRANO SCELTO
+
+const updateMobileBottomBar = (song) => {
+  const cover = document.getElementById("mobile-player-cover");
+  const title = document.getElementById("mobile-player-title");
+  const artist = document.getElementById("mobile-player-artist");
+
+  if (!cover || !title || !artist) return;
+
+  cover.src = song.album.cover_small;
+  cover.alt = song.title;
+  title.textContent = song.title;
+  artist.textContent = song.artist.name;
+
+  //CAMBIA COLORE IN BASE AL BRANO
+
+  const mobilePlayerInner = document.querySelector(".mobile-player-inner");
+  cover.onload = () => {
+    const avgColor = getAverageColor(cover);
+
+    mobilePlayerInner.style.backgroundColor = `rgb(${avgColor.r}, ${avgColor.g}, ${avgColor.b})`;
+  };
+};
+
+// CLICCARE PLAY
+const mobilePlayerMainButton = document.getElementById(
+  "mobile-player-main-button",
+);
+
+if (mobilePlayerMainButton) {
+  mobilePlayerMainButton.addEventListener("click", () => {
+    if (!playing.id) return;
+
+    if (isPlaying) {
+      pauseAudio();
+    } else {
+      playAudio(playing);
+    }
+
+    updatePlayerMainIcon();
+    updateMobilePlayerIcon();
+  });
+}
+
+// AGGIORNARE ICONA PLAY/PAUSE
+
+const updateMobilePlayerIcon = () => {
+  const icon = document.getElementById("mobile-player-main-icon");
+  if (!icon) return;
+
+  icon.className = isPlaying ? "bi bi-pause-fill fs-2" : "bi bi-play-fill fs-2";
+};
+
+//BACK
