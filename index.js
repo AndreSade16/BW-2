@@ -197,3 +197,7 @@ window.addEventListener("DOMContentLoaded", function () {
     artistContainer.scrollBy({ left: 300, behavior: "smooth" });
   });
 });
+
+// logica per compilare random l'hero "viola"
+
+
