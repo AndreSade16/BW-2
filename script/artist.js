@@ -209,7 +209,6 @@ const playBtnPlayArtist = () => {
   const randomize = document.getElementById("randomize");
   const songs = artistTracksData;
   let song = {};
-  console.log(isPlaying);
   if (!isPlaying) {
     const isShuffleActive =
       (randomize && randomize.classList.contains("active")) ||
