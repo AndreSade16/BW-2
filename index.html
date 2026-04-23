@@ -78,21 +78,27 @@
           <div
             id="search-dropdown"
             class="position-absolute w-100 bg-dark rounded-3 py-2 d-none mt-2 d-flex pt-5 flex-column justify-content-center align-items-center"
-            style="top: 100%; z-index: 2; height: 300px; overflow-y: scroll"
+            style="
+              top: 100%;
+              z-index: 2;
+              height: 300px;
+              overflow-y: scroll;
+              min-width: 250px;
+            "
           >
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
 
-          <i class="bi bi-collection text-secondary fs-5"></i>
+          <i class="bi bi-collection text-secondary fs-5 d-none d-md-block"></i>
         </div>
       </div>
 
       <!-- destra navbar - MARTINA -->
       <div class="d-flex align-items-center gap-3">
-        <i class="bi bi-bell text-secondary fs-5"></i>
-        <i class="bi bi-people text-secondary fs-5"></i>
+        <i class="bi bi-bell text-secondary fs-5 d-none d-md-block"></i>
+        <i class="bi bi-people text-secondary fs-5 d-none d-md-block"></i>
 
         <button class="btn btn-dark rounded-circle fw-bold">M</button>
       </div>
