@@ -301,33 +301,26 @@
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Artisti consigliati</h4>
 
-            <!-- inizio carosello artisti -->
-            <div id="artistCarousel" class="carousel slide">
-              <div class="carousel-inner">
-                <!-- SLIDE 1, primi 5-->
-                <div class="carousel-item active">
-                  <div
-                    class="row g-3 justify-content-center"
-                    id="artist-slide-1"
-                  >
-                    <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- SLIDE 2, secondi 5-->
-                <div class="carousel-item">
-                  <div
-                    class="row g-3 justify-content-center"
-                    id="artist-slide-2"
-                  >
-                    <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  </div>
+            <div class="position-relative">
+              <!-- container -->
+              <div
+                id="artist-container"
+                class="d-flex gap-3 overflow-auto justify-content-center align-items-center ps-5"
+                style="min-height: 180px"
+              >
+                <!-- SPINNER -->
+                <div class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
                 </div>
               </div>
+
+              <!-- freccia sinistra -->
+              <button
+                id="scrollLeft"
+                class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
+              >
+                ◀
+              </button>
 
               <!-- frecce carosello -->
               <button
@@ -354,33 +347,26 @@
           <section class="container-fluid text-light my-4 p-0">
             <h4 class="mb-3">Album consigliati</h4>
 
-            <!-- inizio carosello album -->
-            <div id="albumCarousel" class="carousel slide">
-              <div class="carousel-inner">
-                <!-- SLIDE 1, primi 5-->
-                <div class="carousel-item active">
-                  <div
-                    class="row g-3 justify-content-center"
-                    id="album-slide-1"
-                  >
-                    <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- SLIDE 2, secondi 5-->
-                <div class="carousel-item">
-                  <div
-                    class="row g-3 justify-content-center"
-                    id="album-slide-2"
-                  >
-                    <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  </div>
+            <div class="position-relative">
+              <!-- container -->
+              <div
+                id="album-container"
+                class="d-flex gap-3 overflow-auto justify-content-center align-items-center ps-5"
+                style="min-height: 180px"
+              >
+                <!-- SPINNER -->
+                <div class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
                 </div>
               </div>
+
+              <!-- freccia sinistra -->
+              <button
+                id="albumScrollLeft"
+                class="btn btn-dark position-absolute start-0 top-50 translate-middle-y"
+              >
+                ◀
+              </button>
 
               <!-- frecce carosello -->
               <button

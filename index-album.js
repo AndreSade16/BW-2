@@ -360,6 +360,14 @@ const showAlbumPage = (albumData) => {
 };
 
 const showSearchPage = () => {
+  main.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   const searchHTML = `<div class="container-fluid">
       <div class="row justify-content-center pt-3 bg-dark-subtle">
         <div id="search-h2" class="col-12 mb-4">
@@ -549,12 +557,13 @@ const showSearchPage = () => {
         .then((obj) => {
           searchDropdown.innerHTML = "";
           console.log(obj.data);
+          let dropdownHTML;
           obj.data.forEach((result) => {
             const { album, id, title, type, artist } = result;
             const cover = album.cover_small;
             const albumTitle = album.title;
-            searchDropdown.innerHTML += `
-            <div class="dropdown-item text-light py-2 px-3 d-flex gap-2">
+            dropdownHTML += `
+            <div id="result-${id}" class="dropdown-item text-light py-2 px-3 d-flex gap-2" type="button">
                 <img src="${cover}" alt="${albumTitle}-cover" style="max-height: 50px">
                 <div class="d-flex flex-column justify-content-center gap-2">
                   <p class="text-capitalize fw-semibold text-light fs-6 m-0" style="height: 1rem">
@@ -572,6 +581,15 @@ const showSearchPage = () => {
                 </div>
             </div>
             `;
+          });
+          searchDropdown.innerHTML = dropdownHTML;
+          obj.data.forEach((result) => {
+            const searchResultDiv = document.getElementById(
+              `result-${result.id}`,
+            );
+            searchResultDiv.addEventListener("click", () => {
+              playAudio(result);
+            });
           });
         })
         .catch((err) => console.log("Failed to fetch", err));
@@ -917,8 +935,10 @@ const playAudio = (song) => {
   // aggiungo chiave gloale per index
   currentIndex = currentPlaylist.findIndex((s) => s.id === song.id);
   const playBtn = document.getElementById("play-btn");
-  playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
 
+  if (playBtn) {
+    playBtn.innerHTML = `<i class="fas fa-pause text-black"></i>`;
+  }
   if (playing.id === song.id && audio.currentTime) {
     audio.play();
     isPlaying = true;
