@@ -71,6 +71,12 @@ window.addEventListener("DOMContentLoaded", function () {
     history.pushState({ page: "home" }, "", "/");
   });
 
+  // VALERIA
+  // stato iniziale
+  if (openButton) {
+    openButton.classList.add("d-none");
+  }
+
   // CHIUDI
   closeButton.addEventListener("click", function () {
     sidebar.classList.remove("d-lg-block");
