@@ -160,7 +160,7 @@ async function loadArtistPage(artistId) {
     albumsData.data.forEach((album) => {
       albumsContainer.innerHTML += `
       <div class="col">
-        <div class="album-card" onclick="loadAlbumPage(${album.id})" style="cursor: pointer;">
+        <div class="album-card" onclick="fetchAlbumData(${album.id})" style="cursor: pointer;">
           <img src="${album.cover_medium}" alt="${album.title}" class="w-100 rounded mb-2">
           <p class="text-white small mb-0">${album.title}</p>
           <p class="text-secondary small">${album.release_date?.slice(0, 4) ?? ""}</p>
