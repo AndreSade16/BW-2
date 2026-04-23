@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/"
   const albumIds = [
-    111114312, 75621062, 217794942, 113728, 103248, 198908, 70928652, 13475611,
+    111114312, 1363567, 217794942, 113728, 103248, 198908, 70928652, 13475611,
     119606, 154910, 302127, 75621062,
   ]
 
@@ -127,7 +127,7 @@ window.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = cards
   }
 
-  // frecce
+  // frecce artist
   const artistContainer = document.getElementById("artist-container")
 
   document.getElementById("scrollLeft").addEventListener("click", () => {
