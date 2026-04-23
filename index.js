@@ -64,7 +64,8 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   // APRI
-  openButton.addEventListener("click", function () {
+
+  openButton?.addEventListener("click", function () {
     sidebar.classList.add("d-lg-block");
     openButton.classList.add("d-none");
   });
