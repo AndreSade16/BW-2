@@ -48,16 +48,18 @@ window.addEventListener("DOMContentLoaded", function () {
       cards += `
       <div 
         class="card bg-dark text-light border-0 p-2 flex-shrink-0"
-        style="width: 150px; cursor: pointer;"
-        onclick="fetchAlbumData(${album.id})"
+       style="width: 150px; height: 230px; cursor: pointer;"
+       onclick="fetchAlbumData(${album.id})"
       >
-        <img src="${album.cover_medium}" class="img-fluid mb-2">
-        <p class="mb-1">${album.title}</p>
-        <small class="text-secondary">
-          ${album.artist?.name || "Unknown"}
-        </small>
+       <img src="${album.cover_medium}" class="img-fluid mb-2">
+
+       <p class="mb-1 text-truncate">${album.title}</p>
+
+       <small class="text-secondary text-truncate d-block">
+       ${album.artist?.name || "Unknown"}
+       </small>
       </div>
-    `
+      `
     })
 
     container.innerHTML = cards
