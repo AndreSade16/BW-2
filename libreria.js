@@ -34,19 +34,60 @@
 
   /* ======================= 2. CACHE BRANI DA FETCH ===================== */
   // intercettiamo window.fetch per memorizzare le tracce complete (id, cover,
-  // preview ecc.) senza dover toccare search.js o index-album.js
+  // preview ecc.) senza dover toccare search.js, index-album.js o artist.js
   const trackCache = new Map(); // id -> track completa
+  // cache extra: per le tracce che arrivano dentro un album non hanno
+  // sempre il sotto-oggetto "album": ce lo ricostruiamo dall'album padre
+  const albumCache = new Map(); // albumId -> album completo
   const _origFetch = window.fetch.bind(window);
   window.fetch = function (url, ...rest) {
     const p = _origFetch(url, ...rest);
     const u = typeof url === "string" ? url : url && url.url;
-    if (u && u.includes("/deezer/search")) {
+    if (!u) return p;
+
+    // risultati della ricerca (ogni track ha già .album e .artist)
+    if (u.includes("/deezer/search")) {
       p.then((r) => r.clone().json())
         .then((data) => {
           (data.data || []).forEach((t) => trackCache.set(t.id, t));
         })
         .catch(() => {});
     }
+
+    // pagina album: l'oggetto album contiene tracks.data con le tracce
+    // (ma senza sotto-oggetto "album" dentro ogni traccia — lo aggiungiamo noi)
+    else if (/\/deezer\/album\/\d+$/.test(u)) {
+      p.then((r) => r.clone().json())
+        .then((album) => {
+          if (!album || !album.id) return;
+          albumCache.set(album.id, album);
+          const albumSummary = {
+            id: album.id,
+            title: album.title,
+            cover_medium: album.cover_medium,
+            cover_small: album.cover_small,
+          };
+          (album.tracks && album.tracks.data ? album.tracks.data : []).forEach(
+            (t) => {
+              // la traccia dentro album NON ha .album: gliela mettiamo noi
+              const enriched = { ...t, album: t.album || albumSummary };
+              trackCache.set(t.id, enriched);
+            },
+          );
+        })
+        .catch(() => {});
+    }
+
+    // pagina artista: /deezer/artist/ID/top (top tracks dell'artista)
+    // qui ogni traccia HA già album + artist, come in search
+    else if (/\/deezer\/artist\/\d+\/top/.test(u)) {
+      p.then((r) => r.clone().json())
+        .then((data) => {
+          (data.data || []).forEach((t) => trackCache.set(t.id, t));
+        })
+        .catch(() => {});
+    }
+
     return p;
   };
 
@@ -86,6 +127,23 @@
     #lib-library-page .lib-play {
       width:42px; height:42px;
       display:inline-flex; align-items:center; justify-content:center;
+    }
+
+    /* cuoricino dentro le track-card della pagina album */
+    .track-card { position: relative; }
+    .track-card .lib-heart-album {
+      position: absolute;
+      right: 3.2rem;    /* lascia spazio al menu "..." del collega */
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0;
+      z-index: 2;
+    }
+
+    /* cuoricino dentro gli <li class="track-item"> della pagina artista */
+    li.track-item .lib-heart-artist {
+      margin-left: .5rem;
+      padding: 0 .4rem;
     }
   `;
   document.head.appendChild(style);
@@ -156,11 +214,141 @@
     };
   }
 
-  // observer globale: il search-dropdown può venire (ri)creato da showSearchPage()
+  /* ---------- iniezione cuoricino nelle track-card della pagina ALBUM ---- */
+  function injectHeartIntoAlbumTrack(card) {
+    if (!card || card.querySelector(".lib-heart-album")) return;
+    // nella track-card del collega il div .track-title ha id="${track.id}"
+    const titleDiv = card.querySelector(".track-title[id]");
+    if (!titleDiv) return;
+    const id = Number(titleDiv.id);
+    if (!id) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lib-heart-btn lib-heart-album";
+    btn.title = "Aggiungi ai preferiti";
+
+    const setIcon = (liked) => {
+      btn.classList.toggle("liked", liked);
+      btn.innerHTML = liked
+        ? '<i class="fas fa-heart"></i>'
+        : '<i class="far fa-heart"></i>';
+      btn.title = liked ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
+    };
+    setIcon(isLikedById(id));
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const cached = trackCache.get(id);
+      let trackData;
+      if (cached) {
+        trackData = {
+          id: cached.id,
+          title: cached.title,
+          artist: cached.artist && cached.artist.name,
+          albumTitle: cached.album && cached.album.title,
+          cover:
+            (cached.album &&
+              (cached.album.cover_medium || cached.album.cover_small)) ||
+            "",
+          preview: cached.preview || "",
+        };
+      } else {
+        // fallback DOM: leggiamo i dati visibili nella track-card
+        const ps = titleDiv.querySelectorAll("p");
+        const albumEl = document.querySelector("#album-title, h1.fw-bold");
+        const coverEl = document.querySelector(
+          ".album-cover, #album-cover, img.album-img",
+        );
+        trackData = {
+          id,
+          title: ps[0] ? ps[0].textContent.trim() : "",
+          artist: ps[1] ? ps[1].textContent.trim() : "",
+          albumTitle: albumEl ? albumEl.textContent.trim() : "",
+          cover: coverEl ? coverEl.src : "",
+          preview: "",
+        };
+      }
+      const nowLiked = toggleLiked(trackData);
+      setIcon(nowLiked);
+    });
+
+    // lo appendiamo alla track-card: è position:relative, il pulsante è assoluto
+    card.appendChild(btn);
+  }
+
+  /* ---------- iniezione cuoricino negli <li> della pagina ARTISTA ------- */
+  function injectHeartIntoArtistTrack(li) {
+    if (!li || li.querySelector(".lib-heart-artist")) return;
+    const id = Number(li.getAttribute("data-track-id"));
+    if (!id) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lib-heart-btn lib-heart-artist";
+    btn.title = "Aggiungi ai preferiti";
+
+    const setIcon = (liked) => {
+      btn.classList.toggle("liked", liked);
+      btn.innerHTML = liked
+        ? '<i class="fas fa-heart"></i>'
+        : '<i class="far fa-heart"></i>';
+      btn.title = liked ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti";
+    };
+    setIcon(isLikedById(id));
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const cached = trackCache.get(id);
+      let trackData;
+      if (cached) {
+        trackData = {
+          id: cached.id,
+          title: cached.title,
+          artist: cached.artist && cached.artist.name,
+          albumTitle: cached.album && cached.album.title,
+          cover:
+            (cached.album &&
+              (cached.album.cover_medium || cached.album.cover_small)) ||
+            "",
+          preview: cached.preview || "",
+        };
+      } else {
+        // fallback DOM: nome traccia e immagine album sono nel <li>
+        const img = li.querySelector("img");
+        const titleEl = li.querySelector("span.text-white");
+        const artistName =
+          (document.querySelector(".artist-name") || {}).textContent ||
+          (document.querySelector("h1") || {}).textContent ||
+          "";
+        trackData = {
+          id,
+          title: titleEl ? titleEl.textContent.trim() : "",
+          artist: artistName.trim(),
+          albumTitle: "",
+          cover: img ? img.src : "",
+          preview: "",
+        };
+      }
+      const nowLiked = toggleLiked(trackData);
+      setIcon(nowLiked);
+    });
+
+    li.appendChild(btn);
+  }
+
+  // observer globale: il search-dropdown, la pagina album e quella artista
+  // vengono (ri)creati dinamicamente, quindi osserviamo tutto il body
   const globalObs = new MutationObserver(() => {
     document
       .querySelectorAll('#search-dropdown .dropdown-item[id^="result-"]')
       .forEach(injectHeartIfNeeded);
+    document.querySelectorAll(".track-card").forEach(injectHeartIntoAlbumTrack);
+    document
+      .querySelectorAll("li.track-item[data-track-id]")
+      .forEach(injectHeartIntoArtistTrack);
   });
   globalObs.observe(document.body, { childList: true, subtree: true });
 
