@@ -2,6 +2,19 @@ const albumApiLink = "https://striveschool-api.herokuapp.com/api/deezer/album/";
 const main = document.getElementById("main");
 const albumProva = document.getElementById("album-prova");
 
+const showHomePage = () => {
+  main.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+  const homeHTML = ``;
+  main.innerHTML = homeHTML;
+};
+
 const showAlbumPage = (albumData) => {
   const { artist } = albumData;
   main.innerHTML = `

@@ -35,7 +35,7 @@ async function loadArtistPage(artistId) {
               <!-- Tasto Play + Following -->
               <div class="d-flex align-items-center gap-3 p-4">
                 <button
-                  class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
+                  id="play-btn" class="btn rounded-circle d-flex align-items-center justify-content-center p-3"
                   style="background-color: #1ed760; width: 56px; height: 56px"
                   onclick="playArtistAudio(artistTracksData[0])"
                 >
@@ -142,7 +142,7 @@ async function loadArtistPage(artistId) {
     <li class="d-flex align-items-center gap-3 mb-2 track-item"
         data-track-id="${track.id}"
         style="cursor: pointer;"
-        onclick="playArtistAudio(artistTracksData[${index}])">
+        onclick="playAudio(artistTracksData[${index}])">
       <span class="text-secondary" style="width: 20px">${index + 1}</span>
       <img src="${track.album.cover_small}" alt="" class="rounded" style="width:40px; height:40px;">
       <span class="text-white">${track.title}</span>
