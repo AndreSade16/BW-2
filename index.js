@@ -1,35 +1,81 @@
+// GLOBALE PER AVANTI E DIETRO - MARTINA
+
+const main = document.getElementById("main");
+const homeMarkup = main.innerHTML;
+
+const loadHomePage = () => {
+  main.innerHTML = homeMarkup;
+};
+
+// salvo la home come stato iniziale - MARTINA
+
+window.addEventListener("DOMContentLoaded", () => {
+  history.replaceState({ page: "home" }, "", window.location.pathname);
+});
+
+// avanti e indietro
+
+window.onpopstate = (event) => {
+  if (!event.state || event.state.page === "home") {
+    loadHomePage();
+    return;
+  }
+
+  if (event.state.page === "artist") {
+    loadArtistPage(event.state.artistId, false);
+    return;
+  }
+
+  if (event.state.page === "album") {
+    loadAlbumPage(event.state.albumId, false);
+  }
+};
+
+// recupero i bottoni
+
+const backBtn = document.getElementById("btn-back");
+const forwardBtn = document.getElementById("btn-forward");
+
+backBtn.addEventListener("click", () => {
+  history.back();
+});
+
+forwardBtn.addEventListener("click", () => {
+  history.forward();
+});
+
 window.addEventListener("DOMContentLoaded", function () {
   // Logica chiusura sidebar-right al click del bottone "X"
-  const closeButton = document.getElementById("closeSidebar")
-  const openButton = document.getElementById("openSidebar")
-  const sidebar = document.getElementById("sidebarRight")
+  const closeButton = document.getElementById("closeSidebar");
+  const openButton = document.getElementById("openSidebar");
+  const sidebar = document.getElementById("sidebarRight");
 
   // stato iniziale
-  openButton.classList.add("d-none")
+  openButton.classList.add("d-none");
 
   // CHIUDI
   closeButton.addEventListener("click", function () {
-    sidebar.classList.remove("d-lg-block")
-    openButton.classList.remove("d-none")
-  })
+    sidebar.classList.remove("d-lg-block");
+    openButton.classList.remove("d-none");
+  });
 
   // APRI
   openButton.addEventListener("click", function () {
-    sidebar.classList.add("d-lg-block")
-    openButton.classList.add("d-none")
-  })
+    sidebar.classList.add("d-lg-block");
+    openButton.classList.add("d-none");
+  });
 
   // Logica popolamento album carousel
 
-  const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/"
+  const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/";
   const albumIds = [
     111114312, 1363567, 217794942, 113728, 103248, 198908, 70928652, 13475611,
     119606, 154910, 302127, 75621062,
-  ]
+  ];
 
-  const container = document.getElementById("album-container")
+  const container = document.getElementById("album-container");
 
-  container.innerHTML = ""
+  container.innerHTML = "";
 
   const addAlbumCard = function (album) {
     const card = `
@@ -44,37 +90,37 @@ window.addEventListener("DOMContentLoaded", function () {
         ${album.artist?.name || "Unknown"}
       </small>
     </div>
-  `
+  `;
 
-    container.innerHTML += card
-  }
+    container.innerHTML += card;
+  };
 
   albumIds.forEach((id) => {
     fetch(albumUrl + id)
       .then((res) => {
-        if (!res.ok) throw new Error("Errore fetch")
+        if (!res.ok) throw new Error("Errore fetch");
 
-        return res.json()
+        return res.json();
       })
 
       .then((album) => {
-        addAlbumCard(album)
+        addAlbumCard(album);
       })
 
-      .catch((err) => console.log("ERRORE:", err))
-  })
+      .catch((err) => console.log("ERRORE:", err));
+  });
 
   // frecce
   document.getElementById("albumScrollLeft").addEventListener("click", () => {
-    container.scrollBy({ left: -300, behavior: "smooth" })
-  })
+    container.scrollBy({ left: -300, behavior: "smooth" });
+  });
 
   document.getElementById("albumScrollRight").addEventListener("click", () => {
-    container.scrollBy({ left: 300, behavior: "smooth" })
-  })
+    container.scrollBy({ left: 300, behavior: "smooth" });
+  });
 
   // Logica popolamento artisti carousel
-  const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/"
+  const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/";
   const artistIds = [
     27, // Daft Punk
     412, // Queen
@@ -88,11 +134,11 @@ window.addEventListener("DOMContentLoaded", function () {
     1562681, // Olivia Rodrigo
     757, // David Guetta
     12178, // Arctic Monkeys
-  ]
+  ];
 
-  const artistContainer = document.getElementById("artist-container")
+  const artistContainer = document.getElementById("artist-container");
 
-  artistContainer.innerHTML = ""
+  artistContainer.innerHTML = "";
 
   const addArtistCard = function (artist) {
     const card = `
@@ -112,33 +158,33 @@ window.addEventListener("DOMContentLoaded", function () {
         Artista
       </small>
     </div>
-  `
+  `;
 
-    artistContainer.innerHTML += card
-  }
+    artistContainer.innerHTML += card;
+  };
 
   artistIds.forEach((id) => {
     fetch(artistUrl + id)
       .then((res) => {
-        if (!res.ok) throw new Error("Errore fetch")
+        if (!res.ok) throw new Error("Errore fetch");
 
-        return res.json()
+        return res.json();
       })
 
       .then((artist) => {
-        addArtistCard(artist)
+        addArtistCard(artist);
       })
 
-      .catch((err) => console.log("ERRORE artist:", err))
-  })
+      .catch((err) => console.log("ERRORE artist:", err));
+  });
 
   // frecce
 
   document.getElementById("scrollLeft").addEventListener("click", () => {
-    artistContainer.scrollBy({ left: -300, behavior: "smooth" })
-  })
+    artistContainer.scrollBy({ left: -300, behavior: "smooth" });
+  });
 
   document.getElementById("scrollRight").addEventListener("click", () => {
-    artistContainer.scrollBy({ left: 300, behavior: "smooth" })
-  })
-})
+    artistContainer.scrollBy({ left: 300, behavior: "smooth" });
+  });
+});
