@@ -627,7 +627,7 @@
     // 1) link sidebar desktop
     const sideLink = e.target.closest("a.sidebar-link");
     if (sideLink) {
-      const label = sideLink.querySelector("span.mx-3");
+      const label = sideLink.querySelector("span.label");
       const text = label ? label.textContent.trim() : "";
       if (text === "La tua libreria") {
         e.preventDefault();
