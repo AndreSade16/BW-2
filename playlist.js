@@ -84,8 +84,9 @@
 
     /* posizionamento per le 3 collocazioni speciali (album è absolute) */
     .track-card .pl-plus-album {
-      position: absolute; right: 5.2rem; top: 50%;
-      transform: translateY(-50%); z-index: 2;
+      position: absolute; right: 20%; top: 50%;
+      transform: translateY(-50%); z-index: 0;
+      width: auto;
     }
     li.track-item .pl-plus-artist { margin-left: .25rem; padding: 0 .3rem; }
 
@@ -353,6 +354,7 @@
   /* ======================= 6. INIEZIONE "+" ============================ */
   const makePlusButton = (className) => {
     const b = document.createElement("button");
+    b.classList.add("z-0");
     b.type = "button";
     b.className = `pl-plus-btn ${className}`;
     b.innerHTML = '<i class="fas fa-plus-circle"></i>';
@@ -366,7 +368,9 @@
     const id = Number((item.id || "").replace("result-", ""));
     if (!id) return;
     const btn = makePlusButton("pl-plus-search");
-    btn.addEventListener("click", (e) => {
+    const icon = btn.querySelector(".fa-plus-circle");
+    icon.classList.add("z-3");
+    icon.addEventListener("click", (e) => {
       e.stopPropagation();
       e.preventDefault();
       const track = readTrack(id, searchDomFallback(item));

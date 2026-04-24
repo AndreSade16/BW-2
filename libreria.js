@@ -133,7 +133,7 @@
     .track-card { position: relative; }
     .track-card .lib-heart-album {
       position: absolute;
-      right: 3.2rem;    /* lascia spazio al menu "..." del collega */
+      right: 7%;    /* lascia spazio al menu "..." del collega */
       top: 50%;
       transform: translateY(-50%);
       margin-left: 0;
