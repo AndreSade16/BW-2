@@ -330,3 +330,27 @@ body {
   background-color: #393939;
   color: white;
 }
+
+// song list hover
+.song-list p:hover {
+  cursor: pointer;
+  background-color: #1a1a1a
+}
+
+// card hover scale
+.album-card,
+.artist-card {
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover,
+.artist-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+#album-container,
+#artist-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

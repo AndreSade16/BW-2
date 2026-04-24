@@ -131,7 +131,7 @@ window.addEventListener("DOMContentLoaded", function () {
         // costruisco card
         albumCards += `
         <div 
-          class="card bg-dark text-light border-0 p-2 flex-shrink-0"
+          class="album-card card bg-dark text-light border-0 p-2 flex-shrink-0"
           style="width: 150px; height: 230px; cursor: pointer;"
           onclick="fetchAlbumData(${album.id})"
         >
@@ -216,7 +216,7 @@ window.addEventListener("DOMContentLoaded", function () {
         if (artist && artist.id) {
           artistCards += `
         <div 
-          class="card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
+          class="artist-card card bg-dark text-light border-0 p-3 text-center flex-shrink-0"
           style="width: 150px; cursor: pointer;"
           onclick="loadArtistPage(${artist.id})"
         >
