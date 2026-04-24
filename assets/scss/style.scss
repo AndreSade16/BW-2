@@ -302,6 +302,31 @@ body {
 }
 
 // cursor pointer sidebar right
-#closeSidebar, .friend {
+#closeSidebar,
+.friend {
   cursor: pointer;
+}
+
+// hide ads button
+#btn-hide-add {
+  background-color: #494848;
+  color: #8a8a8a;
+  font-size: 0.9em;
+  top: 0px;
+  right: 35px;
+}
+
+#btn-hide-add:hover {
+  background-color: #393939;
+  color: white;
+}
+
+// show sidebar botton
+#openSidebar {
+  background-color: #494848;
+  color: #8a8a8a;
+}
+#openSidebar:hover {
+  background-color: #393939;
+  color: white;
 }

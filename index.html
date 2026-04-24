@@ -245,15 +245,20 @@
           id="main"
           class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center overflow-y-auto overflow-x-hidden vh-100 p-0"
         >
-          <!-- -------------------------------- -->
-          <!-- inserire qui i bottoni "< >" e il dropdown -->
-          <!-- -------------------------------- -->
-
           <!-- MAIN HOMEPAGE CONTENT -->
-          <!-- Blocco adds, VIOLA -->
-          <section class="container-fluid text-light mt-3">
+          <!-- Blocco adds, ex-VIOLA -->
+          <section class="container-fluid text-light mt-3" id="hero">
             <div class="px-3">
-              <div class="viola p-4">
+              <div class="viola p-4 position-relative">
+                <button
+                  id="btn-hide-add"
+                  class="btn position-absolute"
+                >
+                  <small class="mb-0">
+                    NASCONDI <span class="d-none d-lg-inline">ANNUNCI</span>
+                  </small>
+                </button>
+
                 <div class="d-flex align-items-center row">
                   <div class="col-8 offset-2 col-md-4 col-lg-3 offset-md-0">
                     <img id="hero-img" class="me-4 img-fluid" />
@@ -267,11 +272,13 @@
 
                     <div class="d-flex align-items-center gap-3">
                       <button
+                      id="hero-play"
                         class="btn btn-primary fw-bold rounded-5 px-4 py-2"
                       >
                         Play
                       </button>
-                      <button class="btn btn-outline-light p-2 px-4 rounded-5">
+                      <button 
+                      id="hero-salva" class="btn btn-outline-light p-2 px-4 rounded-5">
                         Salva
                       </button>
                       <i class="fas fa-ellipsis-h text-secondary ms-1"></i>
@@ -453,7 +460,7 @@
           <!-- bottone controllo sidebar-right -->
           <button
             id="openSidebar"
-            class="btn btn-dark position-absolute top-25 end-0 m-3"
+            class="btn position-absolute top-25 end-0 m-3"
           >
             <i class="fas fa-users"></i>
           </button>
