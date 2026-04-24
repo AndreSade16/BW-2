@@ -27,13 +27,17 @@ $theme-colors: (
   --bs-secondary-rgb: 146, 146, 146;
   --bs-dark-rgb: 18, 18, 18;
 }
+
 body {
   font-family: "CircularStd", sans-serif;
+  padding-bottom: 90px;
 }
+
 h3 {
   font-family: "CircularStd", sans-serif;
   font-weight: 700;
 }
+
 .sidebar-left a div {
   width: 25px;
   height: 25px;
@@ -49,21 +53,21 @@ h3 {
 }
 
 .active-sidebar {
-  color: #ffffff !important;
+  color: #fff !important;
 
   span {
-    color: #ffffff !important;
+    color: #fff !important;
     font-weight: 600;
   }
 
   i,
   img {
-    filter: brightness(0) invert(1); // rende icone bianche
+    filter: brightness(0) invert(1);
   }
 }
 
 //-------------------- MAIN CSS -------------------------------- //
-//-------------------- MAIN CSS -------------------------------- //
+
 .main-content {
   background: linear-gradient(to bottom, #4d4d4d, #121212);
 }
@@ -89,30 +93,32 @@ h3 {
   &:hover {
     background-color: #4d4d4d;
   }
+
   img {
     width: 80px;
     height: 80px;
     object-fit: cover;
   }
 }
-//GRIGLIA DIV CON 4 IMG //
+
+// GRIGLIA DIV CON 4 IMG //
 .square-grid {
   max-width: 101px;
   min-width: 100px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
+
+  img {
+    flex: 0 0 50%;
+    height: 50%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
-.square-grid img {
-  flex: 0 0 50%;
-  height: 50%;
-  object-fit: cover;
-  display: block;
-}
 // BARRE DI SCORRIMENTO //
-
 #main,
 #sidebarRight,
 .overflow-auto {
@@ -130,35 +136,34 @@ h3 {
   &::-webkit-scrollbar-thumb {
     background: #3a3a3a;
     border-radius: 0;
-  }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    &:hover {
+      background: #555;
+    }
   }
 }
+
 // HOVER SIDEBAR //
 .sidebar-link:hover span {
   color: #fff;
 }
 
-.sidebar-link:hover img {
+.hcl-icons:hover {
   filter: brightness(0) invert(1);
 }
 
 .card {
-  height: 100%;
   height: 220px;
   display: flex;
   flex-direction: column;
-}
 
-.card img {
-  width: 100%;
-  object-fit: cover;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 /* BOTTOM BAR MARTINA */
-
 .player-bar {
   position: fixed;
   bottom: 0;
@@ -168,18 +173,14 @@ h3 {
   background-color: #181818;
   border-top: 1px solid #181818;
   z-index: 1050;
+
+  .row {
+    height: 100%;
+  }
 }
 
 .player-icon {
   cursor: pointer;
-}
-
-.player-bar .row {
-  height: 100%;
-}
-
-body {
-  padding-bottom: 90px;
 }
 
 .liked {
@@ -187,7 +188,6 @@ body {
 }
 
 /* barra tempo canzoni MARTINA */
-
 .player-progress {
   background-color: #4d4d4d !important;
   border-radius: 999px;
@@ -199,18 +199,18 @@ body {
   position: relative;
   height: 100%;
   border-radius: 999px;
-}
 
-.player-progress-fill::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -8px;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background-color: white;
-  border-radius: 50%;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
 }
 
 .knob-hidden::after {
@@ -229,8 +229,62 @@ body {
   z-index: 1060;
   background: transparent;
 }
+
 .bg-gradient10 {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), #000);
+}
+
+// cursor pointer sidebar right
+#closeSidebar,
+.friend {
+  cursor: pointer;
+}
+
+// hide ads button
+#btn-hide-add {
+  background-color: #494848;
+  color: #8a8a8a;
+  font-size: 0.9em;
+  top: 0;
+  right: 35px;
+
+  &:hover {
+    background-color: #393939;
+    color: #fff;
+  }
+}
+
+// show sidebar button
+#openSidebar {
+  background-color: #494848;
+  color: #8a8a8a;
+
+  &:hover {
+    background-color: #393939;
+    color: #fff;
+  }
+}
+
+// song list hover
+.song-list p:hover {
+  cursor: pointer;
+  background-color: #1a1a1a;
+}
+
+// card hover scale
+.album-card,
+.artist-card {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    z-index: 10;
+  }
+}
+
+#album-container,
+#artist-container {
+  padding: 10px 0;
 }
 
 //--------FONTS--------//
@@ -250,7 +304,6 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Book.otf);
   font-weight: 400;
-  font-style: normal;
 }
 @font-face {
   font-family: "Circular";
@@ -262,13 +315,6 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Medium.otf);
   font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Circular";
-  src: url(../fonts/CircularStd-MediumItalic.otf);
-  font-weight: 500;
-  font-style: italic;
 }
 @font-face {
   font-family: "Circular";
@@ -280,7 +326,6 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Bold.otf);
   font-weight: 700;
-  font-style: normal;
 }
 @font-face {
   font-family: "Circular";
@@ -292,65 +337,10 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Black.otf);
   font-weight: 900;
-  font-style: normal;
 }
 @font-face {
   font-family: "Circular";
   src: url(../fonts/CircularStd-BlackItalic.otf);
   font-weight: 900;
   font-style: italic;
-}
-
-// cursor pointer sidebar right
-#closeSidebar,
-.friend {
-  cursor: pointer;
-}
-
-// hide ads button
-#btn-hide-add {
-  background-color: #494848;
-  color: #8a8a8a;
-  font-size: 0.9em;
-  top: 0px;
-  right: 35px;
-}
-
-#btn-hide-add:hover {
-  background-color: #393939;
-  color: white;
-}
-
-// show sidebar botton
-#openSidebar {
-  background-color: #494848;
-  color: #8a8a8a;
-}
-#openSidebar:hover {
-  background-color: #393939;
-  color: white;
-}
-
-// song list hover
-.song-list p:hover {
-  cursor: pointer;
-  background-color: #1a1a1a
-}
-
-// card hover scale
-.album-card,
-.artist-card {
-  transition: transform 0.3s ease;
-}
-
-.album-card:hover,
-.artist-card:hover {
-  transform: scale(1.05);
-  z-index: 10;
-}
-
-#album-container,
-#artist-container {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }

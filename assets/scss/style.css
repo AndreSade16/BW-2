@@ -11987,6 +11987,7 @@ textarea.form-control-lg {
 
 body {
   font-family: "CircularStd", sans-serif;
+  padding-bottom: 90px;
 }
 
 h3, .h3 {
@@ -12010,10 +12011,10 @@ h3, .h3 {
 }
 
 .active-sidebar {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 .active-sidebar span {
-  color: #ffffff !important;
+  color: #fff !important;
   font-weight: 600;
 }
 .active-sidebar i,
@@ -12055,7 +12056,6 @@ h3, .h3 {
   flex-wrap: wrap;
   overflow: hidden;
 }
-
 .square-grid img {
   flex: 0 0 50%;
   height: 50%;
@@ -12096,17 +12096,15 @@ h3, .h3 {
   color: #fff;
 }
 
-.sidebar-link:hover img {
+.hcl-icons:hover {
   filter: brightness(0) invert(1);
 }
 
 .card {
-  height: 100%;
   height: 220px;
   display: flex;
   flex-direction: column;
 }
-
 .card img {
   width: 100%;
   -o-object-fit: cover;
@@ -12124,17 +12122,12 @@ h3, .h3 {
   border-top: 1px solid #181818;
   z-index: 1050;
 }
-
-.player-icon {
-  cursor: pointer;
-}
-
 .player-bar .row {
   height: 100%;
 }
 
-body {
-  padding-bottom: 90px;
+.player-icon {
+  cursor: pointer;
 }
 
 .liked {
@@ -12154,7 +12147,6 @@ body {
   height: 100%;
   border-radius: 999px;
 }
-
 .player-progress-fill::after {
   content: "";
   position: absolute;
@@ -12163,7 +12155,7 @@ body {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  background-color: white;
+  background-color: #fff;
   border-radius: 50%;
 }
 
@@ -12185,7 +12177,53 @@ body {
 }
 
 .bg-gradient10 {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgb(0, 0, 0));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), #000);
+}
+
+#closeSidebar,
+.friend {
+  cursor: pointer;
+}
+
+#btn-hide-add {
+  background-color: #494848;
+  color: #8a8a8a;
+  font-size: 0.9em;
+  top: 0;
+  right: 35px;
+}
+#btn-hide-add:hover {
+  background-color: #393939;
+  color: #fff;
+}
+
+#openSidebar {
+  background-color: #494848;
+  color: #8a8a8a;
+}
+#openSidebar:hover {
+  background-color: #393939;
+  color: #fff;
+}
+
+.song-list p:hover {
+  cursor: pointer;
+  background-color: #1a1a1a;
+}
+
+.album-card,
+.artist-card {
+  transition: transform 0.3s ease;
+}
+.album-card:hover,
+.artist-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+#album-container,
+#artist-container {
+  padding: 10px 0;
 }
 
 @font-face {
@@ -12204,7 +12242,6 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Book.otf);
   font-weight: 400;
-  font-style: normal;
 }
 @font-face {
   font-family: "Circular";
@@ -12216,13 +12253,6 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Medium.otf);
   font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Circular";
-  src: url(../fonts/CircularStd-MediumItalic.otf);
-  font-weight: 500;
-  font-style: italic;
 }
 @font-face {
   font-family: "Circular";
@@ -12234,7 +12264,6 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Bold.otf);
   font-weight: 700;
-  font-style: normal;
 }
 @font-face {
   font-family: "Circular";
@@ -12246,60 +12275,10 @@ body {
   font-family: "Circular";
   src: url(../fonts/CircularStd-Black.otf);
   font-weight: 900;
-  font-style: normal;
 }
 @font-face {
   font-family: "Circular";
   src: url(../fonts/CircularStd-BlackItalic.otf);
   font-weight: 900;
   font-style: italic;
-}
-#closeSidebar,
-.friend {
-  cursor: pointer;
-}
-
-#btn-hide-add {
-  background-color: #494848;
-  color: #8a8a8a;
-  font-size: 0.9em;
-  top: 0px;
-  right: 35px;
-}
-
-#btn-hide-add:hover {
-  background-color: #393939;
-  color: white;
-}
-
-#openSidebar {
-  background-color: #494848;
-  color: #8a8a8a;
-}
-
-#openSidebar:hover {
-  background-color: #393939;
-  color: white;
-}
-
-.song-list p:hover {
-  cursor: pointer;
-  background-color: #1a1a1a;
-}
-
-.album-card,
-.artist-card {
-  transition: transform 0.3s ease;
-}
-
-.album-card:hover,
-.artist-card:hover {
-  transform: scale(1.05);
-  z-index: 10;
-}
-
-#album-container,
-#artist-container {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }/*# sourceMappingURL=style.css.map */
