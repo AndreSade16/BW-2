@@ -775,12 +775,12 @@ const displayAlbumData = (data) => {
                 <div class="col-2 d-none d-xl-inline-block text-end">
                   <p class="m-0 text-secondary fw-semibold">${rank}</p>
                 </div>
-                <div class="col-2 text-end d-none d-xl-inline-block">
+                <div class="col-2 text-end d-none d-xl-inline-block pe-lg-0">
                   <p class="m-0 text-secondary fw-semibold">${Math.floor(duration / 60)}:${duration % 60 > 9 ? duration % 60 : "0" + (duration % 60)}</p>
                 </div>
                     <i class="fas fa-ellipsis-v col-1 d-xl-none text-white align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
-                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-xl-flex opacity-0 align-items-center  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
+                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-xl-flex opacity-0 align-items-center text-white ps-lg-3 ms-xl-4 ps-xxl-5" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
                     <ul class="dropdown-menu w-auto dropdown-menu-end bg-dark border-1 border-white p-1">
                       <li

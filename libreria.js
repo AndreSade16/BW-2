@@ -138,6 +138,7 @@
       transform: translateY(-50%);
       margin-left: 0;
       z-index: 2;
+      width: auto;
     }
 
     /* cuoricino dentro gli <li class="track-item"> della pagina artista */
@@ -286,7 +287,7 @@
 
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "lib-heart-btn lib-heart-artist";
+    btn.className = "lib-heart-btn lib-heart-artist end-50";
     btn.title = "Aggiungi ai preferiti";
 
     const setIcon = (liked) => {
