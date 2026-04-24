@@ -69,6 +69,18 @@ window.addEventListener("DOMContentLoaded", function () {
     sidebar.classList.add("d-lg-block")
     openButton.classList.add("d-none")
   })
+
+  // Logica chiusura add hero al click del bottone "NASCONDI ANNUNCI"
+  const closeAddButton = document.getElementById("btn-hide-add")
+  const hero = document.getElementById("hero")
+
+
+  // CHIUDI
+  closeAddButton.addEventListener("click", function () {
+    hero.classList.add("d-none")
+  })
+
+  
   // funzione che ritenta al fallimento della fetch
   const fetchWithRetry = (url, retries = 2) => {
     return fetch(url)

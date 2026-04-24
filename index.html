@@ -245,15 +245,20 @@
           id="main"
           class="main-content col-12 col-md-8 col-lg order-1 order-md-2 d-flex flex-column align-items-center overflow-y-auto overflow-x-hidden vh-100 p-0"
         >
-          <!-- -------------------------------- -->
-          <!-- inserire qui i bottoni "< >" e il dropdown -->
-          <!-- -------------------------------- -->
-
           <!-- MAIN HOMEPAGE CONTENT -->
-          <!-- Blocco adds, VIOLA -->
-          <section class="container-fluid text-light mt-3">
+          <!-- Blocco adds, ex-VIOLA -->
+          <section class="container-fluid text-light mt-3" id="hero">
             <div class="px-3">
-              <div class="viola p-4">
+              <div class="viola p-4 position-relative">
+                <button
+                  id="btn-hide-add"
+                  class="btn position-absolute"
+                >
+                  <small class="mb-0">
+                    NASCONDI <span class="d-none d-lg-inline">ANNUNCI</span>
+                  </small>
+                </button>
+
                 <div class="d-flex align-items-center row">
                   <div class="col-8 offset-2 col-md-4 col-lg-3 offset-md-0">
                     <img id="hero-img" class="me-4 img-fluid" />

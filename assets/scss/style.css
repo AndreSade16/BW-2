@@ -12253,4 +12253,20 @@ body {
   src: url(../fonts/CircularStd-BlackItalic.otf);
   font-weight: 900;
   font-style: italic;
+}
+#closeSidebar, .friend {
+  cursor: pointer;
+}
+
+#btn-hide-add {
+  background-color: #494848;
+  color: #8a8a8a;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+}
+
+#btn-hide-add:hover {
+  background-color: #393939;
+  color: white;
 }/*# sourceMappingURL=style.css.map */
