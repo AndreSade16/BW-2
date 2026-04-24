@@ -758,6 +758,10 @@
     }
   }
 
+  // ----- piccola utility esposta: accesso in sola lettura alla cache dei
+  // brani (usata dal modulo playlist.js per riutilizzare i dati già fetchati)
+  window.libGetTrackFromCache = (id) => trackCache.get(Number(id)) || null;
+
   // primo caricamento quando il DOM è pronto, poi refresh ogni 30 s
   const bootFriends = () => {
     refreshFriendsActivity();
