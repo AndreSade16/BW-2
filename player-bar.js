@@ -101,15 +101,15 @@ const formatTime = (seconds) => {
 playerBarCenter.innerHTML = `
   <div class="d-flex flex-column align-items-center justify-content-center w-100">
     <div class="d-flex align-items-center gap-4 mb-2">
-      <i id="shuffle-btn" class="bi bi-shuffle text-secondary player-icon"></i>
-      <i id="prev-btn" class="bi bi-skip-start-fill text-secondary player-icon"></i>
+      <i id="shuffle-btn" class="bi bi-shuffle text-secondary player-icon fs-4"></i>
+      <i id="prev-btn" class="bi bi-skip-start-fill text-secondary player-icon fs-4"></i>
 
-      <button id="player-main-button" class="player-main-btn d-flex justify-content-center align-items-center rounded-circle">
+      <button id="player-main-button" class="player-main-btn d-flex justify-content-center align-items-center rounded-circle bg-white text-black border-0 fs-2" style="width: 45px; height: 45px">
         <i id="player-main-icon" class="bi bi-play-fill"></i>
       </button>
 
-      <i id="next-btn" class="bi bi-skip-end-fill text-secondary player-icon"></i>
-      <i id="repeat-btn" class="bi bi-repeat text-secondary player-icon"></i>
+      <i id="next-btn" class="bi bi-skip-end-fill text-secondary player-icon fs-4"></i>
+      <i id="repeat-btn" class="bi bi-repeat text-secondary player-icon fs-4"></i>
     </div>
 
     <div class="d-flex align-items-center gap-2 w-100">
