@@ -3,7 +3,8 @@
   max-width: 300px;
   transition: all 0.3s ease;
   background-color: #121212;
-  max-height: 100dvh;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 
 #sidebar-toggler-container {
@@ -22,7 +23,7 @@
 }
 
 #sidebar.collapsed {
-  width: 80px;
+  width: 100px;
 }
 
 #sidebar.collapsed .label {

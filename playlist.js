@@ -450,7 +450,7 @@
   // aggiungiamo in cima le playlist reali, mantenendo le altre come mock
   function refreshSidebarPlaylists() {
     const holder = document.querySelector(
-      'nav .small.container.text-secondary, aside .small.container.text-secondary, .small.container.text-secondary',
+      "nav .small.container.text-secondary, aside .small.container.text-secondary, .small.container.text-secondary",
     );
     if (!holder) return;
 
@@ -601,7 +601,11 @@
 
     // elimina
     section.querySelector("#pl-delete-btn").addEventListener("click", () => {
-      if (confirm(`Eliminare la playlist "${pl.name}"? I brani resteranno nella tua libreria se li hai col cuoricino.`)) {
+      if (
+        confirm(
+          `Eliminare la playlist "${pl.name}"? I brani resteranno nella tua libreria se li hai col cuoricino.`,
+        )
+      ) {
         deletePlaylist(pl.id);
         refreshSidebarPlaylists();
         hidePlaylistPage();
@@ -648,6 +652,13 @@
 
   /* ======================= 9. CLICK HANDLER GLOBALI ==================== */
   document.addEventListener("click", (e) => {
+    // click sul link "Le tue playlist" nella sidebar
+    const plPageLink = e.target.closest("#pl-sidebar-link");
+    if (plPageLink) {
+      e.preventDefault();
+      showPlaylistsIndex(); // mostra lista di tutte le playlist
+      return;
+    }
     // "Crea playlist" nella sidebar sx
     const sideLink = e.target.closest("a.sidebar-link");
     if (sideLink) {
@@ -699,4 +710,86 @@
   } else {
     boot();
   }
+
+  // display di playlist come pagina cliccabile
+
+  function showPlaylistsIndex() {
+    const main = document.getElementById("main");
+    if (!main) return;
+
+    hiddenByPlaylist = [];
+    Array.from(main.children).forEach((el) => {
+      if (el.id === "pl-playlist-page") return;
+      if (!el.classList.contains("d-none")) {
+        el.classList.add("d-none");
+        hiddenByPlaylist.push(el);
+      }
+    });
+
+    let section = document.getElementById("pl-playlist-page");
+    if (!section) {
+      section = document.createElement("section");
+      section.id = "pl-playlist-page";
+      section.className = "text-light my-4 px-3";
+      main.appendChild(section);
+    }
+    section.classList.remove("d-none");
+
+    const playlists = getPlaylists();
+    section.innerHTML = `
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold me-3">Le tue playlist</h2>
+      <button id="pl-new-from-index" class="btn btn-success rounded-pill px-3">
+        <i class="fas fa-plus me-2"></i>Nuova playlist
+      </button>
+    </div>
+    ${
+      playlists.length === 0
+        ? `<div style="color:#b3b3b3;text-align:center;padding:3rem 1rem;">
+           <i class="fas fa-list fs-1 d-block mb-3"></i>
+           <p>Non hai ancora creato nessuna playlist.</p>
+         </div>`
+        : `<ul class="list-unstyled d-flex flex-column gap-3">
+           ${playlists
+             .map(
+               (p) => `
+             <li class="pl-card d-flex align-items-center gap-3 rounded-3 p-3"
+                 style="cursor:pointer;" data-open-playlist="${p.id}">
+               <div class="bg-success d-flex align-items-center justify-content-center flex-shrink-0"
+                    style="width:56px;height:56px;border-radius:6px;">
+                 <i class="fas fa-music text-dark fs-4"></i>
+               </div>
+               <div class="flex-grow-1 overflow-hidden">
+                 <div class="fw-semibold text-light text-truncate">${escapeHtml(p.name)}</div>
+                 <div class="small text-secondary">${p.tracks.length} ${p.tracks.length === 1 ? "brano" : "brani"}</div>
+               </div>
+               <i class="fas fa-chevron-right text-secondary"></i>
+             </li>`,
+             )
+             .join("")}
+         </ul>`
+    }
+  `;
+
+    section
+      .querySelector("#pl-new-from-index")
+      ?.addEventListener("click", () => {
+        const name = prompt("Nome della nuova playlist:");
+        if (name && name.trim()) {
+          createPlaylist(name.trim());
+          refreshSidebarPlaylists();
+          showPlaylistsIndex(); // aggiorna la vista
+        }
+      });
+
+    section.querySelectorAll("[data-open-playlist]").forEach((li) => {
+      li.addEventListener("click", () => {
+        showPlaylistPage(li.getAttribute("data-open-playlist"));
+      });
+    });
+
+    main.scrollTo({ top: 0, behavior: "smooth" });
+  }
 })();
+
+// Mostra playlists come lista cliccabile
