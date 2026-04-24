@@ -12253,4 +12253,7 @@ body {
   src: url(../fonts/CircularStd-BlackItalic.otf);
   font-weight: 900;
   font-style: italic;
+}
+#closeSidebar, .friend {
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
