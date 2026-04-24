@@ -287,7 +287,7 @@
 
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "lib-heart-btn lib-heart-artist";
+    btn.className = "lib-heart-btn lib-heart-artist end-50";
     btn.title = "Aggiungi ai preferiti";
 
     const setIcon = (liked) => {
