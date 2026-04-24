@@ -104,7 +104,7 @@ playerBarCenter.innerHTML = `
       <i id="shuffle-btn" class="bi bi-shuffle text-secondary player-icon"></i>
       <i id="prev-btn" class="bi bi-skip-start-fill text-secondary player-icon"></i>
 
-      <button id="player-main-button" class="player-main-btn d-flex justify-content-center align-items-center rounded-circle">
+      <button id="player-main-button" class="player-main-btn d-flex justify-content-center align-items-center rounded-circle bg-white text-black border-0 fs-2" style="width: 45px; height: 45px">
         <i id="player-main-icon" class="bi bi-play-fill"></i>
       </button>
 
