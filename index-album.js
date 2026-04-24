@@ -315,7 +315,7 @@ const showAlbumPage = (albumData) => {
                 <div class="col-2">
                   <p class="fw-semibold text-end">RIPRODUZIONI</p>
                 </div>
-                <div class="col-2 text-end">
+                <div class="col-2 text-end ps-xl-0 pe-xl-4 me-xl-2">
                   <i class="far fa-clock fw-semibold"></i>
                 </div>
                 <div class="col-1"></div>
@@ -764,7 +764,7 @@ const displayAlbumData = (data) => {
       album,
     } = track;
     tracksHTML += `
-            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2 ps-2">
+            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2 ps-2 flex-nowrap">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-xl-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
@@ -778,9 +778,9 @@ const displayAlbumData = (data) => {
                 <div class="col-2 text-end d-none d-xl-inline-block pe-lg-0">
                   <p class="m-0 text-secondary fw-semibold">${Math.floor(duration / 60)}:${duration % 60 > 9 ? duration % 60 : "0" + (duration % 60)}</p>
                 </div>
-                    <i class="fas fa-ellipsis-v col-1 d-xl-none text-white align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
+                    <i class="fas fa-ellipsis-v col-1 d-xl-none text-white align-self-center text-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
-                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-xl-flex opacity-0 align-items-center text-white ps-lg-3 ms-xl-4 ps-xxl-5" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
+                    <i class="ellipsis-h fas fa-ellipsis-h col-1 d-none d-xl-flex opacity-0 align-items-center text-white ps-xl-5 ms-xl-5 ps-xxl-5 pe-xl-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-title="${title}" data-artist="${artist.name}" 
                     data-album="${album?.title ?? ""}" data-cover="${album?.cover_small ?? ""}"></i>
                     <ul class="dropdown-menu w-auto dropdown-menu-end bg-dark border-1 border-white p-1">
                       <li
