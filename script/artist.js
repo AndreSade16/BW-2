@@ -208,22 +208,35 @@ if (params.get("artistId")) {
 const playBtnPlayArtist = () => {
   const randomize = document.getElementById("randomize");
   const songs = artistTracksData;
+  const isShuffleActive =
+    (randomize && randomize.classList.contains("active")) ||
+    (shuffleBtn && shuffleBtn.classList.contains("active"));
   let song = {};
   if (!isPlaying) {
-    const isShuffleActive =
-      (randomize && randomize.classList.contains("active")) ||
-      (shuffleBtn && shuffleBtn.classList.contains("active"));
     if (isShuffleActive) {
       if (playing.id) {
-        playAudio(playing);
+        if (songs.some((song) => song.id === playing.id)) {
+          playAudio(playing);
+        } else {
+          playAudio(song[0]);
+        }
       } else {
         let i = Math.floor(Math.random() * 5);
         playAudio(songs[i]);
       }
     } else {
-      playing.id ? playAudio(playing) : playAudio(songs[0]);
+      playAudio(songs[0]);
     }
   } else {
+    if (songs.every((song) => song.id !== playing.id)) {
+      if (isShuffleActive) {
+        let i = Math.floor(Math.random() * 5);
+        playAudio(songs[i]);
+      } else {
+        playAudio(songs[0]);
+      }
+      return;
+    }
     pauseAudio();
   }
 };
