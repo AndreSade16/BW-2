@@ -12280,4 +12280,9 @@ body {
 #openSidebar:hover {
   background-color: #393939;
   color: white;
+}
+
+.song-list p:hover {
+  cursor: pointer;
+  background-color: #1a1a1a;
 }/*# sourceMappingURL=style.css.map */
