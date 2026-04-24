@@ -138,6 +138,7 @@
       transform: translateY(-50%);
       margin-left: 0;
       z-index: 2;
+      width: auto;
     }
 
     /* cuoricino dentro gli <li class="track-item"> della pagina artista */
