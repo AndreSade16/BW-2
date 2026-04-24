@@ -46,7 +46,15 @@ forwardBtn.addEventListener("click", () => {
   location.reload()
 })
 
+// LOGICA VALE //
+
+let heroAlbum = null
+let heroTrack = null
+
 window.addEventListener("DOMContentLoaded", function () {
+  const heroPlayBtn = document.getElementById("hero-play")
+  heroPlayBtn.disabled = true
+
   // Logica chiusura sidebar-right al click del bottone "X"
   const closeButton = document.getElementById("closeSidebar")
   const openButton = document.getElementById("openSidebar")
@@ -74,13 +82,11 @@ window.addEventListener("DOMContentLoaded", function () {
   const closeAddButton = document.getElementById("btn-hide-add")
   const hero = document.getElementById("hero")
 
-
   // CHIUDI
   closeAddButton.addEventListener("click", function () {
     hero.classList.add("d-none")
   })
 
-  
   // funzione che ritenta al fallimento della fetch
   const fetchWithRetry = (url, retries = 2) => {
     return fetch(url)
@@ -151,11 +157,23 @@ window.addEventListener("DOMContentLoaded", function () {
             const randomAlbum =
               albumsData[Math.floor(Math.random() * albumsData.length)]
 
+            heroAlbum = randomAlbum
+
             document.getElementById("hero-img").src = randomAlbum.cover_xl
             document.getElementById("hero-title").textContent =
               randomAlbum.title
             document.getElementById("hero-artist").textContent =
               randomAlbum.artist.name
+
+            // PRENDO LA TRACCIA
+            fetch(
+              `https://striveschool-api.herokuapp.com/api/deezer/album/${heroAlbum.id}`,
+            )
+              .then((res) => res.json())
+              .then((albumData) => {
+                heroTrack = albumData.tracks.data[0]
+                heroPlayBtn.disabled = false //
+              })
           }
         }
       })
@@ -232,4 +250,17 @@ window.addEventListener("DOMContentLoaded", function () {
     artistContainer.scrollBy({ left: 300, behavior: "smooth" })
   })
 
+  // logica hero play button
+
+  heroPlayBtn.addEventListener("click", () => {
+    if (!heroTrack) return
+
+    if (!isPlaying) {
+      playAudio(heroTrack)
+      heroPlayBtn.innerHTML = `<i class="fas fa-pause"></i>`
+    } else {
+      pauseAudio()
+      heroPlayBtn.innerHTML = `Play`
+    }
+  })
 })
