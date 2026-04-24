@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="./assets/scss/style.css" />
     <link rel="stylesheet" href="./assets/css/album.css" />
     <link rel="stylesheet" href="./assets/css/search.css" />
+    <link rel="stylesheet" href="index2.css" />
   </head>
-  <body>
+  <body class="pb-0">
     <header
       id="topbar-global"
       class="d-flex align-items-center justify-content-between px-3 py-2 bg-black text-white position-fixed top-0 w-100"
@@ -103,141 +104,259 @@
         <!--COL: LEFT -->
         <!-- col che appare da md in poi a sx -->
         <div
-          class="d-none d-md-block col-md-4 col-lg-2 order-md-1 bg-black pt-1 overflow-auto vh-100"
+          id="sidebar"
+          class="text-white d-md-flex flex-column p-2 sidebar-expanded collapsed align-items-center px-1 py-4 rounded-3 d-none col-md-4"
         >
-          <section>
-            <!-- LINKS: icons + p -->
-            <nav class="container mb-2">
-              <!-- icone HOME, CERCA, LIBRARY -->
-              <div class="row gap-2">
-                <a
-                  class="text-light my-1 d-flex align-items-center sidebar-link"
-                  href="#"
-                  ><div><i class="fas fa-ellipsis-h"></i></div
-                ></a>
-                <a
-                  class="col-12 my-1 d-flex align-items-center text-decoration-none active-sidebar sidebar-link"
-                  href="#"
-                  ><div>
-                    <img
-                      class="img-box"
-                      src="./assets/imgs/icona home.png"
-                      alt=""
-                    />
-                  </div>
-                  <span class="mx-3">Home</span>
-                </a>
-
-                <div
-                  class="show-search text-secondary col-12 my-1 d-flex align-items-center text-decoration-none sidebar-link"
-                  onclick="showSearchPage()"
-                  type="button"
-                >
-                  <div>
-                    <img
-                      class="img-box"
-                      src="./assets/imgs/icona lente.png"
-                      alt=""
-                    />
-                  </div>
-                  <span class="mx-3">Sfoglia</span>
-                </div>
-
-                <a
-                  class="col-12 my-1 text-secondary d-flex align-items-center text-decoration-none sidebar-link"
-                  href="#"
-                  ><div>
-                    <img
-                      class="img-box"
-                      src="./assets/imgs/icona library.png"
-                      alt=""
-                    />
-                  </div>
-                  <span class="mx-3">La tua libreria</span>
-                </a>
-              </div>
-
-              <!-- crea playlist, ...-->
-              <div class="row my-3 gap-2">
-                <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
-                  href="#"
-                  ><div>
-                    <img
-                      class="img-box"
-                      src="./assets/imgs/icona plus.png"
-                      alt="plus-icons"
-                    />
-                  </div>
-                  <span class="mx-3">Crea playlist</span>
-                </a>
-
-                <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
-                  href="#"
-                  ><div>
-                    <img
-                      class="img-box"
-                      src="./assets/imgs/OIP.png"
-                      alt="icons-cuore"
-                    />
-                  </div>
-                  <span class="mx-3">Brani che ti piacciono</span>
-                </a>
-
-                <a
-                  class="col-12 d-flex align-items-center my-1 text-decoration-none text-secondary sidebar-link"
-                  href="#"
-                  ><div>
-                    <img
-                      class="img-box"
-                      src="./assets/imgs/icona-bookmark.png"
-                      alt="icons-bookmark"
-                    />
-                  </div>
-                  <span class="mx-3">I tuoi episodi</span>
-                </a>
-              </div>
-            </nav>
-
-            <!-- song list -->
-            <div class="small container text-secondary">
-              <hr class="text-secondary border-2 border-secondary" />
-              <p>early stage emily syndrome (sett-ott 2022)</p>
-              <p>Be The Young</p>
-              <p>" .. " cit. Kimiko (lug-ago 2022)</p>
-              <p>saggio vibes💃</p>
-              <p>main character energy (mag-giu 2022)</p>
-              <p>that fucking mood🔪</p>
-              <p>VEE, CARLOTTA E GIACOMO VANNO A BOSIO</p>
-              <p>An Emily Winchester kind of mood🔪🤟</p>
-              <div class="d-flex align-content-center justify-content-between">
-                <p>landing page (mar-apr 2022)</p>
-                <i class="fas fa-arrow-alt-circle-down mt-1"></i>
-              </div>
-              <p>2021 lol</p>
-              <div class="d-flex align-content-center justify-content-between">
-                <p>cosa cazz vuol dire questa affermazione (gen-fe..)</p>
-                <i class="fas fa-arrow-alt-circle-down mt-1"></i>
-              </div>
-              <p>honey and glass (nov-dic 2021)</p>
-              <p>(Revenge) Training Arc🦍</p>
-              <p>Lidia🤝Emili</p>
-              <p>minecraft e nintendo switch(sep-oct 2021)</p>
-              <p>silvano d'orba? I hardly know her (lug - ago 2021)</p>
-              <div class="d-flex align-content-center justify-content-between">
-                <p>Culo 2021</p>
-                <i class="fas fa-users"></i>
-              </div>
-              <p>Frah Quintale Mix</p>
-              <p>Francesco Guccini Mix</p>
-              <p>early stage emily syndrome (sett-ott 2022)</p>
-              <p>Be The Young</p>
-              <p>" .. " cit. Kimiko (lug-ago 2022)</p>
-              <p>saggio vibes💃</p>
-              <p>main character energy (mag-giu 2022)</p>
+          <div id="sidebar-toggler-container" class="d-flex mb-3 px-3">
+            <div class="d-flex align-items-center">
+              <svg
+                id="toggleSidebar"
+                data-encore-id="icon"
+                role="img"
+                aria-hidden="true"
+                class="text-light"
+                viewBox="0 0 24 24"
+                type="button"
+              >
+                <path
+                  d="M14.457 15.207a1 1 0 0 1-1.414-1.414L14.836 12l-1.793-1.793a1 1 0 0 1 1.414-1.414l2.5 2.5a1 1 0 0 1 0 1.414z"
+                ></path>
+                <path
+                  d="M20 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2zM4 20V4h4v16zm16 0H10V4h10z"
+                ></path>
+              </svg>
+              <span class="label ms-3 fw-bold">La tua libreria</span>
             </div>
-          </section>
+            <button
+              class="border-0 rounded-circle"
+              style="background-color: #282828"
+            >
+              <i class="fas fa-plus text-secondary"></i>
+            </button>
+          </div>
+          <div
+            id="sidebar-buttons-container"
+            class="d-flex justify-content-between w-100 px-2 overflow-x-scroll"
+          >
+            <button
+              class="border-0 label rounded-5 px-3 py-2 mx-1"
+              style="background-color: #282828"
+            >
+              <i class="fas fa-times text-secondary"></i>
+            </button>
+            <button
+              class="border-0 label rounded-5 px-3 py-2 mx-1"
+              style="background-color: #282828"
+            >
+              Playlist
+            </button>
+            <button
+              class="border-0 label rounded-5 px-3 py-2 mx-1"
+              style="background-color: #282828"
+            >
+              Da Spotify
+            </button>
+            <button
+              class="border-0 label rounded-5 px-3 py-2 mx-1"
+              style="background-color: #282828"
+            >
+              Da te
+            </button>
+          </div>
+          <div
+            id="sidebar-links-container"
+            class="d-flex flex-column align-items-start"
+          >
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center my-1 text-white text-decoration-none justify-content-start my-2"
+            >
+              <div
+                class="sidebar-icon-container rounded-1 overflow-hidden d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="img-fluid"
+                  src="./assets/imgs/search/image-1.jpeg"
+                />
+              </div>
+
+              <div class="ms-3 d-flex flex-column">
+                <span class="label">Brani che ti piacciono</span>
+                <span class="label"
+                  ><i class="fas fa-thumbtack green-pin me-2"></i>371
+                  brani</span
+                >
+              </div>
+            </a>
+          </div>
         </div>
 
         <!-- COL: MAIN-CONTENT -->
@@ -671,5 +790,6 @@
     <script src="./player-bar.js"></script>
     <script src="./script/artist.js"></script>
     <script src="./libreria.js"></script>
+    <script src="index2.js"></script>
   </body>
 </html>

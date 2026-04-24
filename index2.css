@@ -1,0 +1,89 @@
+#sidebar {
+  width: fit-content;
+  max-width: 300px;
+  transition: all 0.3s ease;
+  background-color: #121212;
+  max-height: 100dvh;
+}
+
+#sidebar-toggler-container {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.fa-plus {
+  padding: 0.6rem 0.4rem;
+}
+
+#sidebar.collapsed #sidebar-toggler-container {
+  align-items: center;
+  gap: 1.5rem;
+  flex-direction: column;
+}
+
+#sidebar.collapsed {
+  width: 80px;
+}
+
+#sidebar.collapsed .label {
+  display: none;
+}
+
+#sidebar.collapsed a {
+  justify-content: center;
+}
+
+#sidebar-buttons-container {
+  margin: 1rem 0rem;
+}
+
+#sidebar.collapsed #sidebar-buttons-container {
+  margin: 0rem;
+}
+
+svg {
+  fill: currentColor;
+}
+
+#toggleSidebar {
+  width: 1.5rem;
+}
+
+i {
+  line-height: 1;
+}
+
+#sidebar-links-container {
+  width: 100%;
+  align-self: stretch;
+}
+
+#sidebar.collapsed #sidebar-links-container a {
+  width: 100%;
+  padding: 0;
+  margin-left: 0.5rem;
+  justify-content: center;
+}
+
+#sidebar-links-container a {
+  margin-left: 1rem;
+}
+
+#sidebar-links-container a {
+  padding-left: rem;
+  width: 100%;
+}
+
+.sidebar-icon-container {
+  width: 18%;
+}
+
+#sidebar.collapsed .sidebar-icon-container {
+  width: 100%;
+}
+
+.green-pin {
+  color: #3be477;
+  font-size: 0.8em;
+  transform: rotate(45deg);
+}
