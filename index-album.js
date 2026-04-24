@@ -764,7 +764,7 @@ const displayAlbumData = (data) => {
       album,
     } = track;
     tracksHTML += `
-            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2 ps-2">
+            <div class="track-card row mt-3 justify-content-between align-items-center rounded-2 ps-2 z-2">
                 <div class="col-1 d-flex align-items-center justify-content-end text-secondary fw-semibold d-none d-xl-inline-block">
                   <p class="m-0 text-end">${i + 1}</p>
                 </div>
