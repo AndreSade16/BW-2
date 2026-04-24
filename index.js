@@ -78,6 +78,17 @@ window.addEventListener("DOMContentLoaded", function () {
     openButton.classList.add("d-none");
   });
 
+  const navbarGroupIcon = document.querySelector(".bi-people");
+  navbarGroupIcon.addEventListener("click", () => {
+    sidebar.classList.add("d-lg-inline-block");
+    openButton.classList.add("d-none");
+  });
+
+  const bellIcon = document.querySelector(".bi-bell");
+  bellIcon.addEventListener("click", () => {
+    alert("Non cliccare tutto... curiosone!");
+  });
+
   // Logica chiusura add hero al click del bottone "NASCONDI ANNUNCI"
   const closeAddButton = document.getElementById("btn-hide-add");
   const hero = document.getElementById("hero");
