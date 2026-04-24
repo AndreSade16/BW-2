@@ -12285,4 +12285,21 @@ body {
 .song-list p:hover {
   cursor: pointer;
   background-color: #1a1a1a;
+}
+
+.album-card,
+.artist-card {
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover,
+.artist-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+#album-container,
+#artist-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }/*# sourceMappingURL=style.css.map */
